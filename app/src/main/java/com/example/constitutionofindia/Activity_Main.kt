@@ -1,0 +1,245 @@
+package com.example.constitutionofindia
+
+import android.animation.ObjectAnimator
+import android.content.Intent
+import android.content.SharedPreferences
+import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
+import android.view.animation.OvershootInterpolator
+import android.widget.ImageView
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.cardview.widget.CardView
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.activity.viewModels
+import androidx.core.animation.doOnEnd
+import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.amendments.Activity_Amendmentslist
+import com.example.constitutionofindia.faqs.Activity_FAQs
+import com.example.constitutionofindia.parts.Activity_Partslist
+import com.example.constitutionofindia.preamble.Activity_Preamble
+import com.example.constitutionofindia.schedules.Activity_Scheduleslist
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.material.navigation.NavigationView
+
+class Activity_Main : AppCompatActivity(), View.OnClickListener {
+
+
+    lateinit var Activity_Main_BannerAd: AdView
+    lateinit var toggle: ActionBarDrawerToggle
+
+    val THEME_PREF = "theme_pref"
+    val THEME_SELECTED = "theme_selected"
+    val NIGHT_MODE = "night_mode"
+
+    lateinit var CoI_SharedPref: SharedPreferences
+
+    private val viewModel: SplashViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        val splashscreen = installSplashScreen()
+
+
+        super.onCreate(savedInstanceState)
+
+        splashscreen.apply {
+            this.setKeepOnScreenCondition {
+                !viewModel.isReady.value
+            }
+
+            this.setOnExitAnimationListener { screen ->
+                val zoomX = ObjectAnimator.ofFloat(
+                    screen.iconView,
+                    View.SCALE_X,
+                    1.0f,
+                    0.0f
+                )
+                zoomX.also {
+                    it.interpolator = OvershootInterpolator()
+                    it.duration = 500L
+                    it.doOnEnd {
+                        screen.remove()
+                    }
+                }
+
+                val zoomY = ObjectAnimator.ofFloat(
+                    screen.iconView,
+                    View.SCALE_Y,
+                    1.0f,
+                    0.0f
+                )
+                zoomY.also {
+                    it.interpolator = OvershootInterpolator()
+                    it.duration = 500L
+                    it.doOnEnd {
+                        screen.remove()
+                    }
+                }
+
+                zoomX.start()
+                zoomY.start()
+            }
+        }
+
+        CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
+        val nightmode =
+            CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        AppCompatDelegate.setDefaultNightMode(nightmode)
+        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeDefault)
+        ThemePreference().changeThemeStyle(this, themeselected)
+
+
+        setContentView(R.layout.activity_main)
+
+
+        toggle = ActionBarDrawerToggle(
+            this,
+            findViewById(R.id.activity_main_drawer),
+            findViewById(R.id.activity_main_tb),
+            R.string.menu,
+            R.string.menu_close
+        )
+        findViewById<DrawerLayout>(R.id.activity_main_drawer).addDrawerListener(toggle)
+        toggle.syncState()
+
+        setSupportActionBar(findViewById(R.id.activity_main_tb))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+
+
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        MobileAds.initialize(this) {}
+        val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
+
+        Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
+        Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
+
+
+        findViewById<CardView>(R.id.activity_main_cvPreamble).setOnClickListener(this)
+        findViewById<CardView>(R.id.activity_main_cvParts).setOnClickListener(this)
+        findViewById<CardView>(R.id.activity_main_cvSchedules).setOnClickListener(this)
+        findViewById<CardView>(R.id.activity_main_cvAmendments).setOnClickListener(this)
+
+
+
+        findViewById<NavigationView>(R.id.activity_main_drawer_navView).setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.main_menu_Settings -> {
+                    Intent(this, Activity_Settings::class.java).also {
+                        startActivity(it)
+                    }
+                    finish()
+                }
+
+                R.id.main_menu_FAQs -> {
+                    Intent(this, Activity_FAQs::class.java).also {
+                        startActivity(it)
+                    }
+                }
+
+                R.id.main_menu_About -> {
+                    Intent(this, Activity_About::class.java).also {
+                        startActivity(it)
+                    }
+                }
+
+                R.id.main_menu_Share -> {
+//                    Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show()
+                    val sendIntent: Intent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+                        type = "text/plain"
+                    }
+
+                    val shareIntent = Intent.createChooser(sendIntent, null)
+                    startActivity(shareIntent)
+                }
+
+                R.id.main_menu_rate -> {
+//                    Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show()
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=com.facebook.katana")
+                    ).also { rateintent ->
+                        startActivity(rateintent)
+                    }
+
+
+                }
+            }
+
+            findViewById<DrawerLayout>(R.id.activity_main_drawer).also { drawer ->
+                drawer.closeDrawer(GravityCompat.START)
+            }
+            true
+        }
+
+
+        val drawerheader =
+            findViewById<NavigationView>(R.id.activity_main_drawer_navView).getHeaderView(0)
+        drawerheader.also { header ->
+            header.findViewById<ImageView>(R.id.activity_main_drawer_header_ivmain).also {
+                it.setImageResource(R.drawable.app_coin_icon_whiteback_figma)
+
+            }
+        }
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+
+    override fun onClick(view: View?) {
+
+        when (view!!.id) {
+
+            R.id.activity_main_cvPreamble -> {
+                Intent(this, Activity_Preamble::class.java).also {
+                    startActivity(it)
+                }
+            }
+
+            R.id.activity_main_cvParts -> {
+                Intent(this, Activity_Partslist::class.java).also {
+                    startActivity(it)
+                }
+            }
+
+            R.id.activity_main_cvSchedules -> {
+                Intent(this, Activity_Scheduleslist::class.java).also {
+                    startActivity(it)
+                }
+            }
+
+            R.id.activity_main_cvAmendments -> {
+                Intent(this, Activity_Amendmentslist::class.java).also {
+                    startActivity(it)
+                }
+            }
+
+
+        }
+    }
+
+}

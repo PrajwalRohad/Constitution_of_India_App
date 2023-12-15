@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_purple">#F9F4FF</color>
+    <color name="light_black">#434343</color>
+
+    <color name="black_01">#121212</color>
+    <color name="black_02">#1F1F1F</color>
+    <color name="black_03">#1E1E1E</color>
+
+
+    <color name="appicon_coin_background">#FFFFFF</color>
+
+    <color name="link_blue">#0E4AED</color>
+
+
+
+    <color name="grey">#808080</color>
+    <color name="grey_light">#D3D3D3</color>
+    <color name="grey_dark">#A9A9A9</color>
+    <color name="grey_dark_01">#6E6D6D</color>
+    <color name="grey_01">#E8E8E8</color>
+
+    <color name="silver">#C0C0C0</color>
+    <color name="Platinum">#E5E4E2</color>
+
+    
+    <color name="india_green">#046A38</color>
+    <color name="india_saffron">#FF671F</color>
+    <color name="navy_blue">#06038D</color>
+    
+    <color name="red">#DA0F0F</color>
+    <color name="red_error">#B00020</color>
+    <color name="red_error_01">#CF6679</color>
+    <color name="green">#0aad3f</color>
+    
+    <color name="grey_hazy">#F1EDED</color>
+    <color name="teal_200">#008080</color>
+    
+    <color name="purple">#6200EE</color>
+    <color name="purple_light">#BB86FC</color>
+    <color name="purple_light_01">#A17CCD</color>
+    <color name="purple_dark">#3700B3</color>
+    <color name="purple_dark_01">#310593</color>
+    <color name="purple_dark_02">#BEC0FF</color>
+    <color name="purple_dark_03">#522BFF</color>
+    
+    <color name="fornightly_purple">#6B38FB</color>
+    <color name="fornightly_purple_light">#9F7EFB</color>
+    <color name="fornightly_purple_dark">#05030C</color>
+
+
+    
+    <color name="teal">#00BFA5</color>
+    <color name="teal_white">#E9FAF7</color>
+    <color name="teal_01">#03DAC6</color>
+    <color name="teal_light">#1DE9B6</color>
+    <color name="teal_light_01">#ACCDC5</color>
+    <color name="teal_dark">#004D40</color>
+    <color name="teal_dark_01">#018786</color>
+    <color name="teal_dark_02">#066A6A</color>
+
+    <color name="yellow">#FFDE03</color>
+    <color name="yellow_light">#CDD97E</color>
+    <color name="yellow_light_01">#FAE456</color>
+    <color name="yellow_dark">#FFC000</color>
+    <color name="yellow_dark_01">#1E1C00</color>
+
+    <color name="blue">#0336FF</color>
+    <color name="blue_dark">#014291</color>
+
+
+    <color name="basilgreen">#356859</color>
+    <color name="basilgreen_light">#37966F</color>
+    <color name="basilgreen_light_01">#B9E4C9</color>
+    <color name="basilgreen_light_02">#D1E4D8</color>
+    <color name="basilgreen_dark">#7C7969</color>
+    <color name="basilgreen_dark_01">#141B17</color>
+    <color name="basilgreen_background">#FFFBE6</color>
+    <color name="basilgreen_white">#DDDDDA</color>
+
+    <color name="basilgreen_orange">#FD5523</color>
+    <color name="basilgreen_orange_light">#FB7B55</color>
+
+    
+    <color name="replyblue">#344955</color>
+    <color name="replyblue_light">#4A6572</color>
+    <color name="replyblue_light_01">#B5C9D6</color>
+    <color name="replyblue_dark">#232F34</color>
+    <color name="replyblue_dark_01">#234451</color>
+    <color name="replyblue_background">#EDF0F2</color>
+    <color name="replyblue_white">#ECF8FF</color>
+
+</resources>

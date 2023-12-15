@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/splashcreen_icon">
+
+    <target
+        android:name="icon_text"
+        android:animation="@animator/appicon_animator_innerradius" />
+
+<!--    <target-->
+<!--        android:name="icon_text"-->
+<!--        android:animation="@animator/appicon_animator_emblem" />-->
+
+
+<!--    <target-->
+<!--        android:name="icon_emblem"-->
+<!--        android:animation="@animator/appicon_animator_emblem" />-->
+
+</animated-vector>

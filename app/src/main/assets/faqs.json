@@ -1,0 +1,51 @@
+{
+  "faq_01": {
+    "question": "<strong>1. What is the \"Constitution of India\" app?</strong>",
+    "answer": "<p style=\"text-align: justify;\">The \"Constitution of India\" app is a mobile application that provides users with easy access to the full text of the Constitution of India. It aims to be a comprehensive resource for individuals interested in understanding the legal framework and principles that govern the country.</p>"
+  },
+  "faq_02": {
+    "question": "<strong>2. What features does the app offer?</strong>",
+    "answer": "<p style=\"text-align: justify;\">The app includes the complete text of the Constitution of India, organized by parts, articles, and schedules. It provides a user-friendly interface for convenient navigation and offers a variety of font styles and themes to enhance readability and cater to individual preferences. Users can customize the app's appearance according to their liking.</p>\n<p style=\"text-align: justify;\">Additionally, the app ensures that users stay informed with up-to-date amendments to the Constitution. Regular updates will be provided to incorporate any changes, ensuring that users have access to the latest and most accurate information.</p>\n<p style=\"text-align: justify;\">Please note that, as of now, the app does not include a search function and bookmarking capabilities. However, these features may be considered for future updates based on user feedback and evolving needs.</p>"
+  },
+  "faq_03": {
+    "question": "<strong>3. Is the app available for both Android and iOS?</strong>",
+    "answer": "<p style=\"text-align: justify;\">No, currently, the \"Constitution of India\" app is available exclusively on the Android platform. We are actively exploring options for an iOS version, and we appreciate your patience. Stay tuned for updates on our expansion to iOS.</p>"
+  },
+  "faq_04": {
+    "question": "<strong>4. Can I access the Constitution offline?</strong>",
+    "answer": "<p style=\"text-align: justify;\">Yes, users can currently access the Constitution offline after downloading the app and the necessary content. However, we have exciting plans for future updates that will introduce online features to enhance the user experience. This will include the ability to receive real-time updates, access supplementary content, and participate in interactive features while online.</p>"
+  },
+  "faq_05": {
+    "question": "<strong>5. How frequently is the app updated?</strong>",
+    "answer": "<p style=\"text-align: justify;\">The app is periodically updated to incorporate any amendments or changes to the Constitution. Updates may also include improvements to the user interface and additional features based on user feedback.</p>\n<p style=\"text-align: justify;\">Keep the app on Auto-Update mode on Play Store. Stay tuned!</p>"
+  },
+  "faq_06": {
+    "question": "<strong>6. Is the app suitable for students, legal professionals, and the general public?</strong>",
+    "answer": "<p style=\"text-align: justify;\">Yes, the \"Constitution of India\" app is designed to cater to a diverse audience, including students, legal professionals, and the general public. It presents the information in a way that is accessible to individuals with varying levels of familiarity with legal concepts.</p>"
+  },
+  "faq_07": {
+    "question": "<strong>7. How can I provide feedback or report issues with the app?</strong>",
+    "answer": "<p style=\"text-align: justify;\">Users can provide feedback or report issues through the app's feedback section available on the Play Store for Android users. For more detailed concerns or concerns not covered in the feedback section, users can report issues via the provided email address. We value your feedback and are dedicated to addressing your queries promptly.</p>"
+  },
+  "faq_08": {
+    "question": "<strong>8. Is the app free to download and use?</strong>",
+    "answer": "<p style=\"text-align: justify;\">Yes, the app is free to download and use. However, it may offer optional in-app purchases or donations to support ongoing development and maintenance.</p>\n<p style=\"text-align: justify;\">Feel free to customize these FAQs based on the specific features and details of your \"Constitution of India\" app.</p>"
+  },
+  "faq_09": {
+    "question": "<strong>9. Are there any additional resources or explanations provided within the app?</strong>",
+    "answer": "<p style=\"text-align: justify;\">As of now, the \"Constitution of India\" app primarily focuses on presenting the complete text of the Constitution. However, we are actively working on incorporating additional resources, such as summaries of key articles, explanations of legal terms, and historical context, to enhance the overall user experience. Stay tuned for future updates that will bring more educational features to the app.</p>"
+  },
+  "faq_10": {
+    "question": "<strong>10. What are the future plans for the \"Constitution of India\" app?</strong>",
+    "answer": "<p style=\"text-align: justify;\">In the future, we have ambitious plans to enhance the app by adding a dedicated section on the structure of the Government of India. This section will include a detailed hierarchy of all ministries and government organizations, along with information about their functions and roles.</p>\n<p style=\"text-align: justify;\">Additionally, we intend to incorporate original documents and other valuable resources to provide users with a comprehensive understanding of the Indian governance system. We are committed to continually improving the app to make it a valuable resource for individuals interested in Indian constitutional and governmental matters.</p>\n<p style=\"text-align: justify;\">Stay tuned for exciting updates!</p>"
+  },
+  "faq_11": {
+    "question": "<strong>11. Are there any additional features specifically tailored for students preparing for UPSC exams?</strong>",
+    "answer": "<p style=\"text-align: justify;\">Yes, we understand the importance of supporting students preparing for UPSC exams. In addition to the comprehensive text of the Constitution, the \"Constitution of India\" app aims to provide valuable resources for UPSC aspirants. We plan to introduce features such as:</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p><strong>Toppers' Notes:</strong> Exclusive notes from successful UPSC candidates, offering insights and strategies that proved effective in their preparation.</p>\n</li>\n<li>\n<p><strong>Exam Tips:</strong> Practical tips and guidance on how to approach UPSC exams, including time management, effective study techniques, and exam-day strategies.</p>\n</li>\n<li>\n<p><strong>Supreme Court Famous Judgments:</strong> A curated collection of landmark judgments by the Supreme Court of India, relevant to UPSC exam syllabus, providing a deeper understanding of legal concepts.</p>\n</li>\n<li>\n<p><strong>Structure of the Government of India:&nbsp;</strong>A&nbsp;detailed hierarchy of all ministries and government organizations, along with information about their functions and roles.</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\">We are committed to helping UPSC aspirants in their journey towards success and will continue to update the app with features that cater to the specific needs of students preparing for these competitive exams. Stay tuned for these additions aimed at making your UPSC preparation more effective and focused.</p>"
+  },
+  "faq_12": {
+    "question": "<strong>12. What additional features can users expect in the future updates of the \"Constitution of India\" app?</strong>",
+    "answer": "<p style=\"text-align: justify;\">In our upcoming updates, we plan to introduce several new features to enhance the user experience. These features include:</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p><strong>Note Creation:</strong> Users will have the ability to create and save personal notes within the app. This feature aims to assist users in organizing their thoughts, highlighting key sections, and making the app a personalized study tool.</p>\n</li>\n<li>\n<p><strong>Quizzing AI:</strong> To facilitate active learning, we are working on integrating a quizzing AI that will offer users the opportunity to test their knowledge of the Constitution. This interactive feature is designed to reinforce learning and make the app an engaging educational tool.</p>\n</li>\n<li>\n<p><strong>Font Control:</strong> Recognizing the diverse needs of our users, we plan to introduce font control options. This will allow users to customize the text size and style according to their preferences, ensuring a comfortable reading experience for everyone.</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\">We are committed to providing continuous updates to meet the evolving needs of our users and make the \"Constitution of India\" app a versatile and user-friendly resource. Stay tuned for these exciting features in our future releases.</p>"
+  }
+
+}

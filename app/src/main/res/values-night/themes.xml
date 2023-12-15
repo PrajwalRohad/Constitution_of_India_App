@@ -1,0 +1,406 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ConstitutionOfIndia" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/black_02</item>
+        <item name="android:colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/grey_dark_01</item>
+<!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
+<!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
+        <item name="colorOnPrimary">@color/basilgreen_orange_light</item>
+<!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
+
+<!--        <item name="colorSecondary">@color/teal_01</item>-->
+<!--        <item name="colorOnSecondary">@color/black</item>-->
+
+        <item name="background">@color/black_01</item>
+        <item name="colorSurface">@color/basilgreen_dark_01</item>
+        <item name="colorError">@color/red_error_01</item>
+
+        <item name="colorOnBackground">@color/basilgreen_light_02</item>
+        <item name="colorOnSurface">@color/basilgreen_light_01</item>
+        <item name="colorOnError">@color/black</item>
+
+        <item name="android:textColor">@color/basilgreen_light_01</item>
+        <item name="android:textColorPrimary">@color/basilgreen_light_01</item>
+        <item name="android:textColorSecondary">@color/basilgreen_light_01</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorControlNormal">?attr/colorOnPrimary</item>
+
+<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+    </style>
+
+
+
+<!--    <style name="ThemeLauncher" parent="Theme.Material3.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your light theme here. &ndash;&gt;-->
+<!--        &lt;!&ndash; <item name="colorPrimary">@color/my_light_primary</item> &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/white</item>-->
+<!--        <item name="android:colorPrimaryDark">@color/grey_dark_01</item>-->
+<!--        <item name="colorAccent">@color/silver</item>-->
+<!--        &lt;!&ndash;        <item name="colorPrimaryVariant">@color/purple_dark</item>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <item name="android:colorPrimaryDark">@color/purple_dark</item>&ndash;&gt;-->
+<!--        <item name="colorOnPrimary">@color/black</item>-->
+<!--        &lt;!&ndash;        <item name="colorPrimaryContainer">@color/purple_light</item>&ndash;&gt;-->
+
+<!--        &lt;!&ndash;        <item name="colorSecondary">@color/fornightly_purple</item>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <item name="colorSecondaryVariant">@color/purple_dark_03</item>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <item name="colorOnSecondary">@color/white</item>&ndash;&gt;-->
+
+<!--        <item name="background">@color/white</item>-->
+<!--        <item name="colorSurface">@color/white</item>-->
+<!--        <item name="colorError">@color/red_error</item>-->
+
+<!--        <item name="colorOnBackground">@color/black</item>-->
+<!--        <item name="colorOnSurface">@color/black</item>-->
+<!--        <item name="colorOnError">@color/white</item>-->
+
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--        <item name="android:textColorPrimary">@color/black</item>-->
+<!--        <item name="android:textColorSecondary">@color/black</item>-->
+
+<!--        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
+<!--        <item name="colorControlNormal">@color/black</item>-->
+
+<!--&lt;!&ndash;        &lt;!&ndash;        <item name="android:windowDisablePreview">true</item>&ndash;&gt;&ndash;&gt;-->
+<!--        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>-->
+
+<!--        <item name="windowSplashScreenBackground">@color/white</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/downarrow_01</item>-->
+<!--        <item name="windowSplashScreenAnimationDuration">0</item>-->
+<!--        <item name="windowSplashScreenIconBackgroundColor">@color/red</item>-->
+
+<!--        <item name="postSplashScreenTheme">@style/ThemeDefault</item>-->
+
+
+<!--    </style>-->
+
+
+
+
+    <style name="ThemeDefault" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/black_02</item>
+        <item name="android:colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/grey_dark_01</item>
+        <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
+        <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
+        <item name="colorOnPrimary">@color/white</item>
+        <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
+
+        <!--        <item name="colorSecondary">@color/teal_01</item>-->
+        <!--        <item name="colorOnSecondary">@color/black</item>-->
+
+        <item name="background">@color/black_01</item>
+        <item name="colorSurface">@color/black_03</item>
+        <item name="colorError">@color/red_error_01</item>
+
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnError">@color/black</item>
+
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorControlNormal">?attr/colorOnPrimary</item>
+
+<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+<!--        <item name="windowSplashScreenBackground">@color/white</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenIconBackgroundColor">@color/white</item>&ndash;&gt;-->
+
+<!--        <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>-->
+
+    </style>
+
+
+
+    <style name="ThemeReplyBlue" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/replyblue_light</item>
+        <item name="android:colorPrimaryDark">@color/replyblue_dark</item>
+        <item name="colorAccent">@color/replyblue_dark_01</item>
+        <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
+        <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
+        <item name="colorOnPrimary">@color/white</item>
+        <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
+
+        <!--        <item name="colorSecondary">@color/teal_01</item>-->
+        <!--        <item name="colorOnSecondary">@color/black</item>-->
+
+        <item name="background">@color/black_01</item>
+        <item name="colorSurface">@color/black_03</item>
+        <item name="colorError">@color/red_error_01</item>
+
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnError">@color/black</item>
+
+        <item name="android:textColor">@color/replyblue_light_01</item>
+        <item name="android:textColorPrimary">@color/replyblue_light_01</item>
+        <item name="android:textColorSecondary">@color/replyblue_light_01</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorControlNormal">?attr/colorOnPrimary</item>
+
+<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+<!--        <item name="windowSplashScreenBackground">@color/white</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenIconBackgroundColor">@color/white</item>&ndash;&gt;-->
+
+<!--        <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>-->
+
+    </style>
+
+
+    <style name="ThemeBasilGreen" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/black_02</item>
+        <item name="android:colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/grey_dark_01</item>
+        <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
+        <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
+        <item name="colorOnPrimary">@color/basilgreen_orange_light</item>
+        <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
+
+        <!--        <item name="colorSecondary">@color/teal_01</item>-->
+        <!--        <item name="colorOnSecondary">@color/black</item>-->
+
+        <item name="background">@color/black_01</item>
+        <item name="colorSurface">@color/basilgreen_dark_01</item>
+        <item name="colorError">@color/red_error_01</item>
+
+        <item name="colorOnBackground">@color/basilgreen_light_02</item>
+        <item name="colorOnSurface">@color/basilgreen_light_01</item>
+        <item name="colorOnError">@color/black</item>
+
+        <item name="android:textColor">@color/basilgreen_light_01</item>
+        <item name="android:textColorPrimary">@color/basilgreen_light_01</item>
+        <item name="android:textColorSecondary">@color/basilgreen_light_01</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorControlNormal">?attr/colorOnPrimary</item>
+
+<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+<!--        <item name="windowSplashScreenBackground">@color/white</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenIconBackgroundColor">@color/white</item>&ndash;&gt;-->
+
+<!--        <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>-->
+
+    </style>
+
+
+    <style name="ThemeYellow" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/black_02</item>
+        <item name="android:colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/blue_dark</item>
+        <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
+        <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
+        <item name="colorOnPrimary">@color/yellow_light_01</item>
+        <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
+
+        <!--        <item name="colorSecondary">@color/teal_01</item>-->
+        <!--        <item name="colorOnSecondary">@color/black</item>-->
+
+        <item name="background">@color/yellow_dark_01</item>
+        <item name="colorSurface">@color/black_03</item>
+        <item name="colorError">@color/red_error_01</item>
+
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnError">@color/black</item>
+
+        <item name="android:textColor">@color/yellow_light_01</item>
+        <item name="android:textColorPrimary">@color/yellow_light_01</item>
+        <item name="android:textColorSecondary">@color/yellow_light_01</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorControlNormal">?attr/colorOnPrimary</item>
+
+<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+<!--        <item name="windowSplashScreenBackground">@color/white</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenIconBackgroundColor">@color/white</item>&ndash;&gt;-->
+
+<!--        <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>-->
+
+    </style>
+
+
+
+    <style name="ThemeTeal" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/teal_light_01</item>
+        <item name="android:colorPrimaryDark">@color/teal_dark_02</item>
+        <item name="colorAccent">@color/teal_dark_01</item>
+        <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
+        <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
+        <item name="colorOnPrimary">@color/black</item>
+        <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
+
+        <!--        <item name="colorSecondary">@color/teal_01</item>-->
+        <!--        <item name="colorOnSecondary">@color/black</item>-->
+
+        <item name="background">@color/black_01</item>
+        <item name="colorSurface">@color/black_03</item>
+        <item name="colorError">@color/red_error_01</item>
+
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnError">@color/black</item>
+
+        <item name="android:textColor">@color/teal</item>
+        <item name="android:textColorPrimary">@color/teal</item>
+        <item name="android:textColorSecondary">@color/teal</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorControlNormal">?attr/colorOnPrimary</item>
+
+<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+<!--        <item name="windowSplashScreenBackground">@color/white</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenIconBackgroundColor">@color/white</item>&ndash;&gt;-->
+
+<!--        <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>-->
+
+    </style>
+
+
+    <style name="ThemeFornightlyPurple" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/black_02</item>
+        <item name="android:colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/grey_dark_01</item>
+        <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
+        <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
+        <item name="colorOnPrimary">@color/white</item>
+        <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
+
+        <!--        <item name="colorSecondary">@color/teal_01</item>-->
+        <!--        <item name="colorOnSecondary">@color/black</item>-->
+
+        <item name="background">@color/black_01</item>
+        <item name="colorSurface">@color/fornightly_purple_dark</item>
+        <item name="colorError">@color/red_error_01</item>
+
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnError">@color/black</item>
+
+        <item name="android:textColor">@color/fornightly_purple_light</item>
+        <item name="android:textColorPrimary">@color/fornightly_purple_light</item>
+        <item name="android:textColorSecondary">@color/fornightly_purple_light</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorControlNormal">?attr/colorOnPrimary</item>
+
+<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+<!--        <item name="windowSplashScreenBackground">@color/white</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenIconBackgroundColor">@color/white</item>&ndash;&gt;-->
+
+<!--        <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>-->
+
+    </style>
+
+
+
+
+    <style name="ThemePurple" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/purple_light</item>
+        <item name="android:colorPrimaryDark">@color/purple</item>
+        <item name="colorAccent">@color/purple_dark_03</item>
+<!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
+<!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
+        <item name="colorOnPrimary">@color/black</item>
+<!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
+
+<!--        <item name="colorSecondary">@color/teal_01</item>-->
+<!--        <item name="colorOnSecondary">@color/black</item>-->
+
+        <item name="background">@color/black_01</item>
+        <item name="colorSurface">@color/black_03</item>
+        <item name="colorError">@color/red_error_01</item>
+
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnError">@color/black</item>
+
+        <item name="android:textColor">@color/purple</item>
+        <item name="android:textColorPrimary">@color/purple</item>
+        <item name="android:textColorSecondary">@color/purple</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorControlNormal">?attr/colorOnPrimary</item>
+
+<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+<!--        <item name="windowSplashScreenBackground">@color/white</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenIconBackgroundColor">@color/white</item>&ndash;&gt;-->
+
+<!--        <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>-->
+
+
+    </style>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main_whiteback_figma_288dp</item>
+<!--        <item name="windowSplashScreenAnimationDuration">500</item>-->
+<!--        <item name="windowSplashScreenIconBackgroundColor">@color/red</item>-->
+
+        <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>
+
+<!--        <item name="android:windowDisablePreview">true</item>-->
+<!--        <item name="android:windowIsTranslucent">true</item>-->
+<!--        <item name="android:windowBackground">@android:color/transparent</item>-->
+<!--        <item name="android:windowContentOverlay">@null</item>-->
+<!--        <item name="android:windowNoTitle">true</item>-->
+<!--        <item name="android:windowIsFloating">true</item>-->
+<!--        <item name="android:backgroundDimEnabled">false</item>-->
+
+
+    </style>
+
+
+
+
+</resources>

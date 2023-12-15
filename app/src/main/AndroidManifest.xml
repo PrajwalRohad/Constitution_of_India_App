@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/appicon_main"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/appicon_main_round"
+        android:supportsRtl="true"
+        android:theme="@style/ThemeReplyBlue"
+        tools:targetApi="31">
+        <activity
+            android:name="com.example.constitutionofindia.amendments.Activity_Amendment_SOR"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.amendments.Activity_Amendment"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.amendments.Activity_Amendmentslist"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.schedules.Activity_Schedule"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.schedules.Activity_Scheduleslist"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.articles.Activity_Article"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.articles.Activity_Articleslist"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.parts.Activity_Partslist"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.preamble.Activity_Preamble"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.Activity_About"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.faqs.Activity_FAQs"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.Activity_Settings"
+            android:exported="false" />
+        <activity
+            android:name="com.example.constitutionofindia.Activity_Main"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+    </application>
+
+</manifest>
