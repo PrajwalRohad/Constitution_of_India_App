@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_checked="true">
+<!--    <item android:state_checked="true">-->
 
-        <vector
-            android:height="25dp"
-            android:width="45dp"
-            android:viewportHeight="100"
-            android:viewportWidth="100">
+<!--        <vector-->
+<!--            android:height="25dp"-->
+<!--            android:width="45dp"-->
+<!--            android:viewportHeight="100"-->
+<!--            android:viewportWidth="100">-->
 
-            <path
-                android:fillColor="@color/blue"
-                android:pathData="M 0,100 L 100,100 100,0 40,0 z"
-                />
+<!--            <path-->
+<!--                android:fillColor="@color/blue"-->
+<!--                android:pathData="M 0,100 L 100,100 100,0 40,0 z"-->
+<!--                />-->
 
-        </vector>
-
-
-        <!--        <shape android:shape="rectangle">-->
-<!--            <solid android:color="@color/white" />-->
-<!--            <stroke android:width="0.1dp" android:color="#34c759" />-->
-<!--            <size android:width="20dp" android:height="20dp" />-->
-<!--        </shape>-->
-
-    </item>
-
-    <item android:state_checked="false">
-        <vector
-            android:height="25dp"
-            android:width="45dp"
-            android:viewportHeight="100"
-            android:viewportWidth="100">
-
-            <path
-                android:strokeColor="@color/white"
-                android:strokeWidth="1"
-                android:pathData="M 0,0 L 100,0 60,100 0,100 z"
-                />
+<!--        </vector>-->
 
 
-        </vector>
+<!--        &lt;!&ndash;        <shape android:shape="rectangle">&ndash;&gt;-->
+<!--&lt;!&ndash;            <solid android:color="@color/white" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <stroke android:width="0.1dp" android:color="#34c759" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <size android:width="20dp" android:height="20dp" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </shape>&ndash;&gt;-->
 
-<!--        <shape android:shape="rectangle">-->
-<!--            <solid android:color="@color/white" />-->
-<!--            <size android:width="20dp" android:height="20dp" />-->
-<!--        </shape>-->
-    </item>
+<!--    </item>-->
+
+<!--    <item android:state_checked="false">-->
+<!--        <vector-->
+<!--            android:height="25dp"-->
+<!--            android:width="45dp"-->
+<!--            android:viewportHeight="100"-->
+<!--            android:viewportWidth="100">-->
+
+<!--            <path-->
+<!--                android:strokeColor="@color/white"-->
+<!--                android:strokeWidth="1"-->
+<!--                android:pathData="M 0,0 L 100,0 60,100 0,100 z"-->
+<!--                />-->
+
+
+<!--        </vector>-->
+
+<!--&lt;!&ndash;        <shape android:shape="rectangle">&ndash;&gt;-->
+<!--&lt;!&ndash;            <solid android:color="@color/white" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <size android:width="20dp" android:height="20dp" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </shape>&ndash;&gt;-->
+<!--    </item>-->
 
 </selector>

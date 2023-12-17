@@ -2,9 +2,9 @@
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/splashcreen_icon">
 
-    <target
-        android:name="icon_text"
-        android:animation="@animator/appicon_animator_innerradius" />
+<!--    <target-->
+<!--        android:name="icon_text"-->
+<!--        android:animation="@animator/appicon_animator_innerradius" />-->
 
 <!--    <target-->
 <!--        android:name="icon_text"-->
