@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.ConstitutionOfIndia" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
@@ -303,8 +303,8 @@
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
 
         <item name="android:windowSplashScreenBackground">@color/white</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/appicon_main_whiteback_figma_288dp</item>
-<!--        <item name="android:windowSplashScreenAnimationDuration">500</item>-->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/avd_appicon_288dp</item>
+        <item name="android:windowSplashScreenAnimationDuration">1500</item>
 <!--        <item name="android:windowSplashScreenIconBackgroundColor">@color/red</item>-->
 
         <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>

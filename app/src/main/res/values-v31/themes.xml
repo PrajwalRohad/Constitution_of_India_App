@@ -272,8 +272,8 @@
 <!--        <item name="android:backgroundDimEnabled">false</item>-->
 
         <item name="android:windowSplashScreenBackground">@color/white</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/appicon_main_whiteback_figma_288dp</item>
-<!--        <item name="android:windowSplashScreenAnimationDuration">500</item>-->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/avd_appicon_288dp</item>
+        <item name="android:windowSplashScreenAnimationDuration">1500</item>
 <!--        <item name="android:windowSplashScreenIconBackgroundColor">@color/red</item>-->
 
         <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>
