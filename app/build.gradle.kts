@@ -72,7 +72,7 @@ dependencies {
     implementation("com.google.android.play:review:2.0.1")
     implementation("com.google.android.play:review-ktx:2.0.1")
 
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.12")
+//    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.12")
 
 //    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
