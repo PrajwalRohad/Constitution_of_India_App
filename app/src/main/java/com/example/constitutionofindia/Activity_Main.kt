@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
+import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.amendments.Activity_Amendmentslist
 import com.example.constitutionofindia.faqs.Activity_FAQs
@@ -28,18 +29,27 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
-class Activity_Main : AppCompatActivity(), View.OnClickListener {
+class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
 
-    lateinit var Activity_Main_BannerAd: AdView
+    private lateinit var Activity_Main_BannerAd: AdView
+
     lateinit var toggle: ActionBarDrawerToggle
 
     val THEME_PREF = "theme_pref"
     val THEME_SELECTED = "theme_selected"
     val NIGHT_MODE = "night_mode"
 
-    lateinit var CoI_SharedPref: SharedPreferences
+//    lateinit var CoI_SharedPref: SharedPreferences
+    lateinit var CoI_SharedPref: Deferred<SharedPreferences>
+
 
     private val viewModel: SplashViewModel by viewModels()
 
@@ -47,8 +57,36 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener {
 
         val splashscreen = installSplashScreen()
 
+//        lifecycleScope.launch(Dispatchers.IO){
+//            CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
+//            val nightmode =
+//                CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+//            AppCompatDelegate.setDefaultNightMode(nightmode)
+//            val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeDefault)
+//
+//            withContext(Dispatchers.Main){
+//                ThemePreference().changeThemeStyle(this@Activity_Main, themeselected)
+//            }
+//        }
 
-        super.onCreate(savedInstanceState)
+        runBlocking{
+            CoI_SharedPref = async { getSharedPreferences(THEME_PREF, MODE_PRIVATE) }
+            launch {
+                val nightmode =
+                    CoI_SharedPref.await().getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                AppCompatDelegate.setDefaultNightMode(nightmode)
+            }
+            launch {
+                val themeselected = CoI_SharedPref.await().getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
+                ThemePreference().changeThemeStyle(this@Activity_Main, themeselected)
+            }
+        }
+//        CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
+//        val nightmode =
+//            CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+//        AppCompatDelegate.setDefaultNightMode(nightmode)
+//        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
+//        ThemePreference().changeThemeStyle(this, themeselected)
 
         splashscreen.apply {
             this.setKeepOnScreenCondition {
@@ -89,14 +127,8 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener {
             }
         }
 
-        CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
-        val nightmode =
-            CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        AppCompatDelegate.setDefaultNightMode(nightmode)
-        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeDefault)
-        ThemePreference().changeThemeStyle(this, themeselected)
 
-
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
@@ -123,70 +155,46 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener {
     override fun onStart() {
         super.onStart()
 
-        MobileAds.initialize(this) {}
-        val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
-
-        Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
-        Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
-
-
-        findViewById<CardView>(R.id.activity_main_cvPreamble).setOnClickListener(this)
-        findViewById<CardView>(R.id.activity_main_cvParts).setOnClickListener(this)
-        findViewById<CardView>(R.id.activity_main_cvSchedules).setOnClickListener(this)
-        findViewById<CardView>(R.id.activity_main_cvAmendments).setOnClickListener(this)
 
 
 
-        findViewById<NavigationView>(R.id.activity_main_drawer_navView).setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.main_menu_Settings -> {
-                    Intent(this, Activity_Settings::class.java).also {
-                        startActivity(it)
-                    }
-                    finish()
-                }
-
-                R.id.main_menu_FAQs -> {
-                    Intent(this, Activity_FAQs::class.java).also {
-                        startActivity(it)
-                    }
-                }
-
-                R.id.main_menu_About -> {
-                    Intent(this, Activity_About::class.java).also {
-                        startActivity(it)
-                    }
-                }
-
-                R.id.main_menu_Share -> {
-//                    Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show()
-                    val sendIntent: Intent = Intent().apply {
-                        action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
-                        type = "text/plain"
-                    }
-
-                    val shareIntent = Intent.createChooser(sendIntent, null)
-                    startActivity(shareIntent)
-                }
-
-                R.id.main_menu_rate -> {
-//                    Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show()
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://play.google.com/store/apps/details?id=com.facebook.katana")
-                    ).also { rateintent ->
-                        startActivity(rateintent)
-                    }
+//        findViewById<NavigationView>(R.id.activity_main_drawer_navView).setNavigationItemSelectedListener {
+//
+////            findViewById<DrawerLayout>(R.id.activity_main_drawer).also { drawer ->
+////                drawer.closeDrawer(GravityCompat.START)
+////            }
+//            true
+//        }
 
 
-                }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        lifecycleScope.launch(Dispatchers.IO){
+            MobileAds.initialize(this@Activity_Main) {}
+            val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
+
+            Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
+
+            withContext(Dispatchers.Main){
+                Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
             }
 
-            findViewById<DrawerLayout>(R.id.activity_main_drawer).also { drawer ->
-                drawer.closeDrawer(GravityCompat.START)
-            }
-            true
+        }
+
+//        MobileAds.initialize(this) {}
+//        val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
+//
+//        Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
+//        Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
+
+
+
+        findViewById<DrawerLayout>(R.id.activity_main_drawer).also { drawer ->
+            drawer.closeDrawer(GravityCompat.START)
         }
 
 
@@ -199,6 +207,32 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+        lifecycleScope.launch(Dispatchers.IO) {
+            findViewById<CardView>(R.id.activity_main_cvPreamble).setOnClickListener(this@Activity_Main)
+            findViewById<CardView>(R.id.activity_main_cvParts).setOnClickListener(this@Activity_Main)
+            findViewById<CardView>(R.id.activity_main_cvSchedules).setOnClickListener(this@Activity_Main)
+            findViewById<CardView>(R.id.activity_main_cvAmendments).setOnClickListener(this@Activity_Main)
+
+            findViewById<NavigationView>(R.id.activity_main_drawer_navView).setNavigationItemSelectedListener(this@Activity_Main)
+        }
+
+    }
+
+    override fun onDestroy() {
+        Activity_Main_BannerAd.removeAllViews()
+        Activity_Main_BannerAd.destroy()
+
+        findViewById<DrawerLayout>(R.id.activity_main_drawer).removeDrawerListener(toggle)
+
+        findViewById<CardView>(R.id.activity_main_cvPreamble).removeAllViews()
+        findViewById<CardView>(R.id.activity_main_cvParts).removeAllViews()
+        findViewById<CardView>(R.id.activity_main_cvSchedules).removeAllViews()
+        findViewById<CardView>(R.id.activity_main_cvAmendments).removeAllViews()
+
+//        findViewById<NavigationView>(R.id.activity_main_drawer_navView).removeAllViews()
+        super.onDestroy()
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -208,6 +242,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener {
 
         return super.onOptionsItemSelected(item)
     }
+
 
 
     override fun onClick(view: View?) {
@@ -242,4 +277,51 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.main_menu_Settings -> {
+                Intent(this, Activity_Settings::class.java).also {
+                    startActivity(it)
+                }
+                finish()
+            }
+
+            R.id.main_menu_FAQs -> {
+                Intent(this, Activity_FAQs::class.java).also {
+                    startActivity(it)
+                }
+            }
+
+            R.id.main_menu_About -> {
+                Intent(this, Activity_About::class.java).also {
+                    startActivity(it)
+                }
+            }
+
+            R.id.main_menu_Share -> {
+//                    Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show()
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+            }
+
+            R.id.main_menu_rate -> {
+//                    Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show()
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=com.facebook.katana")
+                ).also { rateintent ->
+                    startActivity(rateintent)
+                }
+
+
+            }
+        }
+        return true
+    }
 }

@@ -1,38 +1,38 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.ConstitutionOfIndia" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="colorPrimary">@color/black_02</item>
-        <item name="android:colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/grey_dark_01</item>
-<!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
-<!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
-        <item name="colorOnPrimary">@color/basilgreen_orange_light</item>
-<!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
+<!--    <style name="Base.Theme.ConstitutionOfIndia" parent="Theme.Material3.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your dark theme here. &ndash;&gt;-->
+<!--        &lt;!&ndash; <item name="colorPrimary">@color/my_dark_primary</item> &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/black_02</item>-->
+<!--        <item name="android:colorPrimaryDark">@color/black</item>-->
+<!--        <item name="colorAccent">@color/grey_dark_01</item>-->
+<!--&lt;!&ndash;        <item name="colorPrimaryVariant">@color/purple_dark</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="android:colorPrimaryDark">@color/purple_dark</item>&ndash;&gt;-->
+<!--        <item name="colorOnPrimary">@color/basilgreen_orange_light</item>-->
+<!--&lt;!&ndash;        <item name="colorPrimaryContainer">@color/purple_light_01</item>&ndash;&gt;-->
 
-<!--        <item name="colorSecondary">@color/teal_01</item>-->
-<!--        <item name="colorOnSecondary">@color/black</item>-->
+<!--&lt;!&ndash;        <item name="colorSecondary">@color/teal_01</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="colorOnSecondary">@color/black</item>&ndash;&gt;-->
 
-        <item name="background">@color/black_01</item>
-        <item name="colorSurface">@color/basilgreen_dark_01</item>
-        <item name="colorError">@color/red_error_01</item>
+<!--        <item name="background">@color/black_01</item>-->
+<!--        <item name="colorSurface">@color/basilgreen_dark_01</item>-->
+<!--        <item name="colorError">@color/red_error_01</item>-->
 
-        <item name="colorOnBackground">@color/basilgreen_light_02</item>
-        <item name="colorOnSurface">@color/basilgreen_light_01</item>
-        <item name="colorOnError">@color/black</item>
+<!--        <item name="colorOnBackground">@color/basilgreen_light_02</item>-->
+<!--        <item name="colorOnSurface">@color/basilgreen_light_01</item>-->
+<!--        <item name="colorOnError">@color/black</item>-->
 
-        <item name="android:textColor">@color/basilgreen_light_01</item>
-        <item name="android:textColorPrimary">@color/basilgreen_light_01</item>
-        <item name="android:textColorSecondary">@color/basilgreen_light_01</item>
+<!--        <item name="android:textColor">@color/basilgreen_light_01</item>-->
+<!--        <item name="android:textColorPrimary">@color/basilgreen_light_01</item>-->
+<!--        <item name="android:textColorSecondary">@color/basilgreen_light_01</item>-->
 
-        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="colorControlNormal">?attr/colorOnPrimary</item>
+<!--        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
+<!--        <item name="colorControlNormal">?attr/colorOnPrimary</item>-->
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
-        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+<!--&lt;!&ndash;        <item name="android:windowDisablePreview">true</item>&ndash;&gt;-->
+<!--        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>-->
 
-    </style>
+<!--    </style>-->
 
 
 
@@ -111,7 +111,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">?attr/colorOnPrimary</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
@@ -154,7 +154,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">?attr/colorOnPrimary</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
@@ -196,7 +196,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">?attr/colorOnPrimary</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
@@ -238,7 +238,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">?attr/colorOnPrimary</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
@@ -281,7 +281,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">?attr/colorOnPrimary</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
@@ -323,7 +323,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">?attr/colorOnPrimary</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
@@ -367,7 +367,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">?attr/colorOnPrimary</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->

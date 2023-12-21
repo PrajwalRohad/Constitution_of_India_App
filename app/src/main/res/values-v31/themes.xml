@@ -31,7 +31,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">@color/black</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
@@ -69,7 +69,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">?attr/colorOnPrimary</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
@@ -106,7 +106,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">?attr/colorOnPrimary</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
@@ -143,7 +143,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">@color/blue</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
@@ -180,7 +180,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">@color/white</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
@@ -217,7 +217,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">@color/black</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
@@ -254,7 +254,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">@color/white</item>
 
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
@@ -273,7 +273,7 @@
 
         <item name="android:windowSplashScreenBackground">@color/white</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/avd_appicon_288dp</item>
-        <item name="android:windowSplashScreenAnimationDuration">1500</item>
+        <item name="android:windowSplashScreenAnimationDuration">750</item>
 <!--        <item name="android:windowSplashScreenIconBackgroundColor">@color/red</item>-->
 
         <item name="postSplashScreenTheme">@style/ThemeReplyBlue</item>

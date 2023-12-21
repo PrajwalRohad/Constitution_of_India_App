@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/appicon_main_round"
         android:supportsRtl="true"
-        android:theme="@style/ThemeReplyBlue"
+        android:theme="@style/Theme.App.Starting"
         tools:targetApi="31">
         <activity
             android:name="com.example.constitutionofindia.amendments.Activity_Amendment_SOR"

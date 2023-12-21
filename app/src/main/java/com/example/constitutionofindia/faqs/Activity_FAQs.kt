@@ -1,19 +1,18 @@
 package com.example.constitutionofindia.faqs
 
-import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
-import com.example.constitutionofindia.Activity_Main
 import com.example.constitutionofindia.ThemePreference
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -34,7 +33,7 @@ class Activity_FAQs : AppCompatActivity()
         super.onCreate(savedInstanceState)
 
         CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
-        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeDefault)
+        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
         val nightmode = CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         ThemePreference().changeThemeStyle(this, themeselected)
@@ -48,33 +47,41 @@ class Activity_FAQs : AppCompatActivity()
         supportActionBar?.setDisplayShowHomeEnabled(false)
 
 
-        val jfaqsfile = applicationContext.assets.open("faqs.json").bufferedReader().use {
-            it.readText()
+
+        lifecycleScope.launch(Dispatchers.Default){
+            val jfaqsfile = applicationContext.assets.open("faqs.json").bufferedReader().use {
+                it.readText()
+            }
+            val jfaqsObject = JSONObject(jfaqsfile)
+            keysFAQs = jfaqsObject.names()
+
+            val FAQsList = mutableListOf<faqQnA>()
+
+            for(i in 0..keysFAQs.length()-1){
+                val question = jfaqsObject.getJSONObject(keysFAQs[i].toString()).getString("question")
+                val answer = jfaqsObject.getJSONObject(keysFAQs[i].toString()).getString("answer")
+
+                FAQsList.add(faqQnA(question,answer))
+            }
+
+            withContext(Dispatchers.Main){
+                val FAQsListAdapter = Adapter_FAQsList(FAQsList)
+
+                findViewById<RecyclerView>(R.id.activity_faqs_rvFAQsList).also {
+
+                    it.adapter = FAQsListAdapter
+                    it.layoutManager = LinearLayoutManager(this@Activity_FAQs)
+                }
+            }
+
         }
-        val jfaqsObject = JSONObject(jfaqsfile)
-        keysFAQs = jfaqsObject.names()
-
-        val FAQsList = mutableListOf<faqQnA>()
-
-        for(i in 0..keysFAQs.length()-1){
-            val question = jfaqsObject.getJSONObject(keysFAQs[i].toString()).getString("question")
-            val answer = jfaqsObject.getJSONObject(keysFAQs[i].toString()).getString("answer")
-
-            FAQsList.add(faqQnA(question,answer))
-        }
-
-        val FAQsListAdapter = Adapter_FAQsList(FAQsList)
-
-        findViewById<RecyclerView>(R.id.activity_faqs_rvFAQsList).also {
-
-            it.adapter = FAQsListAdapter
-            it.layoutManager = LinearLayoutManager(this)
-        }
 
 
 
+    }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

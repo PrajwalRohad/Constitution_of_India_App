@@ -1,6 +1,5 @@
 package com.example.constitutionofindia
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -9,18 +8,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.cardview.widget.CardView
 import com.IndiaCanon.constitutionofindia.R
-
-class ThemePreference {
-
-    fun changeThemeStyle(context : Context, theme : Int){
-        context.setTheme(theme)
-    }
-}
 
 class Activity_Settings : AppCompatActivity(), View.OnClickListener {
 
@@ -34,7 +25,7 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
 
         CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
-        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeDefault)
+        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
         val nightmode = CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         ThemePreference().changeThemeStyle(this, themeselected)
@@ -97,6 +88,18 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
         })
 
 
+    }
+
+    override fun onDestroy() {
+        findViewById<CardView>(R.id.activity_settings_cvthemeDefault).removeAllViews()
+        findViewById<CardView>(R.id.activity_settings_cvthemeReplyBlue).removeAllViews()
+        findViewById<CardView>(R.id.activity_settings_cvthemeBasilGreen).removeAllViews()
+        findViewById<CardView>(R.id.activity_settings_cvthemeYellow).removeAllViews()
+        findViewById<CardView>(R.id.activity_settings_cvthemeteal).removeAllViews()
+        findViewById<CardView>(R.id.activity_settings_cvthemefornightlypurple).removeAllViews()
+        findViewById<CardView>(R.id.activity_settings_cvthemepurple).removeAllViews()
+
+        super.onDestroy()
     }
 
 

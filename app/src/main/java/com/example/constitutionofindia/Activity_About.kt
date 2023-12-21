@@ -29,7 +29,7 @@ class Activity_About : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
-        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeDefault)
+        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
         val nightmode =
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
@@ -79,6 +79,10 @@ class Activity_About : AppCompatActivity() {
 //        }
 //
 //        iconImage.setOnClickListener({ appIconAnimation.start() })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
 

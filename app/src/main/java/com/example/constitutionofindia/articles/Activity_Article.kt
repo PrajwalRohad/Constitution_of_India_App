@@ -8,28 +8,32 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.marginBottom
+import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Activity_Article : AppCompatActivity() {
-    lateinit var Activity_Article_BannerAd : AdView
+    lateinit var Activity_Article_BannerAd: AdView
 
     val THEME_PREF = "theme_pref"
     val THEME_SELECTED = "theme_selected"
     val NIGHT_MODE = "night_mode"
 
-    lateinit var CoI_SharedPref : SharedPreferences
+    lateinit var CoI_SharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
-        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeDefault)
-        val nightmode = CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
+        val nightmode =
+            CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         ThemePreference().changeThemeStyle(this, themeselected)
 
@@ -57,14 +61,13 @@ class Activity_Article : AppCompatActivity() {
             articlesFootnote = it?.getString("articlesFootnote")
         }
 
-        MobileAds.initialize(this){}
-        val Activity_Article_BannerAdRequest = AdRequest.Builder().build()
-
-        Activity_Article_BannerAd = findViewById(R.id.activity_article_adView)
-        Activity_Article_BannerAd.loadAd(Activity_Article_BannerAdRequest)
-
         findViewById<TextView>(R.id.activity_article_tvHeadline).also {
-            it.setText(Html.fromHtml(articlesNum+"<br></br>"+articlesName, Html.FROM_HTML_MODE_LEGACY))
+            it.setText(
+                Html.fromHtml(
+                    articlesNum + "<br></br>" + articlesName,
+                    Html.FROM_HTML_MODE_LEGACY
+                )
+            )
         }
 
         findViewById<TextView>(R.id.activity_article_tvPartNum).also {
@@ -74,7 +77,7 @@ class Activity_Article : AppCompatActivity() {
 //                it.setText(partNum)
 //            }
             it.setText(Html.fromHtml(partNum, Html.FROM_HTML_MODE_LEGACY))
-            Log.d("keynames", "partNum is - "+partNum)
+//            Log.d("keynames", "partNum is - " + partNum)
         }
 
         findViewById<TextView>(R.id.activity_article_tvPartName).also {
@@ -87,26 +90,26 @@ class Activity_Article : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.activity_article_tvChapterNum).also {
-            if(chapterNum.equals("null")){
+            if (chapterNum.equals("null")) {
                 it.visibility = View.GONE
 
-            }else{
+            } else {
                 it.setText(Html.fromHtml(chapterNum, Html.FROM_HTML_MODE_LEGACY))
             }
         }
 
         findViewById<TextView>(R.id.activity_article_tvChapterName).also {
-            if(chapterName.equals("null")){
+            if (chapterName.equals("null")) {
                 it.visibility = View.GONE
-            }else{
+            } else {
                 it.setText(Html.fromHtml(chapterName, Html.FROM_HTML_MODE_LEGACY))
             }
         }
 
         findViewById<TextView>(R.id.activity_article_tvSubSection).also {
-            if(sectionName.equals("null")){
+            if (sectionName.equals("null")) {
                 it.visibility = View.GONE
-            }else{
+            } else {
                 it.setText(Html.fromHtml(sectionName, Html.FROM_HTML_MODE_LEGACY))
             }
         }
@@ -117,15 +120,37 @@ class Activity_Article : AppCompatActivity() {
 
         findViewById<TextView>(R.id.activity_article_tvfootnote).also {
 
-            if(articlesFootnote.equals("null")){
+            if (articlesFootnote.equals("null")) {
                 it.visibility = View.GONE
-            }else{
+            } else {
                 it.setText(Html.fromHtml(articlesFootnote, Html.FROM_HTML_MODE_LEGACY))
             }
 
         }
 
 
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            MobileAds.initialize(this@Activity_Article) {}
+            val Activity_Article_BannerAdRequest = AdRequest.Builder().build()
+
+            Activity_Article_BannerAd = findViewById(R.id.activity_article_adView)
+            withContext(Dispatchers.Main) {
+                Activity_Article_BannerAd.loadAd(Activity_Article_BannerAdRequest)
+            }
+        }
+
+    }
+
+    override fun onDestroy() {
+        Activity_Article_BannerAd.removeAllViews()
+        Activity_Article_BannerAd.destroy()
+        super.onDestroy()
     }
 }
 

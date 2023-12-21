@@ -4,9 +4,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,79 +14,76 @@ import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 
 class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.ArticlesListInterface {
-    lateinit var Activity_Articleslist_BannerAd : AdView
+    lateinit var Activity_Articleslist_BannerAd: AdView
 
-    lateinit var partNum : String
-    lateinit var partName : String
+    lateinit var partNum: String
+    lateinit var partName: String
 
-    lateinit var chapterNumList : MutableList<String>
-    lateinit var chapterNameList : MutableList<String>
+    lateinit var chapterNumList: MutableList<String>
+    lateinit var chapterNameList: MutableList<String>
 
-    lateinit var sectionsNameList : MutableList<String>
+    lateinit var sectionsNameList: MutableList<String>
 
-    lateinit var articlesNumList : MutableList<String>
-    lateinit var articlesNameList : MutableList<String>
-    lateinit var articlesTextList : MutableList<String>
-    lateinit var articlesFootnoteList : MutableList<String>
+    lateinit var articlesNumList: MutableList<String>
+    lateinit var articlesNameList: MutableList<String>
+    lateinit var articlesTextList: MutableList<String>
+    lateinit var articlesFootnoteList: MutableList<String>
 
     val THEME_PREF = "theme_pref"
     val THEME_SELECTED = "theme_selected"
     val NIGHT_MODE = "night_mode"
 
-    lateinit var CoI_SharedPref : SharedPreferences
+    lateinit var CoI_SharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
-        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeDefault)
-        val nightmode = CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
+        val nightmode =
+            CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_articleslist)
 
-        MobileAds.initialize(this){}
-        val Activity_Articleslist_BannerAdRequest = AdRequest.Builder().build()
-
-        Activity_Articleslist_BannerAd = findViewById(R.id.activity_articleslist_adView)
-        Activity_Articleslist_BannerAd.loadAd(Activity_Articleslist_BannerAdRequest)
-
-
 //        articleNumArray = resources.getStringArray(R.array.ArticleNum)
 //        articleNameArray = resources.getStringArray(R.array.ArticleName)
 
-        val partNumKey : String?
+        val partNumKey: String?
 
         intent.extras.also {
             partNumKey = it?.getString("partNum")
         }
 
-        val jpartsfile = applicationContext.assets.open("parts.json").bufferedReader().use {
-            it.readText()
-        }
-        val jpartsobj = JSONObject(jpartsfile)
-        val partobj = jpartsobj.getJSONObject(partNumKey)
-        partNum = partobj.getString("part_num")
-        partName = partobj.getString("part_name")
+        lifecycleScope.launch(Dispatchers.Default) {
 
-        val chaptersList = partobj.getJSONArray("chapters")
-        var sectionsList : JSONArray
+            val jpartsfile = applicationContext.assets.open("parts.json").bufferedReader().use {
+                it.readText()
+            }
+            val jpartsobj = JSONObject(jpartsfile)
+            val partobj = jpartsobj.getJSONObject(partNumKey!!)
+            partNum = partobj.getString("part_num")
+            partName = partobj.getString("part_name")
 
-
-        chapterNumList = mutableListOf()
-        chapterNameList = mutableListOf()
-        sectionsNameList = mutableListOf()
-        articlesNumList = mutableListOf()
-        articlesNameList = mutableListOf()
-        articlesTextList = mutableListOf()
-        articlesFootnoteList = mutableListOf()
+            val chaptersList = partobj.getJSONArray("chapters")
+            var sectionsList: JSONArray
 
 
+            chapterNumList = mutableListOf()
+            chapterNameList = mutableListOf()
+            sectionsNameList = mutableListOf()
+            articlesNumList = mutableListOf()
+            articlesNameList = mutableListOf()
+            articlesTextList = mutableListOf()
+            articlesFootnoteList = mutableListOf()
 
 
 //        Log.d("Article123", "chapters are -"+chaptersList)
@@ -95,52 +91,82 @@ class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.Articles
 //        Log.d("Article123", "first chapter name is -"+chaptersList[0])
 //        Log.d("Article123", "first chapter name is -"+chaptersList[0].toString())
 
-        for(i in 0..chaptersList.length()-1){
-            val chapter = partobj.getJSONObject(chaptersList[i].toString())
+            for (i in 0..chaptersList.length() - 1) {
+                val chapter = partobj.getJSONObject(chaptersList[i].toString())
 //            Log.d("Article123", "chapter is -"+chapter)
-            sectionsList = chapter.getJSONArray("sections")
+                sectionsList = chapter.getJSONArray("sections")
 //            Log.d("Article123", "sections are -"+sectionsList)
 //
-            for(j in 0..sectionsList.length()-1){
-                val section = chapter.getJSONObject(sectionsList[j].toString())
+                for (j in 0..sectionsList.length() - 1) {
+                    val section = chapter.getJSONObject(sectionsList[j].toString())
 
-                val articles = section.getJSONArray("articles")
-                for(k in 0..articles.length()-1){
-                    chapterNumList.add(chapter.getString("chapter_num"))
-                    chapterNameList.add(chapter.getString("chapter_name"))
+                    val articles = section.getJSONArray("articles")
+                    for (k in 0..articles.length() - 1) {
+                        chapterNumList.add(chapter.getString("chapter_num"))
+                        chapterNameList.add(chapter.getString("chapter_name"))
 
-                    sectionsNameList.add(section.getString("section_name").toString())
+                        sectionsNameList.add(section.getString("section_name").toString())
 
-                    articlesNumList.add(articles.getJSONObject(k).getString("num"))
-                    articlesNameList.add(articles.getJSONObject(k).getString("name"))
-                    articlesTextList.add(articles.getJSONObject(k).getString("text"))
-                    articlesFootnoteList.add(articles.getJSONObject(k).getString("footnote"))
+                        articlesNumList.add(articles.getJSONObject(k).getString("num"))
+                        articlesNameList.add(articles.getJSONObject(k).getString("name"))
+                        articlesTextList.add(articles.getJSONObject(k).getString("text"))
+                        articlesFootnoteList.add(articles.getJSONObject(k).getString("footnote"))
 
+                    }
+                }
+            }
+
+
+            val articleItemList = mutableListOf<Element_Articleslist>()
+
+            for (i in articlesNumList.indices) {
+                articleItemList.add(Element_Articleslist(articlesNumList[i], articlesNameList[i]))
+            }
+//        for(i in articleNumArray.indices){
+//            articleItemList.add(Element_Articleslist(articleNumArray[i], articleNameArray[i]))
+//        }
+            withContext(Dispatchers.Main) {
+                val articlesListAdapter =
+                    Adapter_Articleslist(articleItemList, this@Activity_Articleslist)
+
+                findViewById<RecyclerView>(R.id.activity_articleslist_rvArticleslist).also {
+                    it.adapter = articlesListAdapter
+                    it.layoutManager = LinearLayoutManager(this@Activity_Articleslist)
+                    it.addItemDecoration(
+                        DividerItemDecoration(
+                            this@Activity_Articleslist,
+                            LinearLayoutManager.VERTICAL
+                        )
+                    )
                 }
             }
         }
 
 
+    }
 
 
-        val articleItemList = mutableListOf<Element_Articleslist>()
+    override fun onResume() {
+        super.onResume()
 
-        for(i in articlesNumList.indices){
-            articleItemList.add(Element_Articleslist(articlesNumList[i], articlesNameList[i]))
-        }
-//        for(i in articleNumArray.indices){
-//            articleItemList.add(Element_Articleslist(articleNumArray[i], articleNameArray[i]))
-//        }
+        lifecycleScope.launch(Dispatchers.IO) {
+            MobileAds.initialize(this@Activity_Articleslist) {}
+            val Activity_Articleslist_BannerAdRequest = AdRequest.Builder().build()
 
-        val articlesListAdapter = Adapter_Articleslist(articleItemList, this)
-
-        findViewById<RecyclerView>(R.id.activity_articleslist_rvArticleslist).also {
-            it.adapter = articlesListAdapter
-            it.layoutManager = LinearLayoutManager(this)
-            it.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+            Activity_Articleslist_BannerAd = findViewById(R.id.activity_articleslist_adView)
+            withContext(Dispatchers.Main) {
+                Activity_Articleslist_BannerAd.loadAd(Activity_Articleslist_BannerAdRequest)
+            }
         }
 
 
+    }
+
+
+    override fun onDestroy() {
+        Activity_Articleslist_BannerAd.removeAllViews()
+        Activity_Articleslist_BannerAd.destroy()
+        super.onDestroy()
     }
 
     override fun ArticleOnClick(position: Int) {
