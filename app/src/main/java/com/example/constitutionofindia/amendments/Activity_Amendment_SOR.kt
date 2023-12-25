@@ -1,6 +1,5 @@
 package com.example.constitutionofindia.amendments
 
-import com.example.constitutionofindia.ThemePreference
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,7 +30,8 @@ class Activity_Amendment_SOR : AppCompatActivity() {
         val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
         val nightmode = CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
-        ThemePreference().changeThemeStyle(this, themeselected)
+        setTheme(themeselected)
+//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_amendment_sor)
 

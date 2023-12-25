@@ -9,7 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
-import com.example.constitutionofindia.ThemePreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -36,7 +35,8 @@ class Activity_FAQs : AppCompatActivity()
         val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
         val nightmode = CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
-        ThemePreference().changeThemeStyle(this, themeselected)
+        setTheme(themeselected)
+//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_faqs)
 
@@ -80,9 +80,9 @@ class Activity_FAQs : AppCompatActivity()
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == android.R.id.home){

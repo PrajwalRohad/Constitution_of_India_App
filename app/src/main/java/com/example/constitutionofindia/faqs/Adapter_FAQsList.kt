@@ -60,6 +60,11 @@ class Adapter_FAQsList(
         }
     }
 
+//    override fun onViewDetachedFromWindow(holder: FAQsListItemHolder) {
+//        super.onViewDetachedFromWindow(holder)
+//        holder.itemView.setOnClickListener(null)
+//    }
+
     override fun getItemCount(): Int {
         return listFAQ.size
     }

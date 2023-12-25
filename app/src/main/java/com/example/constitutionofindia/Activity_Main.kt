@@ -19,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.amendments.Activity_Amendmentslist
 import com.example.constitutionofindia.faqs.Activity_FAQs
@@ -32,6 +33,7 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -78,14 +80,19 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
             }
             launch {
                 val themeselected = CoI_SharedPref.await().getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
-                ThemePreference().changeThemeStyle(this@Activity_Main, themeselected)
+                setTheme(themeselected)
+//                ThemePreference().changeThemeStyle(this@Activity_Main, themeselected)
             }
+
+//            CoI_SharedPref.cancel(null)
         }
+
 //        CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
 //        val nightmode =
 //            CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 //        AppCompatDelegate.setDefaultNightMode(nightmode)
 //        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
+//        setTheme(themeselected)
 //        ThemePreference().changeThemeStyle(this, themeselected)
 
         splashscreen.apply {
@@ -125,7 +132,9 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
                 zoomX.start()
                 zoomY.start()
             }
+
         }
+        viewModel.viewModelScope.cancel(null)
 
 
         super.onCreate(savedInstanceState)
@@ -133,7 +142,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
 
         toggle = ActionBarDrawerToggle(
-            this,
+            this@Activity_Main,
             findViewById(R.id.activity_main_drawer),
             findViewById(R.id.activity_main_tb),
             R.string.menu,
@@ -157,7 +166,17 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
 
 
-
+//        lifecycleScope.launch(Dispatchers.IO){
+////            MobileAds.initialize(this@Activity_Main) {}
+//            val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
+//
+//            Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
+//
+//            withContext(Dispatchers.Main){
+//                Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
+//            }
+//
+//        }
 //        findViewById<NavigationView>(R.id.activity_main_drawer_navView).setNavigationItemSelectedListener {
 //
 ////            findViewById<DrawerLayout>(R.id.activity_main_drawer).also { drawer ->
@@ -165,32 +184,6 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 ////            }
 //            true
 //        }
-
-
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        lifecycleScope.launch(Dispatchers.IO){
-            MobileAds.initialize(this@Activity_Main) {}
-            val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
-
-            Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
-
-            withContext(Dispatchers.Main){
-                Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
-            }
-
-        }
-
-//        MobileAds.initialize(this) {}
-//        val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
-//
-//        Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
-//        Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
-
 
 
         findViewById<DrawerLayout>(R.id.activity_main_drawer).also { drawer ->
@@ -215,22 +208,75 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
             findViewById<NavigationView>(R.id.activity_main_drawer_navView).setNavigationItemSelectedListener(this@Activity_Main)
         }
-
     }
 
+    override fun onResume() {
+        super.onResume()
+
+
+        lifecycleScope.launch(Dispatchers.IO){
+//            MobileAds.initialize(this@Activity_Main) {}
+            val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
+
+            Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
+
+            withContext(Dispatchers.Main){
+                Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
+            }
+
+        }
+//        MobileAds.initialize(this) {}
+//        val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
+//
+//        Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
+//        Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
+
+
+
+
+
+    }
+//
+//
+//    override fun onStop() {
+//        super.onStop()
+//
+////        CoI_SharedPref.cancel(null)
+//
+//
+//
+//    }
+
     override fun onDestroy() {
+        super.onDestroy()
+
         Activity_Main_BannerAd.removeAllViews()
         Activity_Main_BannerAd.destroy()
 
         findViewById<DrawerLayout>(R.id.activity_main_drawer).removeDrawerListener(toggle)
 
-        findViewById<CardView>(R.id.activity_main_cvPreamble).removeAllViews()
-        findViewById<CardView>(R.id.activity_main_cvParts).removeAllViews()
-        findViewById<CardView>(R.id.activity_main_cvSchedules).removeAllViews()
-        findViewById<CardView>(R.id.activity_main_cvAmendments).removeAllViews()
 
-//        findViewById<NavigationView>(R.id.activity_main_drawer_navView).removeAllViews()
-        super.onDestroy()
+        findViewById<CardView>(R.id.activity_main_cvPreamble).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+        findViewById<CardView>(R.id.activity_main_cvParts).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+
+        findViewById<CardView>(R.id.activity_main_cvSchedules).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+        findViewById<CardView>(R.id.activity_main_cvAmendments).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+
+        findViewById<NavigationView>(R.id.activity_main_drawer_navView).also {
+            it.setNavigationItemSelectedListener(null)
+        }
 
 
     }
@@ -283,7 +329,10 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
                 Intent(this, Activity_Settings::class.java).also {
                     startActivity(it)
                 }
+//                onDestroy()
                 finish()
+//                Thread.sleep(1000)
+//                onBackPressedDispatcher.onBackPressed()
             }
 
             R.id.main_menu_FAQs -> {

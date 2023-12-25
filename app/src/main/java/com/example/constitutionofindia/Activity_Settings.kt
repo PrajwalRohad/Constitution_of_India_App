@@ -11,7 +11,10 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class Activity_Settings : AppCompatActivity(), View.OnClickListener {
 
@@ -28,7 +31,9 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
         val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
         val nightmode = CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
-        ThemePreference().changeThemeStyle(this, themeselected)
+        setTheme(themeselected)
+
+//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_settings)
 
@@ -40,14 +45,15 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
         supportActionBar?.setDisplayShowHomeEnabled(false)
 
 
-
-        findViewById<CardView>(R.id.activity_settings_cvthemeDefault).setOnClickListener(this)
-        findViewById<CardView>(R.id.activity_settings_cvthemeReplyBlue).setOnClickListener(this)
-        findViewById<CardView>(R.id.activity_settings_cvthemeBasilGreen).setOnClickListener(this)
-        findViewById<CardView>(R.id.activity_settings_cvthemeYellow).setOnClickListener(this)
-        findViewById<CardView>(R.id.activity_settings_cvthemeteal).setOnClickListener(this)
-        findViewById<CardView>(R.id.activity_settings_cvthemefornightlypurple).setOnClickListener(this)
-        findViewById<CardView>(R.id.activity_settings_cvthemepurple).setOnClickListener(this)
+        lifecycleScope.launch(Dispatchers.IO){
+            findViewById<CardView>(R.id.activity_settings_cvthemeDefault).setOnClickListener(this@Activity_Settings)
+            findViewById<CardView>(R.id.activity_settings_cvthemeReplyBlue).setOnClickListener(this@Activity_Settings)
+            findViewById<CardView>(R.id.activity_settings_cvthemeBasilGreen).setOnClickListener(this@Activity_Settings)
+            findViewById<CardView>(R.id.activity_settings_cvthemeYellow).setOnClickListener(this@Activity_Settings)
+            findViewById<CardView>(R.id.activity_settings_cvthemeteal).setOnClickListener(this@Activity_Settings)
+            findViewById<CardView>(R.id.activity_settings_cvthemefornightlypurple).setOnClickListener(this@Activity_Settings)
+            findViewById<CardView>(R.id.activity_settings_cvthemepurple).setOnClickListener(this@Activity_Settings)
+        }
 
 
         findViewById<SwitchCompat>(R.id.activity_settings_toggleDarkmode).also {
@@ -73,6 +79,7 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
                         it.apply()
                     }
                 }
+                editor.clear()
             }
         }
 
@@ -91,15 +98,43 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onDestroy() {
-        findViewById<CardView>(R.id.activity_settings_cvthemeDefault).removeAllViews()
-        findViewById<CardView>(R.id.activity_settings_cvthemeReplyBlue).removeAllViews()
-        findViewById<CardView>(R.id.activity_settings_cvthemeBasilGreen).removeAllViews()
-        findViewById<CardView>(R.id.activity_settings_cvthemeYellow).removeAllViews()
-        findViewById<CardView>(R.id.activity_settings_cvthemeteal).removeAllViews()
-        findViewById<CardView>(R.id.activity_settings_cvthemefornightlypurple).removeAllViews()
-        findViewById<CardView>(R.id.activity_settings_cvthemepurple).removeAllViews()
-
         super.onDestroy()
+
+
+
+        findViewById<CardView>(R.id.activity_settings_cvthemeDefault).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+        findViewById<CardView>(R.id.activity_settings_cvthemeReplyBlue).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+        findViewById<CardView>(R.id.activity_settings_cvthemeBasilGreen).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+        findViewById<CardView>(R.id.activity_settings_cvthemeYellow).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+        findViewById<CardView>(R.id.activity_settings_cvthemeteal).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+        findViewById<CardView>(R.id.activity_settings_cvthemefornightlypurple).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+        findViewById<CardView>(R.id.activity_settings_cvthemepurple).also {
+            it.setOnClickListener(null)
+            it.removeAllViews()
+        }
+
+        findViewById<SwitchCompat>(R.id.activity_settings_toggleDarkmode).also {
+            it.setOnCheckedChangeListener(null)
+        }
+
     }
 
 
@@ -127,6 +162,7 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
                     it.putInt(THEME_SELECTED, R.style.ThemeDefault)
                     it.apply()
                 }
+//                findViewById<CardView>(R.id.activity_settings_cvthemeDefault).removeAllViews()
                 recreate()
 
             }
@@ -136,6 +172,7 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
                     it.putInt(THEME_SELECTED, R.style.ThemeReplyBlue)
                     it.apply()
                 }
+//                findViewById<CardView>(R.id.activity_settings_cvthemeReplyBlue).removeAllViews()
                 recreate()
 
             }
@@ -145,6 +182,7 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
                     it.putInt(THEME_SELECTED, R.style.ThemeBasilGreen)
                     it.apply()
                 }
+//                findViewById<CardView>(R.id.activity_settings_cvthemeBasilGreen).removeAllViews()
                 recreate()
 
             }
@@ -154,6 +192,7 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
                     it.putInt(THEME_SELECTED, R.style.ThemeYellow)
                     it.apply()
                 }
+//                findViewById<CardView>(R.id.activity_settings_cvthemeYellow).removeAllViews()
                 recreate()
 
             }
@@ -163,6 +202,7 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
                     it.putInt(THEME_SELECTED, R.style.ThemeTeal)
                     it.apply()
                 }
+//                findViewById<CardView>(R.id.activity_settings_cvthemeYellow).removeAllViews()
                 recreate()
 
             }
@@ -172,6 +212,7 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
                     it.putInt(THEME_SELECTED, R.style.ThemeFornightlyPurple)
                     it.apply()
                 }
+//                findViewById<CardView>(R.id.activity_settings_cvthemefornightlypurple).removeAllViews()
                 recreate()
 
             }
@@ -181,13 +222,14 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
                     it.putInt(THEME_SELECTED, R.style.ThemePurple)
                     it.apply()
                 }
+//                findViewById<CardView>(R.id.activity_settings_cvthemepurple).removeAllViews()
                 recreate()
 
             }
 
 
         }
-
+        editor.clear()
     }
 
 

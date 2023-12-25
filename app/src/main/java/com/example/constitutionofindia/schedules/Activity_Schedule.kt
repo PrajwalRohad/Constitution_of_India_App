@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
-import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -45,7 +44,8 @@ class Activity_Schedule : AppCompatActivity() {
         val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
         val nightmode = CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
-        ThemePreference().changeThemeStyle(this, themeselected)
+        setTheme(themeselected)
+//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_schedule)
 

@@ -202,7 +202,6 @@
         android:layout_marginTop="18dp"
         android:layout_marginStart="20dp"
         android:textOff="off"
-        android:textColor="#34c759"
         android:textOn="on"
         app:showText="true"
         app:layout_constraintStart_toEndOf="@+id/activity_settings_tvdark"

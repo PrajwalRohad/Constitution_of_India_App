@@ -47,6 +47,11 @@ class Adapter_Partslist (
         holder.bindPart(partsList[position].PartNum, partsList[position].PartName, partsList[position].PartRange)
     }
 
+//    override fun onViewDetachedFromWindow(holder: PartListItemHolder) {
+//        super.onViewDetachedFromWindow(holder)
+//        holder.itemView.setOnClickListener(null)
+//    }
+
     override fun getItemCount(): Int {
         return partsList.size
     }

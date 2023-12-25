@@ -46,6 +46,11 @@ class Adapter_Scheduleslist(
         holder.bindSchedule(schedulesList[position].ScheduleNum, schedulesList[position].ScheduleName)
     }
 
+//    override fun onViewDetachedFromWindow(holder: ScheduleListItemHolder) {
+//        super.onViewDetachedFromWindow(holder)
+//        holder.itemView.setOnClickListener(null)
+//    }
+
     override fun getItemCount(): Int {
         return schedulesList.size
     }
