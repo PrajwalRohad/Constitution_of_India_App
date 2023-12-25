@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
-import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -50,12 +49,11 @@ class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.Articles
         val nightmode =
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
-        ThemePreference().changeThemeStyle(this, themeselected)
+        setTheme(themeselected)
+//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_articleslist)
 
-//        articleNumArray = resources.getStringArray(R.array.ArticleNum)
-//        articleNameArray = resources.getStringArray(R.array.ArticleName)
 
         val partNumKey: String?
 
@@ -164,9 +162,12 @@ class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.Articles
 
 
     override fun onDestroy() {
+        super.onDestroy()
+
         Activity_Articleslist_BannerAd.removeAllViews()
         Activity_Articleslist_BannerAd.destroy()
-        super.onDestroy()
+
+
     }
 
     override fun ArticleOnClick(position: Int) {

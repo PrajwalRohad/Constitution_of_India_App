@@ -8,11 +8,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
-import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -20,6 +19,11 @@ import org.json.JSONObject
 
 class Activity_Preamble : AppCompatActivity() {
     private lateinit var Activity_Preamble_BannerAd: AdView
+//    private var Activity_Preamble_BannerAd: AdView? = null
+//    private var Activity_Preamble_BannerAd: WeakReference<AdView>? = null
+
+    private var adLoadingJob: Job? = null
+
 
     private val THEME_PREF = "theme_pref"
     private val THEME_SELECTED = "theme_selected"
@@ -36,10 +40,42 @@ class Activity_Preamble : AppCompatActivity() {
         val nightmode =
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
-        ThemePreference().changeThemeStyle(this, themeselected)
+        setTheme(themeselected)
+//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_preamble)
 
+//        Activity_Preamble_BannerAd = findViewById(R.id.activity_preamble_adView)
+//        val Activity_Preamble_BannerAdRequest = AdRequest.Builder().build()
+//        Activity_Preamble_BannerAd?.loadAd(Activity_Preamble_BannerAdRequest)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+//            MobileAds.initialize(this@Activity_Preamble) {}
+            val Activity_Preamble_BannerAdRequest = AdRequest.Builder().build()
+
+            Activity_Preamble_BannerAd = findViewById(R.id.activity_preamble_adView)
+            withContext(Dispatchers.Main) {
+                Activity_Preamble_BannerAd.loadAd(Activity_Preamble_BannerAdRequest)
+            }
+        }
+
+
+
+//        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+////                adLoadingJob?.cancel()
+////                Activity_Preamble_BannerAd?.removeAllViews()
+//                Activity_Preamble_BannerAd?.destroy()
+//                Activity_Preamble_BannerAd = null
+//
+//                finish()
+//            }
+//        })
+
+    }
+
+    override fun onStart() {
+        super.onStart()
 
         lifecycleScope.launch(Dispatchers.Default) {
 
@@ -64,29 +100,59 @@ class Activity_Preamble : AppCompatActivity() {
                 }
             }
         }
-
-
     }
 
-    override fun onResume() {
-        super.onResume()
+//    override fun onPause() {
+//        super.onPause()
+//
+//        // Cancel the coroutine job to prevent it from running in the background
+//        adLoadingJob?.cancel()
+//
+//        // Remove AdView from the view hierarchy
+//        Activity_Preamble_BannerAd?.removeAllViews()
+//    }
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            MobileAds.initialize(this@Activity_Preamble) {}
-            val Activity_Preamble_BannerAdRequest = AdRequest.Builder().build()
-
-            Activity_Preamble_BannerAd = findViewById(R.id.activity_preamble_adView)
-            withContext(Dispatchers.Main) {
-                Activity_Preamble_BannerAd.loadAd(Activity_Preamble_BannerAdRequest)
-            }
-        }
-    }
+//    override fun onResume() {
+//        super.onResume()
+//
+////        lifecycleScope.launch(Dispatchers.IO) {
+//////            MobileAds.initialize(this@Activity_Preamble) {}
+////            val Activity_Preamble_BannerAdRequest = AdRequest.Builder().build()
+////
+////            Activity_Preamble_BannerAd = findViewById(R.id.activity_preamble_adView)
+////            withContext(Dispatchers.Main) {
+////                Activity_Preamble_BannerAd.loadAd(Activity_Preamble_BannerAdRequest)
+////            }
+////        }
+//    }
 
 
     override fun onDestroy() {
+//        super.onDestroy()
+//        Activity_Preamble_BannerAd.removeAllViews()
+////        Activity_Preamble_BannerAd.isActivated = false
+//        Activity_Preamble_BannerAd.destroy()
+
+//        if (::Activity_Preamble_BannerAd.isInitialized) {
+//            // Check if Activity_Preamble_BannerAd is initialized before performing operations on it
+//            Activity_Preamble_BannerAd.removeAllViews()
+//            Activity_Preamble_BannerAd.destroy()
+////            Activity_Preamble_BannerAd = AdView(this) // Reinitialize the AdView
+//            Activity_Preamble_BannerAd = null // Set to null
+//        }
+
+//        if (!isFinishing()) {
+//            // Activity is not finishing, perform cleanup
+//            Activity_Preamble_BannerAd?.removeAllViews()
+//            Activity_Preamble_BannerAd?.destroy()
+//            Activity_Preamble_BannerAd = null
+//        }
+
+        // Remove AdView from its parent view before destroying
+
         Activity_Preamble_BannerAd.removeAllViews()
         Activity_Preamble_BannerAd.destroy()
-//        Activity_Preamble_BannerAd.isActivated = false
+//        Activity_Preamble_BannerAd = null
 
         super.onDestroy()
     }

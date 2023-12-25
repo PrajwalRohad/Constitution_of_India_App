@@ -1,6 +1,5 @@
 package com.example.constitutionofindia.amendments
 
-import com.example.constitutionofindia.ThemePreference
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +7,6 @@ import android.os.Bundle
 import android.text.Html
 import android.view.View
 import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
@@ -39,7 +37,8 @@ class Activity_Amendment : AppCompatActivity() {
         val nightmode =
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
-        ThemePreference().changeThemeStyle(this, themeselected)
+        setTheme(themeselected)
+//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_amendment)
 
@@ -128,9 +127,14 @@ class Activity_Amendment : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        super.onDestroy()
+
         Activity_Amendment_BannerAd.removeAllViews()
         Activity_Amendment_BannerAd.destroy()
-        super.onDestroy()
+
+        findViewById<TextView>(R.id.activity_amendment_tvSOR).also {
+            it.setOnClickListener(null)
+        }
     }
 }
 

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
-import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -41,7 +40,8 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
         val nightmode =
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
-        ThemePreference().changeThemeStyle(this, themeselected)
+        setTheme(themeselected)
+//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_amendmentslist)
 
@@ -84,11 +84,11 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
 
     }
 
-    override fun onStart() {
-
-
-        super.onStart()
-    }
+//    override fun onStart() {
+//
+//
+//        super.onStart()
+//    }
 
     override fun onResume() {
         super.onResume()

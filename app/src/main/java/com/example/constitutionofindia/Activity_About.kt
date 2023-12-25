@@ -33,7 +33,8 @@ class Activity_About : AppCompatActivity() {
         val nightmode =
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
-        ThemePreference().changeThemeStyle(this, themeselected)
+        setTheme(themeselected)
+//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_about)
 
@@ -71,18 +72,22 @@ class Activity_About : AppCompatActivity() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-//        val iconImage = findViewById<ImageView>(R.id.activity_about_ivAppIcon).apply {
+//    override fun onStart() {
+//        super.onStart()
 //
-//        }
-//
-//        iconImage.setOnClickListener({ appIconAnimation.start() })
-    }
+////        val iconImage = findViewById<ImageView>(R.id.activity_about_ivAppIcon).apply {
+////
+////        }
+////
+////        iconImage.setOnClickListener({ appIconAnimation.start() })
+//    }
 
     override fun onDestroy() {
         super.onDestroy()
+
+        findViewById<ImageView>(R.id.activity_about_ivAppIcon).also {
+            it.setOnClickListener(null)
+        }
     }
 
 

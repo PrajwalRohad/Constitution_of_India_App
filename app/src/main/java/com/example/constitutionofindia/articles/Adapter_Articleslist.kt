@@ -44,6 +44,11 @@ class Adapter_Articleslist(
         holder.bindArticle(articlesList[position].ArticleNum, articlesList[position].ArticleName)
     }
 
+    override fun onViewDetachedFromWindow(holder: ArticleListItemHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.itemView.setOnClickListener(null)
+    }
+
     override fun getItemCount(): Int {
         return articlesList.size
     }

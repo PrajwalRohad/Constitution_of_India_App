@@ -48,6 +48,11 @@ class Adapter_Amendmentslist(
         holder.bindAmendment(amendmentsList[position].AmendmentName, amendmentsList[position].AmendmentYear)
     }
 
+    override fun onViewDetachedFromWindow(holder: AmendmentListItemHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.itemView.setOnClickListener(null)
+    }
+
     override fun getItemCount(): Int {
         return amendmentsList.size
     }
