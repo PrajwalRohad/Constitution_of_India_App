@@ -351,7 +351,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 //                    Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show()
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+                    putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.IndiaCanon.constitutionofindia")
                     type = "text/plain"
                 }
 
@@ -363,7 +363,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 //                    Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show()
                 Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=com.facebook.katana")
+                    Uri.parse("https://play.google.com/store/apps/details?id=com.IndiaCanon.constitutionofindia")
                 ).also { rateintent ->
                     startActivity(rateintent)
                 }
