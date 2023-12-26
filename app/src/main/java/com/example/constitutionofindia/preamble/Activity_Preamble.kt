@@ -10,8 +10,9 @@ import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+//import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -22,7 +23,7 @@ class Activity_Preamble : AppCompatActivity() {
 //    private var Activity_Preamble_BannerAd: AdView? = null
 //    private var Activity_Preamble_BannerAd: WeakReference<AdView>? = null
 
-    private var adLoadingJob: Job? = null
+//    private var adLoadingJob: Job? = null
 
 
     private val THEME_PREF = "theme_pref"
@@ -50,7 +51,7 @@ class Activity_Preamble : AppCompatActivity() {
 //        Activity_Preamble_BannerAd?.loadAd(Activity_Preamble_BannerAdRequest)
 
         lifecycleScope.launch(Dispatchers.IO) {
-//            MobileAds.initialize(this@Activity_Preamble) {}
+            MobileAds.initialize(this@Activity_Preamble) {}
             val Activity_Preamble_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Preamble_BannerAd = findViewById(R.id.activity_preamble_adView)

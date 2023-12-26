@@ -215,7 +215,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
 
         lifecycleScope.launch(Dispatchers.IO){
-//            MobileAds.initialize(this@Activity_Main) {}
+            MobileAds.initialize(this@Activity_Main) {}
             val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
