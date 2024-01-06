@@ -383,7 +383,7 @@
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
 
         <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main_whiteback_figma_288dp</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/app_vista_icon_transparent_288dp</item>
 <!--        <item name="windowSplashScreenAnimationDuration">500</item>-->
 <!--        <item name="windowSplashScreenIconBackgroundColor">@color/red</item>-->
 

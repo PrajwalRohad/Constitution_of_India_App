@@ -43,7 +43,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/app_coin_icon_whiteback_figma" />
+            app:srcCompat="@drawable/app_vista_icon_transparent_1080dp" />
 
 
         <TextView

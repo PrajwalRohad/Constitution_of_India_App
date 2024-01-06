@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "414114230387",
+    "project_id": "constitution-of-india-app",
+    "storage_bucket": "constitution-of-india-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414114230387:android:cce4a6c850fdc7949ffa06",
+        "android_client_info": {
+          "package_name": "com.IndiaCanon.constitutionofindia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFjBYwBgHc1uVubWg3Z1NVHSzbrrHVJyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

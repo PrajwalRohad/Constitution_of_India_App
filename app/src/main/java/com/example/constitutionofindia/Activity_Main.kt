@@ -195,7 +195,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
             findViewById<NavigationView>(R.id.activity_main_drawer_navView).getHeaderView(0)
         drawerheader.also { header ->
             header.findViewById<ImageView>(R.id.activity_main_drawer_header_ivmain).also {
-                it.setImageResource(R.drawable.app_coin_icon_whiteback_figma)
+                it.setImageResource(R.drawable.app_vista_icon_transparent_1080dp)
 
             }
         }

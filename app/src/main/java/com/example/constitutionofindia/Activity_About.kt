@@ -48,10 +48,10 @@ class Activity_About : AppCompatActivity() {
 
 
         findViewById<ImageView>(R.id.activity_about_ivAppIcon).also {
-            it.setImageResource(R.drawable.app_coin_icon_whiteback_figma)
+            it.setImageResource(R.drawable.app_vista_icon_transparent_1080dp)
 
             it.setOnClickListener { view ->
-                it.setImageResource(R.drawable.avd_appicon_192dp)
+                it.setImageResource(R.drawable.avd_vista_icon_transparent_1080px)
                 appIconAnimation = it.drawable as AnimatedVectorDrawable
                 appIconAnimation.start()
 
