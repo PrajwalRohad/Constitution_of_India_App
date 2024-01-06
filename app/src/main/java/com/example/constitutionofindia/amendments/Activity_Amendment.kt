@@ -273,7 +273,7 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
                 if(bookmarkState) {
                     viewModel.insertBookmark(bookmark)
                 } else {
-                    viewModel.deleteBookmark(stored_bookmark[0])
+                    viewModel.deleteBookmark(bookmark.name)
                 }
             }
         }

@@ -11,7 +11,7 @@ class BookmarkRepository(
 
     suspend fun insertBookmark(bookmark: Element_Bookmark) = db.bookmarkDao.insertBookmark(bookmark)
 
-    suspend fun deleteBookmark(bookmark: Element_Bookmark) = db.bookmarkDao.deleteBookmark(bookmark)
+    suspend fun deleteBookmark(bookmarkname: String) = db.bookmarkDao.deleteBookmark(bookmarkname)
 
     suspend fun deleteAllBookmarks() = db.bookmarkDao.deleteAllBookmarks()
 

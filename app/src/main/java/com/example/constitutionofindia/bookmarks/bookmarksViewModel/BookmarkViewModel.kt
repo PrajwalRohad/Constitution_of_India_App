@@ -36,8 +36,8 @@ class BookmarkViewModel(
         repository.insertBookmark(bookmark)
     }
 
-    fun deleteBookmark(bookmark: Element_Bookmark) = CoroutineScope(Dispatchers.IO).launch {
-        repository.deleteBookmark(bookmark)
+    fun deleteBookmark(bookmarkname: String) = CoroutineScope(Dispatchers.IO).launch {
+        repository.deleteBookmark(bookmarkname)
     }
 
     fun deleteALLBookmarks() = CoroutineScope(Dispatchers.IO).launch {

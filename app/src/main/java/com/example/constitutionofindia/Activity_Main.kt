@@ -51,18 +51,34 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
     lateinit var toggle: ActionBarDrawerToggle
 
     val THEME_PREF = "theme_pref"
+    val DATA_PREF = "data_pref"
+    val DATA_DELETED = "data_deleted"
     val THEME_SELECTED = "theme_selected"
     val NIGHT_MODE = "night_mode"
     private val FONT_SIZE = "font_size"
 
-//    lateinit var CoI_SharedPref: SharedPreferences
-    lateinit var CoI_SharedPref: Deferred<SharedPreferences>
+    lateinit var CoI_SharedPref: SharedPreferences
+//    lateinit var CoI_SharedPref: Deferred<SharedPreferences>
+    lateinit var Data_SharedPref: SharedPreferences
 
     private val viewModel: SplashViewModel by viewModels()
 
     private lateinit var AppUpdate : AppUpdate
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
+        Data_SharedPref = getSharedPreferences(DATA_PREF, MODE_PRIVATE)
+
+        if(!Data_SharedPref.getBoolean(DATA_DELETED, false)) {
+//            UserLocalData().clearData(this@Activity_Main)
+//            UserLocalData().clearData
+
+            CoI_SharedPref.edit().clear().apply()
+            Data_SharedPref.edit().putBoolean(DATA_DELETED, true).apply()
+            recreate()
+        }
+//        UserLocalData().clearData(this@Activity_Main)
 
         val splashscreen = installSplashScreen()
 
@@ -79,14 +95,17 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 //        }
 
         runBlocking{
-            CoI_SharedPref = async { getSharedPreferences(THEME_PREF, MODE_PRIVATE) }
+//            CoI_SharedPref = async { getSharedPreferences(THEME_PREF, MODE_PRIVATE) }
             launch {
                 val nightmode =
-                    CoI_SharedPref.await().getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+//                val nightmode =
+//                    CoI_SharedPref.await().getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                 AppCompatDelegate.setDefaultNightMode(nightmode)
             }
             launch {
-                val themeselected = CoI_SharedPref.await().getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
+                val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
+//                val themeselected = CoI_SharedPref.await().getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
                 setTheme(themeselected)
 //                ThemePreference().changeThemeStyle(this@Activity_Main, themeselected)
             }

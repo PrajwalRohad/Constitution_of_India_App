@@ -76,6 +76,14 @@
             android:resource="@xml/gma_ad_services_config"
             tools:replace="android:resource" />
 
+<!--        <receiver android:name="com.example.constitutionofindia.UpdateReceiver"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>-->
+<!--                <data android:scheme="package" android:path="com.example.constitutionofindia"/>-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
     </application>
 
 </manifest>

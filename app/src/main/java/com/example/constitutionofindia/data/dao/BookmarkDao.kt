@@ -14,8 +14,8 @@ interface BookmarkDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertBookmark(bookmark: Element_Bookmark)
 
-    @Delete
-    suspend fun deleteBookmark(bookmark: Element_Bookmark)
+    @Query("DELETE FROM 'bookmarks_table' WHERE name = :bookmarkname")
+    suspend fun deleteBookmark(bookmarkname: String)
 
     @Query("DELETE FROM 'bookmarks_table'")
     suspend fun deleteAllBookmarks()

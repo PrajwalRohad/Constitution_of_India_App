@@ -114,6 +114,7 @@ class Activity_Bookmarks : AppCompatActivity(), Adapter_Bookmarks.BookmarkInterf
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(false)
 
+        currentFilterType = BookmarkFilterType.TYPE_ALL
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -133,7 +134,6 @@ class Activity_Bookmarks : AppCompatActivity(), Adapter_Bookmarks.BookmarkInterf
                 rvListAmendment = value
             }
 
-            currentFilterType = BookmarkFilterType.TYPE_ALL
 
             withContext(Dispatchers.Main) {
                 setUpRV()

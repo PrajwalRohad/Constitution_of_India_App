@@ -16,8 +16,8 @@ android {
         applicationId = "com.IndiaCanon.constitutionofindia"
         minSdk = 27
         targetSdk = 34
-        versionCode = 7
-        versionName = "1.3.3"
+        versionCode = 10
+        versionName = "1.4.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -52,7 +52,7 @@ android {
 dependencies {
 
     implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.activity:activity-ktx:1.9.0")
+    implementation("androidx.activity:activity-ktx:1.9.1")
 
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
@@ -62,12 +62,12 @@ dependencies {
     implementation("com.google.android.gms:play-services-ads:23.2.0")
 
     //ad mediation
-    implementation("com.google.ads.mediation:inmobi:10.7.4.0")
+    implementation("com.google.ads.mediation:inmobi:10.7.5.0")
 
 
     implementation("androidx.cardview:cardview:1.0.0")
 
-    implementation("androidx.fragment:fragment-ktx:1.8.1")
+    implementation("androidx.fragment:fragment-ktx:1.8.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
@@ -80,8 +80,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     //Coroutine Lifecycle Scopes
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
 
     //Room
     implementation("androidx.room:room-runtime:2.6.1")
@@ -104,7 +104,7 @@ dependencies {
 
 
     // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
 
 
     // TODO: Add the dependencies for Firebase products you want to use

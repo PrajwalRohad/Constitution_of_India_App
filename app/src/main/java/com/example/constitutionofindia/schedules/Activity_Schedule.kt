@@ -238,7 +238,7 @@ class Activity_Schedule : AppCompatActivity(), View.OnTouchListener, View.OnClic
                 if(bookmarkState) {
                     viewModel.insertBookmark(bookmark)
                 } else {
-                    viewModel.deleteBookmark(stored_bookmark[0])
+                    viewModel.deleteBookmark(bookmark.name)
                 }
 
             }

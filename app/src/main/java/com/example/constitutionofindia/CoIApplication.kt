@@ -32,6 +32,8 @@ class CoIApplication : Application() {
 
         assetManager = AssetManager()
 
+//        UserLocalData().clearData(appContext)
+
 
     }
 

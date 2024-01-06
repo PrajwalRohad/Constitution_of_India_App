@@ -137,7 +137,7 @@ class Adapter_Bookmarks (
 
     fun removeAt(index: Int) {
         val item = bookmarkslist.get(index)
-        viewModel.deleteBookmark(item)
+        viewModel.deleteBookmark(item.name)
         bookmarkslist.removeAt(index)   // items is a MutableList
         notifyItemRemoved(index)
     }

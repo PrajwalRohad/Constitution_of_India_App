@@ -476,5 +476,14 @@
     </style>
 
 
+    <style name="buttonOnStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">?attr/thumbTint</item>
+        <item name="android:textColor">?attr/thumbTint</item>
+    </style>
+    <style name="buttonOffStyle" parent="Theme.AppCompat">
+        <item name="backgroundTint">?attr/background</item>
+        <item name="android:textColor">?attr/thumbTint</item>
+    </style>
+
 
 </resources>
