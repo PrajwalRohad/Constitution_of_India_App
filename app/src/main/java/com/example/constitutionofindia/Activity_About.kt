@@ -1,8 +1,10 @@
 package com.example.constitutionofindia
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.AnimatedVectorDrawable
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +14,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.amendments.Activity_Amendment_SOR
 
 class Activity_About : AppCompatActivity() {
 
@@ -68,6 +71,29 @@ class Activity_About : AppCompatActivity() {
         findViewById<TextView>(R.id.activity_about_tvVersionCode).also {
             it.text = ("Version " + packageInfo.versionName)
         }
+
+        findViewById<TextView>(R.id.activity_about_tvPrivacyPolicy).also {
+            it.setOnClickListener {
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://doc-hosting.flycricket.io/constitution-of-india-privacy-policy/797bf621-9116-40ef-b594-289ea15b8f1d/privacy")
+                ).also { newintent ->
+                    startActivity(newintent)
+                }
+            }
+        }
+
+        findViewById<TextView>(R.id.activity_about_tvTnC).also {
+            it.setOnClickListener {
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://doc-hosting.flycricket.io/constitution-of-india-terms-of-use/feafb3ec-e595-4eac-b3e3-469defe749fd/terms")
+                ).also { newintent ->
+                    startActivity(newintent)
+                }
+            }
+        }
+
 
 
     }
