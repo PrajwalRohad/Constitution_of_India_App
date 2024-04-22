@@ -37,47 +37,61 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/amendment_act"
                 android:textAlignment="center"
-                android:textSize="20sp"
                 android:textColor="?attr/colorOnSurface"
-                android:textIsSelectable="true"
                 android:textColorHighlight="?attr/colorAccent"
+                android:textIsSelectable="true"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/activity_amendment_cardLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/activity_amendment_cvtvArticlesNum"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/activity_amendment_cvtvArticlesAffected"
-                android:layout_width="115dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/activity_amendment_cardLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:textSize="14sp"
-                android:text="@string/parts_affected"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="8dp"
-                android:textColor="?attr/colorOnSurface"
-                android:textIsSelectable="true"
-                android:textColorHighlight="?attr/colorAccent"
-                app:layout_constraintBottom_toBottomOf="@+id/activity_amendment_cvlayout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_amendment_cvtvHeadline" />
-
-            <TextView
-                android:id="@+id/activity_amendment_cvtvArticlesNum"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="8dp"
-                android:text=""
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="14sp"
-                android:textIsSelectable="true"
-                android:textColorHighlight="?attr/colorAccent"
+                android:layout_marginTop="8dp"
+                android:animateLayoutChanges="true"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/activity_amendment_cvlayout"
-                app:layout_constraintStart_toEndOf="@+id/activity_amendment_cvtvArticlesAffected"
-                app:layout_constraintTop_toBottomOf="@+id/activity_amendment_cvtvHeadline" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_amendment_cvtvHeadline">
+
+                <!--            <TextView-->
+                <!--                android:id="@+id/activity_amendment_cvtvArticlesAffected"-->
+                <!--                android:layout_width="115dp"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginStart="5dp"-->
+                <!--                android:layout_marginTop="0dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                android:text="@string/parts_affected"-->
+                <!--                android:textColor="?attr/colorOnSurface"-->
+                <!--                android:textColorHighlight="?attr/colorAccent"-->
+                <!--                android:textIsSelectable="true"-->
+                <!--                android:textSize="14sp"-->
+                <!--                app:layout_constraintBottom_toBottomOf="@+id/activity_amendment_cvlayout"-->
+                <!--                app:layout_constraintStart_toStartOf="parent"-->
+                <!--                app:layout_constraintTop_toBottomOf="@+id/activity_amendment_cvtvHeadline" />-->
+
+                <TextView
+                    android:id="@+id/activity_amendment_cvtvArticlesNum"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/articles"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHighlight="?attr/colorAccent"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

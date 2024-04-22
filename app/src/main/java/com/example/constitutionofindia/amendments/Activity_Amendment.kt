@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.view.View
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
@@ -29,6 +30,9 @@ class Activity_Amendment : AppCompatActivity() {
 
     lateinit var name: String
 
+    private lateinit var tvAmendment: TextView
+    private lateinit var tvArticlesNum: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,68 +51,104 @@ class Activity_Amendment : AppCompatActivity() {
         }
 
 
-
     }
 
     override fun onStart() {
+        super.onStart()
 
-        lifecycleScope.launch(Dispatchers.Default){
-            val jamendmentfile: String =
-                applicationContext.assets.open("amendments.json").bufferedReader().use {
-                    it.readText()
-                }
-
-            val jamendmentobj = JSONObject(jamendmentfile)
-            val amendmentname = jamendmentobj.getJSONObject(name).getString("name")
-            val amendmentyear = jamendmentobj.getJSONObject(name).getString("Year")
-            val amendmentText = jamendmentobj.getJSONObject(name).getString("text")
-            val amendmentfootnote = jamendmentobj.getJSONObject(name).getString("footnote")
-            val amendmentSOR = jamendmentobj.getJSONObject(name).getString("SOR")
-            val amendmentArticleAffected =
-                jamendmentobj.getJSONObject(name).getString("articlesAffected")
-//        val sortext = jamendmentobj.getJSONObject(name).getString("SOR")
-
-            withContext(Dispatchers.Main){
-                findViewById<TextView>(R.id.activity_amendment_cvtvHeadline).also {
-                    it.setText(
-                        Html.fromHtml(
-                            amendmentname + ", " + amendmentyear,
-                            Html.FROM_HTML_MODE_LEGACY
-                        )
-                    )
-                }
-
-                findViewById<TextView>(R.id.activity_amendment_tvtext).also {
-                    it.setText(Html.fromHtml(amendmentText, Html.FROM_HTML_MODE_LEGACY))
-                }
-
-                findViewById<TextView>(R.id.activity_amendment_tvfootnote).also {
-
-                    if (amendmentfootnote.equals("null")) {
-                        it.visibility = View.GONE
-                    } else {
-                        it.setText(Html.fromHtml(amendmentfootnote, Html.FROM_HTML_MODE_LEGACY))
-                    }
-                }
-                findViewById<TextView>(R.id.activity_amendment_cvtvArticlesNum).also {
-                    it.setText(amendmentArticleAffected)
-                }
-
-                findViewById<TextView>(R.id.activity_amendment_tvSOR).also {
-                    if (amendmentSOR.equals("null")) {
-                        it.visibility = View.GONE
-                    }
-                    it.setOnClickListener {
-                        Intent(this@Activity_Amendment, Activity_Amendment_SOR::class.java).also {intent ->
-                            intent.putExtra("SORtext", amendmentSOR)
-                            startActivity(intent)
-                        }
-                    }
-                }
+        val jamendmentfile: String =
+            applicationContext.assets.open("amendments.json").bufferedReader().use {
+                it.readText()
             }
 
+        val jamendmentobj = JSONObject(jamendmentfile)
+        val amendmentname = jamendmentobj.getJSONObject(name).getString("name")
+        val amendmentyear = jamendmentobj.getJSONObject(name).getString("Year")
+        val amendmentText = jamendmentobj.getJSONObject(name).getString("text")
+        val amendmentfootnote = jamendmentobj.getJSONObject(name).getString("footnote")
+        val amendmentSOR = jamendmentobj.getJSONObject(name).getString("SOR")
+        val amendmentArticleAffected =
+            jamendmentobj.getJSONObject(name).getString("articlesAffected")
+//        val sortext = jamendmentobj.getJSONObject(name).getString("SOR")
+
+
+        tvAmendment = findViewById(R.id.activity_amendment_cvtvHeadline)
+        tvArticlesNum = findViewById(R.id.activity_amendment_cvtvArticlesNum)
+
+
+        tvAmendment.also {
+            it.setText(
+                Html.fromHtml(
+                    amendmentname + ", " + amendmentyear,
+                    Html.FROM_HTML_MODE_LEGACY
+                )
+            )
         }
-        super.onStart()
+
+        findViewById<TextView>(R.id.activity_amendment_tvtext).also {
+            it.setText(Html.fromHtml(amendmentText, Html.FROM_HTML_MODE_LEGACY))
+        }
+
+        findViewById<TextView>(R.id.activity_amendment_tvfootnote).also {
+
+            if (amendmentfootnote.equals("null")) {
+                it.visibility = View.GONE
+            } else {
+                it.setText(Html.fromHtml(amendmentfootnote, Html.FROM_HTML_MODE_LEGACY))
+            }
+        }
+        tvArticlesNum.also {
+            it.setText(amendmentArticleAffected)
+        }
+
+        findViewById<TextView>(R.id.activity_amendment_tvSOR).also {
+            if (amendmentSOR.equals("null")) {
+                it.visibility = View.GONE
+            }
+            it.setOnClickListener {
+                Intent(this@Activity_Amendment, Activity_Amendment_SOR::class.java).also { intent ->
+                    intent.putExtra("SORtext", amendmentSOR)
+                    startActivity(intent)
+                }
+            }
+        }
+
+
+        findViewById<ScrollView>(R.id.activity_amendment_svText).also {
+            it.setOnScrollChangeListener(
+                View.OnScrollChangeListener { view, scrollX, scrollY, oldScrollX, oldScrollY ->
+                    if (scrollY >= view.top +50) {
+//                        Toast.makeText(this@Activity_Article, "Yes, Scrolled", Toast.LENGTH_LONG).show()
+                        tvArticlesNum.also {tv ->
+                            tv.visibility = View.GONE
+                        }
+                    }else{
+                        tvArticlesNum.also {tv ->
+                            tv.visibility = View.VISIBLE
+                        }
+                    }
+
+                    return@OnScrollChangeListener
+                }
+            )
+        }
+
+
+
+        tvAmendment.also {
+            it.setOnTouchListener(
+                View.OnTouchListener { v, event ->
+
+                    tvArticlesNum.also {tv ->
+                        tv.visibility = View.VISIBLE
+                    }
+
+                    v.performClick()
+                    return@OnTouchListener true
+                }
+            )
+        }
+
     }
 
     override fun onResume() {
