@@ -80,6 +80,7 @@ class Activity_Preamble : AppCompatActivity() {
 
 
 //        TODO: Putting all data on Web Server/Cloud (Backend)
+//        TODO: App Tour on Install
 
 
         lifecycleScope.launch(Dispatchers.Default) {
