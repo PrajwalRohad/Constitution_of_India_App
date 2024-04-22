@@ -78,6 +78,10 @@ class Activity_Preamble : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
+
+//        TODO: Putting all data on Web Server/Cloud (Backend)
+
+
         lifecycleScope.launch(Dispatchers.Default) {
 
             val jpreamblefile =
