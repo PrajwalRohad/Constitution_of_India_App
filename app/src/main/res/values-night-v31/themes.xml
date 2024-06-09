@@ -300,7 +300,7 @@
 
     </style>
 
-    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+    <style name="Theme.App.Starting" parent="Theme.AppCompat.NoActionBar">
 
         <item name="android:windowSplashScreenBackground">@color/white</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/avd_vista_icon_transparent_288dp</item>

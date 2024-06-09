@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.OvershootInterpolator
@@ -18,6 +19,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
+//import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.IndiaCanon.constitutionofindia.R
@@ -37,6 +39,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+//import java.io.Closeable
 
 class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -101,36 +104,43 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
             }
 
             this.setOnExitAnimationListener { screen ->
-                val zoomX = ObjectAnimator.ofFloat(
-                    screen.iconView,
-                    View.SCALE_X,
-                    1.0f,
-                    0.0f
-                )
-                zoomX.also {
-                    it.interpolator = OvershootInterpolator()
-                    it.duration = 500L
-                    it.doOnEnd {
-                        screen.remove()
+
+                try {
+                    val zoomX = ObjectAnimator.ofFloat(
+                        screen.iconView,
+                        View.SCALE_X,
+                        1.0f,
+                        0.0f
+                    )
+                    zoomX.also {
+                        it.interpolator = OvershootInterpolator()
+                        it.duration = 500L
+                        it.doOnEnd {
+                            screen.remove()
+                        }
                     }
+
+                    val zoomY = ObjectAnimator.ofFloat(
+                        screen.iconView,
+                        View.SCALE_Y,
+                        1.0f,
+                        0.0f
+                    )
+                    zoomY.also {
+                        it.interpolator = OvershootInterpolator()
+                        it.duration = 500L
+                        it.doOnEnd {
+                            screen.remove()
+                        }
+                    }
+
+                    zoomX.start()
+                    zoomY.start()
+                }catch (e: Exception) {
+                    Log.e("SplashScreen", "Exception accessing icon view properties", e)
                 }
 
-                val zoomY = ObjectAnimator.ofFloat(
-                    screen.iconView,
-                    View.SCALE_Y,
-                    1.0f,
-                    0.0f
-                )
-                zoomY.also {
-                    it.interpolator = OvershootInterpolator()
-                    it.duration = 500L
-                    it.doOnEnd {
-                        screen.remove()
-                    }
-                }
 
-                zoomX.start()
-                zoomY.start()
             }
 
         }
@@ -293,7 +303,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
     override fun onClick(view: View?) {
 
-        when (view!!.id) {
+        when (view?.id) {
 
             R.id.activity_main_cvPreamble -> {
                 Intent(this, Activity_Preamble::class.java).also {
