@@ -1,6 +1,7 @@
 package com.example.constitutionofindia
 
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -48,6 +49,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
     val THEME_PREF = "theme_pref"
     val THEME_SELECTED = "theme_selected"
     val NIGHT_MODE = "night_mode"
+    private val FONT_SIZE = "font_size"
 
 //    lateinit var CoI_SharedPref: SharedPreferences
     lateinit var CoI_SharedPref: Deferred<SharedPreferences>
@@ -208,6 +210,16 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
             findViewById<NavigationView>(R.id.activity_main_drawer_navView).setNavigationItemSelectedListener(this@Activity_Main)
         }
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val sharedpref = newBase.getSharedPreferences(THEME_PREF, MODE_PRIVATE)
+        var fontsize1 = 1.0f
+        if (sharedpref != null) {
+            fontsize1 = 0.5f + (0.25f * sharedpref.getInt(FONT_SIZE, 1))
+        }
+
+        super.attachBaseContext(ThemePreference().adjustFontScale(newBase, fontsize1))
     }
 
     override fun onResume() {
