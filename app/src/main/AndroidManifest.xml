@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App.Starting"
         tools:targetApi="31">
+        <activity
+            android:name="com.example.constitutionofindia.Activity_Bookmarks"
+            android:exported="false" />
         <activity
             android:name="com.example.constitutionofindia.amendments.Activity_Amendment_SOR"
             android:exported="false" />
@@ -59,9 +62,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        </activity> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <!-- My AdMob app ID: ca-app-pub-9123074968180633~5360161949 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

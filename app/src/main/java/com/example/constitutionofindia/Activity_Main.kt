@@ -226,12 +226,13 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
         lifecycleScope.launch(Dispatchers.IO){
             MobileAds.initialize(this@Activity_Main) {}
-            val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
+//            val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
 
-            Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
+//            Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
 
             withContext(Dispatchers.Main){
-                Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
+                AdManager().loadBannerAd(findViewById(R.id.activity_main_adView))
+//                Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
             }
 
         }
@@ -335,6 +336,12 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.main_menu_Bookmarks -> {
+                Intent(this, Activity_Bookmarks::class.java).also {
+                    startActivity(it)
+                }
+            }
+
             R.id.main_menu_Settings -> {
                 Intent(this, Activity_Settings::class.java).also {
                     startActivity(it)

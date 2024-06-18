@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.AdManager
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -86,12 +87,12 @@ class Activity_Scheduleslist : AppCompatActivity(), Adapter_Scheduleslist.Schedu
 
         lifecycleScope.launch(Dispatchers.IO) {
             MobileAds.initialize(this@Activity_Scheduleslist) {}
-            val Activity_Scheduleslist_BannerAdRequest = AdRequest.Builder().build()
+//            val Activity_Scheduleslist_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Scheduleslist_BannerAd = findViewById(R.id.activity_scheduleslist_adView)
             withContext(Dispatchers.Main) {
-                Activity_Scheduleslist_BannerAd.loadAd(Activity_Scheduleslist_BannerAdRequest)
-
+//                Activity_Scheduleslist_BannerAd.loadAd(Activity_Scheduleslist_BannerAdRequest)
+                AdManager().loadBannerAd(Activity_Scheduleslist_BannerAd)
             }
         }
     }

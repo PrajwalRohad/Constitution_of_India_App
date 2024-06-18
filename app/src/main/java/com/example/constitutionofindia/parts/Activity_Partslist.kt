@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.AdManager
 import com.example.constitutionofindia.articles.Activity_Articleslist
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -114,12 +115,12 @@ class Activity_Partslist : AppCompatActivity(),
 
         lifecycleScope.launch(Dispatchers.IO) {
             MobileAds.initialize(this@Activity_Partslist) {}
-            val Activity_Partslist_BannerAdRequest = AdRequest.Builder().build()
+//            val Activity_Partslist_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Partslist_BannerAd = findViewById(R.id.activity_partslist_adView)
             withContext(Dispatchers.Main) {
-                Activity_Partslist_BannerAd.loadAd(Activity_Partslist_BannerAdRequest)
-
+//                Activity_Partslist_BannerAd.loadAd(Activity_Partslist_BannerAdRequest)
+                AdManager().loadBannerAd(Activity_Partslist_BannerAd)
             }
         }
     }

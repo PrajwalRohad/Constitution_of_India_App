@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.AdManager
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -51,11 +52,12 @@ class Activity_Amendment_SOR : AppCompatActivity() {
 
         lifecycleScope.launch(Dispatchers.IO){
             MobileAds.initialize(this@Activity_Amendment_SOR){}
-            val Activity_Amendment_SOR_BannerAdRequest = AdRequest.Builder().build()
+//            val Activity_Amendment_SOR_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Amendment_SOR_BannerAd = findViewById(R.id.activity_amendment_sor_adView)
             withContext(Dispatchers.Main){
-                Activity_Amendment_SOR_BannerAd.loadAd(Activity_Amendment_SOR_BannerAdRequest)
+                AdManager().loadBannerAd(Activity_Amendment_SOR_BannerAd)
+//                Activity_Amendment_SOR_BannerAd.loadAd(Activity_Amendment_SOR_BannerAdRequest)
             }
         }
 
