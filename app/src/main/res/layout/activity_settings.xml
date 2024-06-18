@@ -199,13 +199,14 @@
         android:id="@+id/activity_settings_toggleDarkmode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="2dp"
         android:textOff="off"
         android:textOn="on"
-        app:showText="true"
+        app:layout_constraintBottom_toBottomOf="@id/activity_settings_tvdark"
         app:layout_constraintStart_toEndOf="@+id/activity_settings_tvdark"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_cvthemeDefault" />
+        app:layout_constraintTop_toTopOf="@id/activity_settings_tvdark"
+        app:showText="true" />
 
 
 

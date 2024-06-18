@@ -12,8 +12,8 @@
         android:id="@+id/activity_schedule_cvHead"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
         app:cardBackgroundColor="?attr/colorSurface"
         app:cardCornerRadius="8dp"
         app:cardElevation="2dp"
@@ -27,6 +27,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_schedule_cardToplayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -36,48 +37,63 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/schedule"
-                android:textColor="?attr/colorOnSurface"
                 android:textAlignment="center"
-                android:textSize="20sp"
-                android:textIsSelectable="true"
+                android:textColor="?attr/colorOnSurface"
                 android:textColorHighlight="?attr/colorAccent"
+                android:textIsSelectable="true"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/activity_schedule_cardLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/activity_schedule_cvtvArticlesNum"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/activity_schedule_cvtvArticlesRelated"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/articles_related"
-                android:textSize="14sp"
-                android:textIsSelectable="true"
-                android:textColorHighlight="?attr/colorAccent"
-                android:textColor="?attr/colorOnSurface"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_schedule_cvtvHeadline" />
 
-            <TextView
-                android:id="@+id/activity_schedule_cvtvArticlesNum"
-                android:layout_width="0dp"
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/activity_schedule_cardLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/loading"
-                android:textColor="?attr/colorOnSurface"
-                android:textColorHighlight="?attr/colorAccent"
-                android:textIsSelectable="true"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="8dp"
+                android:animateLayoutChanges="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/activity_schedule_cvtvArticlesRelated"
-                app:layout_constraintTop_toBottomOf="@+id/activity_schedule_cvtvHeadline" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_schedule_cvtvHeadline">
+
+                <TextView
+                    android:id="@+id/activity_schedule_cvtvArticlesRelated"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/articles_related"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHighlight="?attr/colorAccent"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/activity_schedule_cvtvArticlesNum"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/activity_schedule_cvtvArticlesNum" />
+
+                <TextView
+                    android:id="@+id/activity_schedule_cvtvArticlesNum"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/loading"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHighlight="?attr/colorAccent"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/activity_schedule_cvtvArticlesRelated"
+                    app:layout_constraintTop_toTopOf="@+id/activity_schedule_cardLayout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

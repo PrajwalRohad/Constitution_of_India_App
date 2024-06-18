@@ -12,8 +12,8 @@
         android:id="@+id/activity_article_cvHead"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
         app:cardBackgroundColor="?attr/colorSurface"
         app:cardCornerRadius="8dp"
         app:cardElevation="2dp"
@@ -27,6 +27,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_article_cardToplayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -38,98 +39,113 @@
                 android:text="@string/article"
                 android:textAlignment="center"
                 android:textColor="?attr/colorOnSurface"
-                android:textSize="20sp"
-                android:textIsSelectable="true"
                 android:textColorHighlight="?attr/colorAccent"
+                android:textIsSelectable="true"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/activity_article_cardLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/activity_article_tvPartName"/>
-
-            <TextView
-                android:id="@+id/activity_article_tvPartNum"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                app:layout_goneMarginBottom="8dp"
-                android:text="@string/part"
-                android:textSize="14sp"
-                android:textColorHighlight="?attr/colorAccent"
-                android:textColor="?attr/colorOnSurface"
-                android:textIsSelectable="true"
-                android:layout_marginStart="2dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_article_tvHeadline"
-                app:layout_constraintBottom_toTopOf="@+id/activity_article_tvChapterName"/>
-
-            <TextView
-                android:id="@+id/activity_article_tvPartName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:layout_goneMarginBottom="8dp"
-                android:text="@string/part_name"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="14sp"
-                android:textIsSelectable="true"
-                android:textColorHighlight="?attr/colorAccent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/activity_article_tvPartNum"
-                app:layout_constraintTop_toBottomOf="@+id/activity_article_tvHeadline"
-                app:layout_constraintBottom_toTopOf="@+id/activity_article_tvChapterName"/>
-
-            <TextView
-                android:id="@+id/activity_article_tvChapterNum"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/chapter"
-                android:textSize="14sp"
-                android:textColor="?attr/colorOnSurface"
-                android:layout_marginTop="0dp"
-                app:layout_goneMarginBottom="8dp"
-                android:layout_marginStart="2dp"
-                android:textIsSelectable="true"
-                android:textColorHighlight="?attr/colorAccent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/activity_article_tvSubSection"
-                app:layout_constraintTop_toBottomOf="@+id/activity_article_tvPartName"/>
-
-            <TextView
-                android:id="@+id/activity_article_tvChapterName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/chapter_name"
-                android:textColor="?attr/colorOnSurface"
-                android:textColorHighlight="?attr/colorAccent"
-                android:textIsSelectable="true"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/activity_article_tvSubSection"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/activity_article_tvChapterNum"
-                app:layout_constraintTop_toBottomOf="@+id/activity_article_tvPartName"
                 app:layout_goneMarginBottom="8dp" />
 
-            <TextView
-                android:id="@+id/activity_article_tvSubSection"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/activity_article_cardLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="8dp"
-                app:layout_goneMarginTop="-3dp"
-                android:gravity="center"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="14sp"
-                android:textIsSelectable="true"
-                android:textColorHighlight="?attr/colorAccent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="8dp"
+                android:animateLayoutChanges="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_article_tvChapterName" />
+                app:layout_constraintTop_toBottomOf="@id/activity_article_tvHeadline">
+
+                <TextView
+                    android:id="@+id/activity_article_tvPartNum"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:text="@string/part"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHighlight="?attr/colorAccent"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/activity_article_tvPartName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/activity_article_tvPartName"
+                    app:layout_goneMarginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/activity_article_tvPartName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/part_name"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHighlight="?attr/colorAccent"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/activity_article_tvChapterName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/activity_article_tvPartNum"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/activity_article_tvChapterNum"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:text="@string/chapter"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHighlight="?attr/colorAccent"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/activity_article_tvChapterName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/activity_article_tvChapterName"
+                    app:layout_goneMarginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/activity_article_tvChapterName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/chapter_name"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHighlight="?attr/colorAccent"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/activity_article_tvSubSection"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/activity_article_tvChapterNum"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_article_tvPartName"
+                    app:layout_goneMarginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/activity_article_tvSubSection"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/sub_section"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHighlight="?attr/colorAccent"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_article_tvChapterName"
+                    app:layout_goneMarginTop="-3dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -50,10 +50,10 @@
             android:id="@+id/activity_about_tvAppName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="23sp"
-            android:textColor="?attr/colorOnBackground"
             android:layout_marginTop="18dp"
+            android:text="@string/app_name"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="23sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,15 +63,53 @@
             android:id="@+id/activity_about_tvVersionCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="14.5sp"
             android:layout_marginTop="5dp"
             android:alpha="0.8"
+            android:text="TextView"
             android:textColor="?attr/colorOnBackground"
+            android:textSize="14.5sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activity_about_tvAppName" />
+
+        <TextView
+            android:id="@+id/activity_about_tvPrivacyPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:text="@string/privacy_policy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_about_tvVersionCode" />
+
+        <TextView
+            android:id="@+id/activity_about_tvTnC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/terms_and_conditions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_about_tvPrivacyPolicy" />
+
+        <TextView
+            android:id="@+id/activity_about_tvDisclaimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:paddingHorizontal="15dp"
+            android:text="@string/disclaimer"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_about_tvTnC" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
