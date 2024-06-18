@@ -1,8 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
 
+<!--&lt;!&ndash;    <item android:state_checked="true">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <vector&ndash;&gt;-->
+<!--&lt;!&ndash;            android:height="25dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:width="45dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:viewportHeight="100"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:viewportWidth="100">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <path&ndash;&gt;-->
+<!--&lt;!&ndash;                android:fillColor="@color/blue"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:pathData="M 0,100 L 100,100 100,0 40,0 z"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </vector>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;        &lt;!&ndash;        <shape android:shape="rectangle">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            <solid android:color="@color/white" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            <stroke android:width="0.1dp" android:color="#34c759" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            <size android:width="20dp" android:height="20dp" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;        </shape>&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;    </item>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <item android:state_checked="false">&ndash;&gt;-->
+<!--&lt;!&ndash;        <vector&ndash;&gt;-->
+<!--&lt;!&ndash;            android:height="25dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:width="45dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:viewportHeight="100"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:viewportWidth="100">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <path&ndash;&gt;-->
+<!--&lt;!&ndash;                android:strokeColor="@color/white"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:strokeWidth="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:pathData="M 0,0 L 100,0 60,100 0,100 z"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;        </vector>&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;        <shape android:shape="rectangle">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            <solid android:color="@color/white" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            <size android:width="20dp" android:height="20dp" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;        </shape>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </item>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;first of all we are going to create thumb item where we will-->
+<!--    keep state_checked="true" that means when toggleButton is turned on.-->
+<!--    It is filled with white color having border-color green. Its height and-->
+<!--    width both are made 100 dp.&ndash;&gt;-->
 <!--    <item android:state_checked="true">-->
-
 <!--        <vector-->
 <!--            android:height="25dp"-->
 <!--            android:width="45dp"-->
@@ -10,21 +59,20 @@
 <!--            android:viewportWidth="100">-->
 
 <!--            <path-->
+<!--                android:strokeColor="@color/white"-->
+<!--                android:strokeWidth="1"-->
 <!--                android:fillColor="@color/blue"-->
 <!--                android:pathData="M 0,100 L 100,100 100,0 40,0 z"-->
 <!--                />-->
 
 <!--        </vector>-->
 
-
-<!--        &lt;!&ndash;        <shape android:shape="rectangle">&ndash;&gt;-->
-<!--&lt;!&ndash;            <solid android:color="@color/white" />&ndash;&gt;-->
-<!--&lt;!&ndash;            <stroke android:width="0.1dp" android:color="#34c759" />&ndash;&gt;-->
-<!--&lt;!&ndash;            <size android:width="20dp" android:height="20dp" />&ndash;&gt;-->
-<!--&lt;!&ndash;        </shape>&ndash;&gt;-->
-
 <!--    </item>-->
 
+<!--    &lt;!&ndash;first of all we are going to create thumb item where we will-->
+<!--    keep state_checked="false" that means when toggleButton is turned off.-->
+<!--    It is filled with white color having border-color white. Its height and-->
+<!--    width both are made 100 dp.&ndash;&gt;-->
 <!--    <item android:state_checked="false">-->
 <!--        <vector-->
 <!--            android:height="25dp"-->
@@ -35,16 +83,27 @@
 <!--            <path-->
 <!--                android:strokeColor="@color/white"-->
 <!--                android:strokeWidth="1"-->
+<!--                android:fillColor="@color/basilgreen"-->
 <!--                android:pathData="M 0,0 L 100,0 60,100 0,100 z"-->
 <!--                />-->
 
 
 <!--        </vector>-->
-
-<!--&lt;!&ndash;        <shape android:shape="rectangle">&ndash;&gt;-->
-<!--&lt;!&ndash;            <solid android:color="@color/white" />&ndash;&gt;-->
-<!--&lt;!&ndash;            <size android:width="20dp" android:height="20dp" />&ndash;&gt;-->
-<!--&lt;!&ndash;        </shape>&ndash;&gt;-->
 <!--    </item>-->
 
-</selector>
+<!--</selector>-->
+
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <group>
+        <clip-path
+            android:pathData="M0,0h24v24h-24z" />
+        <path
+            android:pathData="M12,12m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+            android:fillColor="#fff"/>
+    </group>
+</vector>

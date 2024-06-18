@@ -1,5 +1,6 @@
 package com.example.constitutionofindia.faqs
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.ThemePreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -22,6 +24,7 @@ class Activity_FAQs : AppCompatActivity()
     val THEME_PREF = "theme_pref"
     val THEME_SELECTED = "theme_selected"
     val NIGHT_MODE = "night_mode"
+    private val FONT_SIZE = "font_size"
 
     lateinit var CoI_SharedPref : SharedPreferences
 
@@ -78,6 +81,16 @@ class Activity_FAQs : AppCompatActivity()
 
 
 
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val sharedpref = newBase.getSharedPreferences(THEME_PREF, MODE_PRIVATE)
+        var fontsize1 = 1.0f
+        if (sharedpref != null) {
+            fontsize1 = 0.5f + (0.25f * sharedpref.getInt(FONT_SIZE, 1))
+        }
+
+        super.attachBaseContext(ThemePreference().adjustFontScale(newBase, fontsize1))
     }
 
 //    override fun onDestroy() {
