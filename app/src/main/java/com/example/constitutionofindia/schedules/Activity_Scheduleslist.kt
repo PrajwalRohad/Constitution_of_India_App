@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.AdManager
+import com.example.constitutionofindia.CoIApplication
 import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -25,8 +26,6 @@ import org.json.JSONObject
 class Activity_Scheduleslist : AppCompatActivity(), Adapter_Scheduleslist.SchedulesListInterface {
     lateinit var Activity_Scheduleslist_BannerAd: AdView
 
-    //    lateinit var scheduleNumArray : Array<String>
-//    lateinit var scheduleNameArray : Array<String>
     lateinit var keysSchedules: JSONArray
 
     val THEME_PREF = "theme_pref"
@@ -49,16 +48,8 @@ class Activity_Scheduleslist : AppCompatActivity(), Adapter_Scheduleslist.Schedu
 
         setContentView(R.layout.activity_scheduleslist)
 
-//        scheduleNumArray = resources.getStringArray(R.array.ScheduleNum)
-//        scheduleNameArray = resources.getStringArray(R.array.ScheduleName)
-
         lifecycleScope.launch(Dispatchers.Default){
-            val jsonSchedulefile =
-                applicationContext.assets.open("schedules.json").bufferedReader().use {
-                    it.readText()
-                }
-
-            val jsonScheduleobj = JSONObject(jsonSchedulefile)
+            val jsonScheduleobj = CoIApplication.assetManager.scheduleJSON
             keysSchedules = jsonScheduleobj.names()!!
 
             val scheduleItemList = mutableListOf<Element_Scheduleslist>()
@@ -98,12 +89,8 @@ class Activity_Scheduleslist : AppCompatActivity(), Adapter_Scheduleslist.Schedu
         super.onResume()
 
         lifecycleScope.launch(Dispatchers.IO) {
-            MobileAds.initialize(this@Activity_Scheduleslist) {}
-//            val Activity_Scheduleslist_BannerAdRequest = AdRequest.Builder().build()
-
             Activity_Scheduleslist_BannerAd = findViewById(R.id.activity_scheduleslist_adView)
             withContext(Dispatchers.Main) {
-//                Activity_Scheduleslist_BannerAd.loadAd(Activity_Scheduleslist_BannerAdRequest)
                 AdManager().loadBannerAd(Activity_Scheduleslist_BannerAd)
             }
         }

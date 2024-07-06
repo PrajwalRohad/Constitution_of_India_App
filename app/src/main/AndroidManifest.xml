@@ -6,6 +6,7 @@
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
+        android:name="com.example.constitutionofindia.CoIApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,7 +17,7 @@
         android:theme="@style/Theme.App.Starting"
         tools:targetApi="31">
         <activity
-            android:name="com.example.constitutionofindia.Activity_Bookmarks"
+            android:name="com.example.constitutionofindia.bookmarks.Activity_Bookmarks"
             android:exported="false" />
         <activity
             android:name="com.example.constitutionofindia.amendments.Activity_Amendment_SOR"
@@ -68,7 +69,7 @@
         <!-- My AdMob app ID: ca-app-pub-9123074968180633~5360161949 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="ca-app-pub-9123074968180633~5360161949" />
 
         <property
             android:name="android.adservices.AD_SERVICES_CONFIG"

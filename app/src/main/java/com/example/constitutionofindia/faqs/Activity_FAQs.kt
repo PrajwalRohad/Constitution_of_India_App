@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.CoIApplication
 import com.example.constitutionofindia.ThemePreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -52,10 +53,7 @@ class Activity_FAQs : AppCompatActivity()
 
 
         lifecycleScope.launch(Dispatchers.Default){
-            val jfaqsfile = applicationContext.assets.open("faqs.json").bufferedReader().use {
-                it.readText()
-            }
-            val jfaqsObject = JSONObject(jfaqsfile)
+            val jfaqsObject = CoIApplication.assetManager.faqsJSON
             keysFAQs = jfaqsObject.names()
 
             val FAQsList = mutableListOf<faqQnA>()
@@ -99,9 +97,6 @@ class Activity_FAQs : AppCompatActivity()
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == android.R.id.home){
-//            Intent(this, Activity_Main::class.java).also {
-//                startActivity(it)
-//            }
             finish()
 
             return true

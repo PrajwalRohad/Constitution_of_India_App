@@ -25,14 +25,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.amendments.Activity_Amendmentslist
+import com.example.constitutionofindia.bookmarks.Activity_Bookmarks
 import com.example.constitutionofindia.faqs.Activity_FAQs
 import com.example.constitutionofindia.parts.Activity_Partslist
 import com.example.constitutionofindia.preamble.Activity_Preamble
 import com.example.constitutionofindia.schedules.Activity_Scheduleslist
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.navigation.NavigationView
+import com.google.android.play.core.install.model.AppUpdateType
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -57,8 +58,9 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 //    lateinit var CoI_SharedPref: SharedPreferences
     lateinit var CoI_SharedPref: Deferred<SharedPreferences>
 
-
     private val viewModel: SplashViewModel by viewModels()
+
+    private lateinit var AppUpdate : AppUpdate
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -166,7 +168,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
         setSupportActionBar(findViewById(R.id.activity_main_tb))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
+        AppUpdate = AppUpdate(this)
 
 
 
@@ -178,24 +180,6 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
 
 
-//        lifecycleScope.launch(Dispatchers.IO){
-////            MobileAds.initialize(this@Activity_Main) {}
-//            val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
-//
-//            Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
-//
-//            withContext(Dispatchers.Main){
-//                Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
-//            }
-//
-//        }
-//        findViewById<NavigationView>(R.id.activity_main_drawer_navView).setNavigationItemSelectedListener {
-//
-////            findViewById<DrawerLayout>(R.id.activity_main_drawer).also { drawer ->
-////                drawer.closeDrawer(GravityCompat.START)
-////            }
-//            true
-//        }
 
 
         findViewById<DrawerLayout>(R.id.activity_main_drawer).also { drawer ->
@@ -234,29 +218,17 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
     override fun onResume() {
         super.onResume()
-
+        AppUpdate.onResume()
 
         lifecycleScope.launch(Dispatchers.IO){
-            MobileAds.initialize(this@Activity_Main) {}
-//            val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
 
-//            Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
+            Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
 
             withContext(Dispatchers.Main){
-                AdManager().loadBannerAd(findViewById(R.id.activity_main_adView))
-//                Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
+                AdManager().loadBannerAd(Activity_Main_BannerAd)
             }
 
         }
-//        MobileAds.initialize(this) {}
-//        val Activity_Main_BannerAdRequest = AdRequest.Builder().build()
-//
-//        Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
-//        Activity_Main_BannerAd.loadAd(Activity_Main_BannerAdRequest)
-
-
-
-
 
     }
 //
@@ -272,6 +244,8 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
 
     override fun onDestroy() {
         super.onDestroy()
+
+        AppUpdate.onDestroy()
 
         Activity_Main_BannerAd.removeAllViews()
         Activity_Main_BannerAd.destroy()
@@ -402,4 +376,11 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
         }
         return true
     }
+
+    @Deprecated("This method has been deprecated in favor of using the Activity Result API\n      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt\n      contracts for common intents available in\n      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for\n      testing, and allow receiving results in separate, testable classes independent from your\n      activity. Use\n      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}\n      with the appropriate {@link ActivityResultContract} and handling the result in the\n      {@link ActivityResultCallback#onActivityResult(Object) callback}.")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        AppUpdate.onActivityResult(requestCode,resultCode,data)
+    }
+
 }

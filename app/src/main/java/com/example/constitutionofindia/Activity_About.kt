@@ -110,15 +110,6 @@ class Activity_About : AppCompatActivity() {
         super.attachBaseContext(ThemePreference().adjustFontScale(newBase, fontsize1))
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//
-////        val iconImage = findViewById<ImageView>(R.id.activity_about_ivAppIcon).apply {
-////
-////        }
-////
-////        iconImage.setOnClickListener({ appIconAnimation.start() })
-//    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -131,9 +122,6 @@ class Activity_About : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-//            Intent(this, Activity_Main::class.java).also {
-//                startActivity(it)
-//            }
             finish()
 
             return true

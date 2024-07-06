@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.AdManager
+import com.example.constitutionofindia.CoIApplication
 import com.example.constitutionofindia.ThemePreference
 import com.example.constitutionofindia.articles.Activity_Articleslist
 import com.google.android.gms.ads.AdRequest
@@ -50,39 +51,10 @@ class Activity_Partslist : AppCompatActivity(),
 
         setContentView(R.layout.activity_partslist)
 
-//        val partTitlesArray = resources.getStringArray(R.array.PartTitles)
-//        val partNamesArray  = resources.getStringArray(R.array.PartNames)
-//        val partRangesArray = resources.getStringArray(R.array.PartRanges)
-
-
-//        val jpartsfile = applicationContext.assets.open("parts.json").bufferedReader().use {
-//            it.readText()
-//        }
-//        val jpartobj = JSONObject(jpartsfile)
-//        keysparts = jpartobj.names()!!
-//
-//        val partItemslist = mutableListOf<Element_Partslist>()
-//
-//        for (i in 0..keysparts.length() - 1) {
-//            val num = jpartobj.getJSONObject(keysparts[i].toString()).getString("part_num")
-//            val name = jpartobj.getJSONObject(keysparts[i].toString()).getString("part_name")
-//            val range = jpartobj.getJSONObject(keysparts[i].toString()).getString("range")
-//            partItemslist.add(Element_Partslist(num, name, "Articles\n" + range))
-////            partItemslist.add(Element_Partslist(partTitlesArray[i], partNamesArray[i], "Articles\n"+partRangesArray[i]))
-//        }
-//        val partslistAdapter = Adapter_Partslist(partItemslist, this@Activity_Partslist)
-//
-//        findViewById<RecyclerView>(R.id.activity_partslist_rvPartslist).also {
-//            it.adapter = partslistAdapter
-//            it.layoutManager = LinearLayoutManager(this@Activity_Partslist)
-//            it.addItemDecoration(DividerItemDecoration(this@Activity_Partslist, LinearLayoutManager.VERTICAL))
-//        }
 
         lifecycleScope.launch(Dispatchers.Default){
-            val jpartsfile = applicationContext.assets.open("parts.json").bufferedReader().use {
-                it.readText()
-            }
-            val jpartobj = JSONObject(jpartsfile)
+
+            val jpartobj = CoIApplication.assetManager.partsJSON
             keysparts = jpartobj.names()!!
 
             val partItemslist = mutableListOf<Element_Partslist>()
@@ -127,12 +99,9 @@ class Activity_Partslist : AppCompatActivity(),
         super.onResume()
 
         lifecycleScope.launch(Dispatchers.IO) {
-            MobileAds.initialize(this@Activity_Partslist) {}
-//            val Activity_Partslist_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Partslist_BannerAd = findViewById(R.id.activity_partslist_adView)
             withContext(Dispatchers.Main) {
-//                Activity_Partslist_BannerAd.loadAd(Activity_Partslist_BannerAdRequest)
                 AdManager().loadBannerAd(Activity_Partslist_BannerAd)
             }
         }
@@ -143,10 +112,8 @@ class Activity_Partslist : AppCompatActivity(),
         Activity_Partslist_BannerAd.destroy()
         super.onDestroy()
 
-//        Activity_Partslist_BannerAd.removeAllViews()
-
         showFeedbackDialog()
-//        Toast.makeText(this, "Exited!", Toast.LENGTH_LONG).show()
+
     }
 
     override fun PartOnClick(position: Int) {

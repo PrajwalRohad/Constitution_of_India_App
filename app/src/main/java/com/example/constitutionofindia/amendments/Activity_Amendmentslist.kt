@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.AdManager
+import com.example.constitutionofindia.CoIApplication
 import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -49,19 +50,13 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
 
         setContentView(R.layout.activity_amendmentslist)
 
-//        amendmentNameArray = resources.getStringArray(R.array.AmendmentNames)
-//        amendmentYearArray = resources.getStringArray(R.array.AmendmentYears)
         lifecycleScope.launch(Dispatchers.Default) {
 
             val amendmentItemList = mutableListOf<Element_Amendmentslist>()
 
-            val jsonamendmentfile: String =
-                applicationContext.assets.open("amendments.json").bufferedReader().use {
-                    it.readText()
-                }
 
-            val jsonamendmentobj = JSONObject(jsonamendmentfile)
-            keysamendments = jsonamendmentobj.names()
+            val jsonamendmentobj = CoIApplication.assetManager.amendmentJSON
+            keysamendments = jsonamendmentobj.names()!!
 
             for (i in 1..keysamendments.length() - 1) {
                 val name =
@@ -72,9 +67,6 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
             }
 
 
-//        for(i in amendmentNameArray.indices){
-//            amendmentItemList.add(Element_Amendmentslist(amendmentNameArray[i], amendmentYearArray[i]))
-//        }
             withContext(Dispatchers.Main){
                 val amendmentslistAdapter = Adapter_Amendmentslist(amendmentItemList, this@Activity_Amendmentslist)
 
@@ -108,12 +100,9 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
         super.onResume()
 
         lifecycleScope.launch(Dispatchers.IO) {
-            MobileAds.initialize(this@Activity_Amendmentslist) {}
-//            val Activity_Amendmentslist_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Amendmentslist_BannerAd = findViewById(R.id.activity_amendmentslist_adView)
             withContext(Dispatchers.Main) {
-//                Activity_Amendmentslist_BannerAd.loadAd(Activity_Amendmentslist_BannerAdRequest)
                 AdManager().loadBannerAd(Activity_Amendmentslist_BannerAd)
             }
         }

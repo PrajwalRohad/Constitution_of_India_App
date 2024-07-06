@@ -319,4 +319,22 @@
         <item name="android:textSize">6sp</item>
     </style>
 
+
+    <style name="bookmarkButton" parent="Theme.AppCompat">
+        <item name="backgroundTint">?attr/thumbTint</item>
+<!--        <item name="background">?attr/background</item>-->
+<!--        <item name="colorControlActivated">?attr/background</item>-->
+    </style>
+
+
+    <style name="buttonOnStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">?attr/thumbTint</item>
+        <item name="android:textColor">?attr/thumbTint</item>
+    </style>
+    <style name="buttonOffStyle" parent="Theme.AppCompat">
+        <item name="backgroundTint">?attr/background</item>
+        <item name="android:textColor">?attr/thumbTint</item>
+    </style>
+
+
 </resources>

@@ -1,3 +1,12 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+
+#app/debug
+#
+#{project}/app/release/
+#{project}/app/debug/
+#{project}/api_objects/
+#{project}/.idea/caches/
+#{project}/api/
+#{project}/.idea/vcs.xml

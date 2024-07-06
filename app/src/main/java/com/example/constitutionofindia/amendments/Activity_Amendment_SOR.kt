@@ -63,13 +63,10 @@ class Activity_Amendment_SOR : AppCompatActivity() {
         super.onResume()
 
         lifecycleScope.launch(Dispatchers.IO){
-            MobileAds.initialize(this@Activity_Amendment_SOR){}
-//            val Activity_Amendment_SOR_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Amendment_SOR_BannerAd = findViewById(R.id.activity_amendment_sor_adView)
             withContext(Dispatchers.Main){
                 AdManager().loadBannerAd(Activity_Amendment_SOR_BannerAd)
-//                Activity_Amendment_SOR_BannerAd.loadAd(Activity_Amendment_SOR_BannerAdRequest)
             }
         }
 

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.AdManager
+import com.example.constitutionofindia.CoIApplication
 import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -23,27 +24,31 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.ArticlesListInterface {
-    lateinit var Activity_Articleslist_BannerAd: AdView
+    private lateinit var Activity_Articleslist_BannerAd: AdView
 
-    lateinit var partNum: String
-    lateinit var partName: String
+    private lateinit var partNumKey: String
+    private lateinit var partNum: String
+    private lateinit var partName: String
 
-    lateinit var chapterNumList: MutableList<String>
-    lateinit var chapterNameList: MutableList<String>
+    private lateinit var chapterNumKeyList: MutableList<String>
+    private lateinit var chapterNumList: MutableList<String>
+    private lateinit var chapterNameList: MutableList<String>
 
-    lateinit var sectionsNameList: MutableList<String>
+    private lateinit var sectionsNameKeyList: MutableList<String>
+    private lateinit var sectionsNameList: MutableList<String>
 
-    lateinit var articlesNumList: MutableList<String>
-    lateinit var articlesNameList: MutableList<String>
-    lateinit var articlesTextList: MutableList<String>
-    lateinit var articlesFootnoteList: MutableList<String>
+    private lateinit var articlesIndexList: MutableList<Int>
+    private lateinit var articlesNumList: MutableList<String>
+    private lateinit var articlesNameList: MutableList<String>
+    private lateinit var articlesTextList: MutableList<String>
+    private lateinit var articlesFootnoteList: MutableList<String>
 
-    val THEME_PREF = "theme_pref"
-    val THEME_SELECTED = "theme_selected"
-    val NIGHT_MODE = "night_mode"
+    private val THEME_PREF = "theme_pref"
+    private val THEME_SELECTED = "theme_selected"
+    private val NIGHT_MODE = "night_mode"
     private val FONT_SIZE = "font_size"
 
-    lateinit var CoI_SharedPref: SharedPreferences
+    private lateinit var CoI_SharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,19 +64,15 @@ class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.Articles
         setContentView(R.layout.activity_articleslist)
 
 
-        val partNumKey: String?
 
         intent.extras.also {
-            partNumKey = it?.getString("partNum")
+            partNumKey = it?.getString("partNum").toString()
         }
 
         lifecycleScope.launch(Dispatchers.Default) {
 
-            val jpartsfile = applicationContext.assets.open("parts.json").bufferedReader().use {
-                it.readText()
-            }
-            val jpartsobj = JSONObject(jpartsfile)
-            val partobj = jpartsobj.getJSONObject(partNumKey!!)
+            val jpartsobj = CoIApplication.assetManager.partsJSON
+            val partobj = jpartsobj.getJSONObject(partNumKey)
             partNum = partobj.getString("part_num")
             partName = partobj.getString("part_name")
 
@@ -79,19 +80,19 @@ class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.Articles
             var sectionsList: JSONArray
 
 
+            chapterNumKeyList = mutableListOf()
             chapterNumList = mutableListOf()
             chapterNameList = mutableListOf()
+
+            sectionsNameKeyList = mutableListOf()
             sectionsNameList = mutableListOf()
+
+            articlesIndexList = mutableListOf()
             articlesNumList = mutableListOf()
             articlesNameList = mutableListOf()
             articlesTextList = mutableListOf()
             articlesFootnoteList = mutableListOf()
 
-
-//        Log.d("Article123", "chapters are -"+chaptersList)
-//        Log.d("Article123", "chapters type -"+chaptersList.javaClass)
-//        Log.d("Article123", "first chapter name is -"+chaptersList[0])
-//        Log.d("Article123", "first chapter name is -"+chaptersList[0].toString())
 
             for (i in 0..chaptersList.length() - 1) {
                 val chapter = partobj.getJSONObject(chaptersList[i].toString())
@@ -104,11 +105,15 @@ class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.Articles
 
                     val articles = section.getJSONArray("articles")
                     for (k in 0..articles.length() - 1) {
+                        chapterNumKeyList.add(chaptersList[i].toString())
+
                         chapterNumList.add(chapter.getString("chapter_num"))
                         chapterNameList.add(chapter.getString("chapter_name"))
 
+                        sectionsNameKeyList.add(sectionsList[j].toString())
                         sectionsNameList.add(section.getString("section_name").toString())
 
+                        articlesIndexList.add(k)
                         articlesNumList.add(articles.getJSONObject(k).getString("num"))
                         articlesNameList.add(articles.getJSONObject(k).getString("name"))
                         articlesTextList.add(articles.getJSONObject(k).getString("text"))
@@ -124,9 +129,7 @@ class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.Articles
             for (i in articlesNumList.indices) {
                 articleItemList.add(Element_Articleslist(articlesNumList[i], articlesNameList[i]))
             }
-//        for(i in articleNumArray.indices){
-//            articleItemList.add(Element_Articleslist(articleNumArray[i], articleNameArray[i]))
-//        }
+
             withContext(Dispatchers.Main) {
                 val articlesListAdapter =
                     Adapter_Articleslist(articleItemList, this@Activity_Articleslist)
@@ -161,13 +164,10 @@ class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.Articles
         super.onResume()
 
         lifecycleScope.launch(Dispatchers.IO) {
-            MobileAds.initialize(this@Activity_Articleslist) {}
-//            val Activity_Articleslist_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Articleslist_BannerAd = findViewById(R.id.activity_articleslist_adView)
             withContext(Dispatchers.Main) {
                 AdManager().loadBannerAd(Activity_Articleslist_BannerAd)
-//                Activity_Articleslist_BannerAd.loadAd(Activity_Articleslist_BannerAdRequest)
             }
         }
 
@@ -186,15 +186,23 @@ class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.Articles
 
     override fun ArticleOnClick(position: Int) {
         Intent(this, Activity_Article::class.java).also {
+            it.putExtra("partNumKey", partNumKey)
             it.putExtra("partNum", partNum)
             it.putExtra("partName", partName)
+
+            it.putExtra("chapterNumKey", chapterNumKeyList[position])
             it.putExtra("chapterNum", chapterNumList[position])
             it.putExtra("chapterName", chapterNameList[position])
+
+            it.putExtra("sectionNameKey", sectionsNameKeyList[position])
             it.putExtra("sectionName", sectionsNameList[position])
+
+            it.putExtra("articlesIndex", articlesIndexList[position].toString())
             it.putExtra("articlesNum", articlesNumList[position])
             it.putExtra("articlesName", articlesNameList[position])
             it.putExtra("articlesText", articlesTextList[position])
             it.putExtra("articlesFootnote", articlesFootnoteList[position])
+
             startActivity(it)
         }
     }

@@ -346,5 +346,12 @@
         <item name="android:textSize">6sp</item>
     </style>
 
+    <style name="bookmarkButton" parent="Theme.AppCompat">
+        <item name="backgroundTint">?attr/thumbTint</item>
+        <!--        <item name="background">?attr/background</item>-->
+        <!--        <item name="colorControlActivated">?attr/background</item>-->
+    </style>
+
+
 
 </resources>

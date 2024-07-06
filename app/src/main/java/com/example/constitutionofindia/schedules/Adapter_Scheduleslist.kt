@@ -23,7 +23,7 @@ class Adapter_Scheduleslist(
         }
 
         override fun onClick(v: View?) {
-            val position = adapterPosition
+            val position = absoluteAdapterPosition
             if(position != RecyclerView.NO_POSITION){
                 listener.ScheduleOnClick(position)
             }
