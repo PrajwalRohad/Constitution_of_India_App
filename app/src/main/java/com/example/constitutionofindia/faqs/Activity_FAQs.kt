@@ -1,5 +1,6 @@
 package com.example.constitutionofindia.faqs
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.CoIApplication
+import com.example.constitutionofindia.ThemePreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -22,6 +25,7 @@ class Activity_FAQs : AppCompatActivity()
     val THEME_PREF = "theme_pref"
     val THEME_SELECTED = "theme_selected"
     val NIGHT_MODE = "night_mode"
+    private val FONT_SIZE = "font_size"
 
     lateinit var CoI_SharedPref : SharedPreferences
 
@@ -49,10 +53,7 @@ class Activity_FAQs : AppCompatActivity()
 
 
         lifecycleScope.launch(Dispatchers.Default){
-            val jfaqsfile = applicationContext.assets.open("faqs.json").bufferedReader().use {
-                it.readText()
-            }
-            val jfaqsObject = JSONObject(jfaqsfile)
+            val jfaqsObject = CoIApplication.assetManager.faqsJSON
             keysFAQs = jfaqsObject.names()
 
             val FAQsList = mutableListOf<faqQnA>()
@@ -80,15 +81,22 @@ class Activity_FAQs : AppCompatActivity()
 
     }
 
+    override fun attachBaseContext(newBase: Context) {
+        val sharedpref = newBase.getSharedPreferences(THEME_PREF, MODE_PRIVATE)
+        var fontsize1 = 1.0f
+        if (sharedpref != null) {
+            fontsize1 = 0.5f + (0.25f * sharedpref.getInt(FONT_SIZE, 1))
+        }
+
+        super.attachBaseContext(ThemePreference().adjustFontScale(newBase, fontsize1))
+    }
+
 //    override fun onDestroy() {
 //        super.onDestroy()
 //    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == android.R.id.home){
-//            Intent(this, Activity_Main::class.java).also {
-//                startActivity(it)
-//            }
             finish()
 
             return true

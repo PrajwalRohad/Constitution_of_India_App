@@ -4,223 +4,331 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="?attr/background"
     tools:context="com.example.constitutionofindia.Activity_Settings">
 
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/activity_settings_tb"
+        style="@style/ToolbarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/ToolbarStyle"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:title="@string/settings"
-        app:titleTextColor="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/settings"
+        app:titleTextColor="?attr/colorOnPrimary">
 
 
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/activity_settings_tvtheme"
-        style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:paddingHorizontal="5dp"
-        android:paddingVertical="4dp"
-        android:textColor="?attr/colorOnBackground"
-        android:text="@string/theme"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_tb" />
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/activity_settings_cvthemeDefault"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
-        app:strokeColor="?attr/colorOnBackground"
-        app:strokeWidth="2dp">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/themecard_default"/>
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/activity_settings_cvthemeReplyBlue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="0dp"
-        app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemeDefault"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
-        app:strokeColor="?attr/colorOnBackground"
-        app:strokeWidth="2dp">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/themecard_replyblue"/>
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/activity_settings_cvthemeBasilGreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="0dp"
-        app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemeReplyBlue"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
-        app:strokeColor="?attr/colorOnBackground"
-        app:strokeWidth="2dp">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/themecard_basilgreen"/>
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/activity_settings_cvthemeYellow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="0dp"
-        app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemeBasilGreen"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
-        app:strokeColor="?attr/colorOnBackground"
-        app:strokeWidth="2dp">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/themecard_yellow"/>
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/activity_settings_cvthemeteal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="0dp"
-        app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemeYellow"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
-        app:strokeColor="?attr/colorOnBackground"
-        app:strokeWidth="2dp">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/themecard_teal"/>
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/activity_settings_cvthemefornightlypurple"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="0dp"
-        app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemeteal"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
-        app:strokeColor="?attr/colorOnBackground"
-        app:strokeWidth="2dp">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/themecard_fornightlypurple"/>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/activity_settings_cvthemepurple"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="0dp"
-        app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemefornightlypurple"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
-        app:strokeColor="?attr/colorOnBackground"
-        app:strokeWidth="2dp">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/themecard_purple"/>
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <TextView
-        android:id="@+id/activity_settings_tvdark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="5dp"
-        android:text="Dark Mode"
-        android:textColor="?attr/colorOnBackground"
-        android:textSize="17sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_cvthemeDefault" />
-
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/activity_settings_toggleDarkmode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginStart="20dp"
-        android:textOff="off"
-        android:textOn="on"
-        app:showText="true"
-        app:layout_constraintStart_toEndOf="@+id/activity_settings_tvdark"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_cvthemeDefault" />
-
-
-
-    <View
-        android:id="@+id/activity_settings_tvdivider1"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="30dp"
-        android:background="?attr/colorOnBackground"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvdark" />
+        app:layout_constraintTop_toBottomOf="@id/activity_settings_tb">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/activity_settings_tvtheme"
+                style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="4dp"
+                android:text="@string/theme"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/activity_settings_cvthemeDefault"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
+                app:strokeColor="?attr/colorOnBackground"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/themecard_default" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/activity_settings_cvthemeReplyBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemeDefault"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
+                app:strokeColor="?attr/colorOnBackground"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/themecard_replyblue" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/activity_settings_cvthemeBasilGreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemeReplyBlue"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
+                app:strokeColor="?attr/colorOnBackground"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/themecard_basilgreen" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/activity_settings_cvthemeYellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemeBasilGreen"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
+                app:strokeColor="?attr/colorOnBackground"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/themecard_yellow" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/activity_settings_cvthemeteal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemeYellow"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
+                app:strokeColor="?attr/colorOnBackground"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/themecard_teal" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/activity_settings_cvthemefornightlypurple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemeteal"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
+                app:strokeColor="?attr/colorOnBackground"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/themecard_fornightlypurple" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/activity_settings_cvthemepurple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintStart_toEndOf="@id/activity_settings_cvthemefornightlypurple"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtheme"
+                app:strokeColor="?attr/colorOnBackground"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/themecard_purple" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:id="@+id/activity_settings_tvdark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="25dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:text="@string/dark_mode"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_cvthemeDefault" />
+
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/activity_settings_toggleDarkmode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:scaleX="1.65"
+                android:scaleY="1.65"
+                android:thumb="@drawable/thumb"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_settings_tvdark"
+                app:layout_constraintStart_toEndOf="@+id/activity_settings_tvdark"
+                app:layout_constraintTop_toTopOf="@+id/activity_settings_tvdark"
+                app:showText="true"
+                app:switchTextAppearance="@style/SwitchTextAppearance"
+                app:thumbTint="?attr/thumbTint"
+                app:trackTint="?attr/trackTint" />
+
+
+            <View
+                android:id="@+id/activity_settings_tvdivider1"
+                android:layout_width="50dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvdark" />
+
+            <SeekBar
+                android:id="@+id/activity_settings_sbtextsize"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:max="4"
+                android:progress="2"
+                android:progressBackgroundTint="?attr/colorOnBackground"
+                android:progressTint="?attr/colorOnBackground"
+                android:thumbTint="?attr/thumbTint"
+                android:tickMark="@drawable/seekbar_tick"
+                android:tickMarkTint="@color/green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvtextsize" />
+
+            <TextView
+                android:id="@+id/activity_settings_tvtextsize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:text="@string/text_size"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvdivider1" />
+
+            <View
+                android:id="@+id/activity_settings_tvdivider2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
+                android:background="?attr/colorOnBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_sbtextsize" />
+
+
+            <Button
+                android:id="@+id/activity_settings_btnthemeapply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="45dp"
+                android:backgroundTint="?attr/thumbTint"
+                android:text="@string/apply"
+                android:textColor="?attr/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_settings_tvdivider2" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_settings_btnthemeapply">
+
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/activity_settings_viewerlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="10dp"
+                    android:elevation="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5">
+
+                </androidx.fragment.app.FragmentContainerView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

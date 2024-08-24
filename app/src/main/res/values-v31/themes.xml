@@ -34,6 +34,9 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+        <item name="thumbTint">@color/black</item>
+        <item name="trackTint">@color/light_black</item>
+
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
 
 
@@ -72,6 +75,9 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+        <item name="thumbTint">@color/replyblue_light</item>
+        <item name="trackTint">@color/light_black</item>
+
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
 
     </style>
@@ -108,6 +114,9 @@
 
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+        <item name="thumbTint">@color/basilgreen</item>
+        <item name="trackTint">@color/basilgreen_dark</item>
 
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
 
@@ -146,6 +155,9 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+        <item name="thumbTint">@color/blue</item>
+        <item name="trackTint">@color/light_black</item>
+
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
 
     </style>
@@ -182,6 +194,9 @@
 
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+        <item name="thumbTint">@color/teal</item>
+        <item name="trackTint">@color/light_black</item>
 
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
 
@@ -220,6 +235,9 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+        <item name="thumbTint">@color/fornightly_purple</item>
+        <item name="trackTint">@color/light_black</item>
+
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
 
     </style>
@@ -257,12 +275,15 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+        <item name="thumbTint">@color/purple</item>
+        <item name="trackTint">@color/light_black</item>
+
 <!--        <item name="android:splashScreenTheme">@style/Theme.App.Starting</item>-->
 
     </style>
 
 
-    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+    <style name="Theme.App.Starting" parent="Theme.AppCompat.NoActionBar">
 
 <!--        <item name="android:windowIsTranslucent">true</item>-->
 <!--        <item name="android:windowBackground">@android:color/transparent</item>-->
@@ -292,4 +313,28 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+    <style name="SwitchTextAppearance" parent="@android:style/TextAppearance.Holo.Small">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">6sp</item>
+    </style>
+
+
+    <style name="bookmarkButton" parent="Theme.AppCompat">
+        <item name="backgroundTint">?attr/thumbTint</item>
+<!--        <item name="background">?attr/background</item>-->
+<!--        <item name="colorControlActivated">?attr/background</item>-->
+    </style>
+
+
+    <style name="buttonOnStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">?attr/thumbTint</item>
+        <item name="android:textColor">?attr/thumbTint</item>
+    </style>
+    <style name="buttonOffStyle" parent="Theme.AppCompat">
+        <item name="backgroundTint">?attr/background</item>
+        <item name="android:textColor">?attr/thumbTint</item>
+    </style>
+
+
 </resources>

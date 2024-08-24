@@ -11,8 +11,8 @@
         android:id="@+id/activity_articleslist_rvArticleslist"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/activity_articleslist_cvAdCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -39,6 +39,7 @@
             android:layout_marginTop="1dp"
             app:adSize="SMART_BANNER"
             app:adUnitId="ca-app-pub-9123074968180633/1455472307" />
+        <!--            app:adUnitId="ca-app-pub-9123074968180633/1455472307" />   my adid  -->
 
     </androidx.cardview.widget.CardView>
 

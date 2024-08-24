@@ -1,5 +1,6 @@
 package com.example.constitutionofindia.amendments
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.AdManager
+import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -20,6 +23,7 @@ class Activity_Amendment_SOR : AppCompatActivity() {
     val THEME_PREF = "theme_pref"
     val THEME_SELECTED = "theme_selected"
     val NIGHT_MODE = "night_mode"
+    private val FONT_SIZE = "font_size"
 
     lateinit var CoI_SharedPref : SharedPreferences
 
@@ -46,16 +50,23 @@ class Activity_Amendment_SOR : AppCompatActivity() {
 
     }
 
+    override fun attachBaseContext(newBase: Context) {
+        val sharedpref = newBase.getSharedPreferences(THEME_PREF, MODE_PRIVATE)
+        var fontsize1 = 1.0f
+        if (sharedpref != null) {
+            fontsize1 = 0.5f + (0.25f * sharedpref.getInt(FONT_SIZE, 1))
+        }
+
+        super.attachBaseContext(ThemePreference().adjustFontScale(newBase, fontsize1))
+    }
     override fun onResume() {
         super.onResume()
 
         lifecycleScope.launch(Dispatchers.IO){
-            MobileAds.initialize(this@Activity_Amendment_SOR){}
-            val Activity_Amendment_SOR_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Amendment_SOR_BannerAd = findViewById(R.id.activity_amendment_sor_adView)
             withContext(Dispatchers.Main){
-                Activity_Amendment_SOR_BannerAd.loadAd(Activity_Amendment_SOR_BannerAdRequest)
+                AdManager().loadBannerAd(Activity_Amendment_SOR_BannerAd)
             }
         }
 

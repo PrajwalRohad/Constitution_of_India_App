@@ -28,7 +28,7 @@ class Adapter_FAQsList(
         }
 
         override fun onClick(view: View?) {
-            val position = adapterPosition
+            val position = absoluteAdapterPosition
             if(position != RecyclerView.NO_POSITION){
 //                listener.FAQsOnClick(position)
                 if(Answer.visibility == View.GONE){

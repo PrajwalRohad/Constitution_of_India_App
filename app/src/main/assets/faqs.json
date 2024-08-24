@@ -5,7 +5,7 @@
   },
   "faq_02": {
     "question": "<strong>2. What features does the app offer?</strong>",
-    "answer": "<p style=\"text-align: justify;\">The app includes the complete text of the Constitution of India, organized by parts, articles, and schedules. It provides a user-friendly interface for convenient navigation and offers a variety of font styles and themes to enhance readability and cater to individual preferences. Users can customize the app's appearance according to their liking.</p>\n<p style=\"text-align: justify;\">Additionally, the app ensures that users stay informed with up-to-date amendments to the Constitution. Regular updates will be provided to incorporate any changes, ensuring that users have access to the latest and most accurate information.</p>\n<p style=\"text-align: justify;\">Please note that, as of now, the app does not include a search function and bookmarking capabilities. However, these features may be considered for future updates based on user feedback and evolving needs.</p>"
+    "answer": "<p style=\"text-align: justify;\">The app includes the complete text of the Constitution of India, organized by parts, articles, and schedules. It provides a user-friendly interface with enhanced font and theme control, as well as bookmarking capabilities to save and quickly access important sections.</p>\n<p style=\"text-align: justify;\">Additionally, the app ensures that users stay informed with up-to-date amendments to the Constitution through regular updates.</p>\n<p style=\"text-align: justify;\">Please note that, as of now, the app does not include a search function. However, this feature may be considered for future updates based on user feedback and evolving needs.</p>"
   },
   "faq_03": {
     "question": "<strong>3. Is the app available for both Android and iOS?</strong>",
@@ -25,11 +25,11 @@
   },
   "faq_07": {
     "question": "<strong>7. How can I provide feedback or report issues with the app?</strong>",
-    "answer": "<p style=\"text-align: justify;\">Users can provide feedback or report issues through the app's feedback section available on the Play Store for Android users. For more detailed concerns or concerns not covered in the feedback section, users can report issues via the provided email address. We value your feedback and are dedicated to addressing your queries promptly.</p>"
+    "answer": "<p style=\"text-align: justify;\">Users can provide feedback or report issues through the app's feedback section available on the Play Store for Android users. For more detailed concerns or concerns not covered in the feedback section, users can report issues via the provided email address(indiacanoncompany@gmail.com). We value your feedback and are dedicated to addressing your queries promptly.</p>"
   },
   "faq_08": {
     "question": "<strong>8. Is the app free to download and use?</strong>",
-    "answer": "<p style=\"text-align: justify;\">Yes, the app is free to download and use. However, it may offer optional in-app purchases or donations to support ongoing development and maintenance.</p>\n<p style=\"text-align: justify;\">Feel free to customize these FAQs based on the specific features and details of your \"Constitution of India\" app.</p>"
+    "answer": "<p style=\"text-align: justify;\">Yes, the app is free to download and use. However, it may offer optional in-app purchases or donations to support ongoing development and maintenance.</p>"
   },
   "faq_09": {
     "question": "<strong>9. Are there any additional resources or explanations provided within the app?</strong>",
@@ -45,7 +45,7 @@
   },
   "faq_12": {
     "question": "<strong>12. What additional features can users expect in the future updates of the \"Constitution of India\" app?</strong>",
-    "answer": "<p style=\"text-align: justify;\">In our upcoming updates, we plan to introduce several new features to enhance the user experience. These features include:</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p><strong>Note Creation:</strong> Users will have the ability to create and save personal notes within the app. This feature aims to assist users in organizing their thoughts, highlighting key sections, and making the app a personalized study tool.</p>\n</li>\n<li>\n<p><strong>Quizzing AI:</strong> To facilitate active learning, we are working on integrating a quizzing AI that will offer users the opportunity to test their knowledge of the Constitution. This interactive feature is designed to reinforce learning and make the app an engaging educational tool.</p>\n</li>\n<li>\n<p><strong>Font Control:</strong> Recognizing the diverse needs of our users, we plan to introduce font control options. This will allow users to customize the text size and style according to their preferences, ensuring a comfortable reading experience for everyone.</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\">We are committed to providing continuous updates to meet the evolving needs of our users and make the \"Constitution of India\" app a versatile and user-friendly resource. Stay tuned for these exciting features in our future releases.</p>"
+    "answer": "<p style=\"text-align: justify;\">In our upcoming updates, we plan to introduce several new features to enhance the user experience. These features include:</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p><strong>Note Creation:</strong> Users will have the ability to create and save personal notes within the app. This feature aims to assist users in organizing their thoughts, highlighting key sections, and making the app a personalized study tool.</p>\n</li>\n<li>\n<p><strong>Quizzing AI:</strong> To facilitate active learning, we are working on integrating a quizzing AI that will offer users the opportunity to test their knowledge of the Constitution. This interactive feature is designed to reinforce learning and make the app an engaging educational tool.</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\">We are committed to providing continuous updates to meet the evolving needs of our users and make the \"Constitution of India\" app a versatile and user-friendly resource. Stay tuned for these exciting features in our future releases.</p>"
   }
 
 }

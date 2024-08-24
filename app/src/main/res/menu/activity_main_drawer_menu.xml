@@ -8,6 +8,10 @@
             android:title="@string/settings"/>
 
         <item
+            android:id="@+id/main_menu_Bookmarks"
+            android:title="@string/bookmarks"/>
+
+        <item
             android:id="@+id/main_menu_FAQs"
             android:title="@string/faqs"/>
         <item

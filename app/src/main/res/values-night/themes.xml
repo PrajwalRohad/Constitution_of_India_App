@@ -114,6 +114,9 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+        <item name="thumbTint">@color/white</item>
+        <item name="trackTint">@color/grey</item>
+
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
 <!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
 <!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
@@ -157,6 +160,9 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+        <item name="thumbTint">@color/replyblue_light</item>
+        <item name="trackTint">@color/grey</item>
+
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
 <!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
 <!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
@@ -199,6 +205,9 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+        <item name="thumbTint">@color/basilgreen_light</item>
+        <item name="trackTint">@color/basilgreen_dark</item>
+
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
 <!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
 <!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
@@ -240,6 +249,9 @@
 
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+        <item name="thumbTint">@color/blue</item>
+        <item name="trackTint">@color/yellow</item>
 
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
 <!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
@@ -284,6 +296,9 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+        <item name="thumbTint">@color/teal_light_01</item>
+        <item name="trackTint">@color/light_black</item>
+
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
 <!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
 <!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
@@ -325,6 +340,9 @@
 
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+        <item name="thumbTint">@color/white_purple</item>
+        <item name="trackTint">@color/light_black</item>
 
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
 <!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
@@ -370,6 +388,9 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+        <item name="thumbTint">@color/white_purple</item>
+        <item name="trackTint">@color/light_black</item>
+
 <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
 <!--        <item name="windowSplashScreenAnimatedIcon">@drawable/appicon_main</item>-->
 <!--&lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1500</item>&ndash;&gt;-->
@@ -400,7 +421,26 @@
 
     </style>
 
+    <style name="SwitchTextAppearance" parent="@android:style/TextAppearance.Holo.Small">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">6sp</item>
+    </style>
 
+    <style name="bookmarkButton" parent="Theme.AppCompat">
+        <item name="backgroundTint">?attr/thumbTint</item>
+        <!--        <item name="background">?attr/background</item>-->
+        <!--        <item name="colorControlActivated">?attr/background</item>-->
+    </style>
+
+
+    <style name="buttonOnStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">?attr/thumbTint</item>
+        <item name="android:textColor">?attr/thumbTint</item>
+    </style>
+    <style name="buttonOffStyle" parent="Theme.AppCompat">
+        <item name="backgroundTint">?attr/background</item>
+        <item name="android:textColor">?attr/thumbTint</item>
+    </style>
 
 
 </resources>

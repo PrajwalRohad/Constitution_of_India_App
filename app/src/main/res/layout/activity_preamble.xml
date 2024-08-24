@@ -84,7 +84,7 @@
                 android:id="@+id/activity_preamble_tvdivider"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/light_black"
+                android:background="?attr/colorOnBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +126,7 @@
             android:layout_marginTop="1dp"
             app:adSize="SMART_BANNER"
             app:adUnitId="ca-app-pub-9123074968180633/1455472307" />
+        <!--            app:adUnitId="ca-app-pub-9123074968180633/1455472307" />   my adid  -->
 
     </androidx.cardview.widget.CardView>
 

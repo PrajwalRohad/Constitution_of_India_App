@@ -1,5 +1,6 @@
 package com.example.constitutionofindia.amendments
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.AdManager
+import com.example.constitutionofindia.CoIApplication
+import com.example.constitutionofindia.ThemePreference
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -29,6 +33,7 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
     val THEME_PREF = "theme_pref"
     val THEME_SELECTED = "theme_selected"
     val NIGHT_MODE = "night_mode"
+    private val FONT_SIZE = "font_size"
 
     lateinit var CoI_SharedPref: SharedPreferences
 
@@ -45,19 +50,13 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
 
         setContentView(R.layout.activity_amendmentslist)
 
-//        amendmentNameArray = resources.getStringArray(R.array.AmendmentNames)
-//        amendmentYearArray = resources.getStringArray(R.array.AmendmentYears)
         lifecycleScope.launch(Dispatchers.Default) {
 
             val amendmentItemList = mutableListOf<Element_Amendmentslist>()
 
-            val jsonamendmentfile: String =
-                applicationContext.assets.open("amendments.json").bufferedReader().use {
-                    it.readText()
-                }
 
-            val jsonamendmentobj = JSONObject(jsonamendmentfile)
-            keysamendments = jsonamendmentobj.names()
+            val jsonamendmentobj = CoIApplication.assetManager.amendmentJSON
+            keysamendments = jsonamendmentobj.names()!!
 
             for (i in 1..keysamendments.length() - 1) {
                 val name =
@@ -68,9 +67,6 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
             }
 
 
-//        for(i in amendmentNameArray.indices){
-//            amendmentItemList.add(Element_Amendmentslist(amendmentNameArray[i], amendmentYearArray[i]))
-//        }
             withContext(Dispatchers.Main){
                 val amendmentslistAdapter = Adapter_Amendmentslist(amendmentItemList, this@Activity_Amendmentslist)
 
@@ -84,6 +80,16 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
 
     }
 
+    override fun attachBaseContext(newBase: Context) {
+        val sharedpref = newBase.getSharedPreferences(THEME_PREF, MODE_PRIVATE)
+        var fontsize1 = 1.0f
+        if (sharedpref != null) {
+            fontsize1 = 0.5f + (0.25f * sharedpref.getInt(FONT_SIZE, 1))
+        }
+
+        super.attachBaseContext(ThemePreference().adjustFontScale(newBase, fontsize1))
+    }
+
 //    override fun onStart() {
 //
 //
@@ -94,13 +100,10 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
         super.onResume()
 
         lifecycleScope.launch(Dispatchers.IO) {
-            MobileAds.initialize(this@Activity_Amendmentslist) {}
-            val Activity_Amendmentslist_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Amendmentslist_BannerAd = findViewById(R.id.activity_amendmentslist_adView)
             withContext(Dispatchers.Main) {
-                Activity_Amendmentslist_BannerAd.loadAd(Activity_Amendmentslist_BannerAdRequest)
-
+                AdManager().loadBannerAd(Activity_Amendmentslist_BannerAd)
             }
         }
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="mybuttonstyle">
+        <attr name="thumbTint" format="color" />
+        <attr name="background" format="reference" />
+        <attr name="colorError" format="color" />
+
+    </declare-styleable>
+</resources>
