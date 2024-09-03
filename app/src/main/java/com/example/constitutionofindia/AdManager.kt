@@ -69,7 +69,14 @@ class AdManager {
         Log.d("AD_MANAGER_TAG", "The Banner ad shown.")
     }
 
-    fun loadBannerAdWithRDP(view : AdView) {
+    fun loadBannerAdWithRDP(container : FrameLayout, context: Context) {
+
+        val adView = AdView(context)
+        adView.adUnitId = "ca-app-pub-9123074968180633/5652156318"
+        adView.setAdSize(AdSize.BANNER)
+
+        container.removeAllViews()
+        container.addView(adView)
 
         val networkExtrasBundle = Bundle()
         networkExtrasBundle.putInt("rdp", 1)
@@ -79,7 +86,7 @@ class AdManager {
             .build()
 
 
-        view.loadAd(adRequest)
+        adView.loadAd(adRequest)
         Log.d("AD_MANAGER_TAG", "The Banner ad with RDP shown.")
     }
 
