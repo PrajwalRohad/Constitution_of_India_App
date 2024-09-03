@@ -4,21 +4,32 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.IndiaCanon.constitutionofindia.R
+import com.example.constitutionofindia.AdManager
 import com.example.constitutionofindia.CoIApplication
 import com.example.constitutionofindia.ThemePreference
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 
-class Activity_FAQs : AppCompatActivity()
+class Activity_FAQs : AppCompatActivity(), View.OnClickListener
 //    Adapter_FAQsList.FAQsListInterface
 {
 
@@ -30,6 +41,10 @@ class Activity_FAQs : AppCompatActivity()
     lateinit var CoI_SharedPref : SharedPreferences
 
     lateinit var keysFAQs : JSONArray
+
+    lateinit var Activity_FAQs_BannerAd : FrameLayout
+    lateinit var adManager_instance : AdManager
+    private var mInterstitialAd: InterstitialAd? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,32 +67,40 @@ class Activity_FAQs : AppCompatActivity()
 
 
 
-        lifecycleScope.launch(Dispatchers.Default){
-            val jfaqsObject = CoIApplication.assetManager.faqsJSON
-            keysFAQs = jfaqsObject.names()
+//        lifecycleScope.launch(Dispatchers.Default){
+//            val jfaqsObject = CoIApplication.assetManager.faqsJSON
+//            keysFAQs = jfaqsObject.names()
+//
+//            val FAQsList = mutableListOf<faqQnA>()
+//
+//            for(i in 0..keysFAQs.length()-1){
+//                val question = jfaqsObject.getJSONObject(keysFAQs[i].toString()).getString("question")
+//                val answer = jfaqsObject.getJSONObject(keysFAQs[i].toString()).getString("answer")
+//
+//                FAQsList.add(faqQnA(question,answer))
+//            }
+//
+//            withContext(Dispatchers.Main){
+//                val FAQsListAdapter = Adapter_FAQsList(FAQsList)
+//
+//                findViewById<RecyclerView>(R.id.activity_faqs_rvFAQsList).also {
+//
+//                    it.adapter = FAQsListAdapter
+//                    it.layoutManager = LinearLayoutManager(this@Activity_FAQs)
+//                }
+//            }
+//
+//        }
 
-            val FAQsList = mutableListOf<faqQnA>()
 
-            for(i in 0..keysFAQs.length()-1){
-                val question = jfaqsObject.getJSONObject(keysFAQs[i].toString()).getString("question")
-                val answer = jfaqsObject.getJSONObject(keysFAQs[i].toString()).getString("answer")
+        findViewById<Button>(R.id.ad_button_banner).setOnClickListener(this@Activity_FAQs)
+        findViewById<Button>(R.id.ad_button_interstitial).setOnClickListener(this@Activity_FAQs)
 
-                FAQsList.add(faqQnA(question,answer))
-            }
+        Activity_FAQs_BannerAd = findViewById(R.id.activity_faqs_adViewContainer)
 
-            withContext(Dispatchers.Main){
-                val FAQsListAdapter = Adapter_FAQsList(FAQsList)
+        adManager_instance = AdManager()
 
-                findViewById<RecyclerView>(R.id.activity_faqs_rvFAQsList).also {
-
-                    it.adapter = FAQsListAdapter
-                    it.layoutManager = LinearLayoutManager(this@Activity_FAQs)
-                }
-            }
-
-        }
-
-
+//        loadInterstitial()
 
     }
 
@@ -103,6 +126,44 @@ class Activity_FAQs : AppCompatActivity()
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onClick(v: View?) {
+
+        when(v?.id) {
+
+            R.id.ad_button_banner -> {
+                adManager_instance.loadBannerAd(Activity_FAQs_BannerAd, this)
+            }
+
+            R.id.ad_button_interstitial -> {
+//                if (mInterstitialAd != null) {
+//                    mInterstitialAd?.show(this)
+//                    loadInterstitial()
+//                } else {
+//                    Log.d("TAG", "The interstitial ad wasn't ready yet.")
+//                }
+            }
+
+        }
+
+    }
+
+
+    fun loadInterstitial() {
+        val adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                Log.d("AD_MANAGER_TAG", adError.toString())
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                Log.d("AD_MANAGER_TAG", "Interstitial Ad was loaded.")
+                mInterstitialAd = interstitialAd
+            }
+        })
     }
 
 //    override fun FAQsOnClick(position: Int) {

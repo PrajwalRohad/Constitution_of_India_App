@@ -24,33 +24,79 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/activity_faqs_tvFAQs"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/ad_button_banner"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/faqs"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:layout_marginTop="8dp"
-        android:visibility="gone"
-        android:background="?attr/background"
-        android:textColor="?attr/colorOnBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#2196F3"
+        android:text="Banner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_faqs_tb"/>
+        app:layout_constraintTop_toBottomOf="@+id/activity_faqs_tb" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_faqs_rvFAQsList"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="12dp"
+    <Button
+        android:id="@+id/ad_button_interstitial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#2196F3"
+        android:text="Banner with RDP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_faqs_tb" />
+
+<!--    <com.google.android.gms.ads.AdView-->
+<!--        android:id="@+id/activity_faqs_adView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        app:adSize="BANNER"-->
+<!--        app:adUnitId="ca-app-pub-9123074968180633/5652156318"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <FrameLayout
+        android:id="@+id/activity_faqs_adViewContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_faqs_tvFAQs" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <!--    <TextView-->
+<!--        android:id="@+id/activity_faqs_tvFAQs"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/faqs"-->
+<!--        android:gravity="center"-->
+<!--        android:textSize="30sp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:background="?attr/background"-->
+<!--        android:textColor="?attr/colorOnBackground"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/activity_faqs_tb"/>-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/activity_faqs_rvFAQsList"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginHorizontal="8dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/activity_faqs_tvFAQs" />-->
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

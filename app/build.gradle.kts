@@ -34,6 +34,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            isDebuggable = true
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -59,7 +62,7 @@ dependencies {
 
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    implementation("com.google.android.gms:play-services-ads:23.2.0")
+    implementation("com.google.android.gms:play-services-ads:23.3.0")
 
     //ad mediation
     implementation("com.google.ads.mediation:inmobi:10.7.5.0")
@@ -104,7 +107,7 @@ dependencies {
 
 
     // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
 
 
     // TODO: Add the dependencies for Firebase products you want to use

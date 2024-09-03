@@ -244,7 +244,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
             Activity_Main_BannerAd = findViewById(R.id.activity_main_adView)
 
             withContext(Dispatchers.Main){
-                AdManager().loadBannerAd(Activity_Main_BannerAd)
+//                AdManager().loadBannerAd(Activity_Main_BannerAd)
             }
 
         }
