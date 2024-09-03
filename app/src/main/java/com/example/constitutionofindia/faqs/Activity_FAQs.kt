@@ -143,7 +143,7 @@ class Activity_FAQs : AppCompatActivity(), View.OnClickListener
 //                } else {
 //                    Log.d("TAG", "The interstitial ad wasn't ready yet.")
 //                }
-                adManager_instance.loadBannerAdWithRDP()
+                adManager_instance.loadBannerAdWithRDP(Activity_FAQs_BannerAd, this)
 
             }
 
