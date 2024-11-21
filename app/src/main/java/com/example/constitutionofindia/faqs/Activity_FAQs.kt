@@ -16,11 +16,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
-import org.json.JSONObject
 
-class Activity_FAQs : AppCompatActivity()
-//    Adapter_FAQsList.FAQsListInterface
-{
+class Activity_FAQs : AppCompatActivity() {
 
     val THEME_PREF = "theme_pref"
     val THEME_SELECTED = "theme_selected"
@@ -40,7 +37,6 @@ class Activity_FAQs : AppCompatActivity()
         val nightmode = CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         setTheme(themeselected)
-//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_faqs)
 
@@ -54,7 +50,7 @@ class Activity_FAQs : AppCompatActivity()
 
         lifecycleScope.launch(Dispatchers.Default){
             val jfaqsObject = CoIApplication.assetManager.faqsJSON
-            keysFAQs = jfaqsObject.names()
+            keysFAQs = jfaqsObject.names()!!
 
             val FAQsList = mutableListOf<faqQnA>()
 
@@ -76,9 +72,6 @@ class Activity_FAQs : AppCompatActivity()
             }
 
         }
-
-
-
     }
 
     override fun attachBaseContext(newBase: Context) {
@@ -91,10 +84,6 @@ class Activity_FAQs : AppCompatActivity()
         super.attachBaseContext(ThemePreference().adjustFontScale(newBase, fontsize1))
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == android.R.id.home){
             finish()
@@ -105,14 +94,4 @@ class Activity_FAQs : AppCompatActivity()
         return super.onOptionsItemSelected(item)
     }
 
-//    override fun FAQsOnClick(position: Int) {
-//        Log.d("faqslog","clicked - "+position)
-//        findViewById<TextView>(R.id.activity_faqs_element_cvtvAnswer).also {
-//            if(it.visibility == View.GONE){
-//                it.visibility = View.VISIBLE
-//            }else{
-//                it.visibility = View.GONE
-//            }
-//        }
-//    }
 }

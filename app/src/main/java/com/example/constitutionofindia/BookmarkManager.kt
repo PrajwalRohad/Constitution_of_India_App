@@ -16,7 +16,6 @@ import com.google.android.material.snackbar.Snackbar
 
 class BookmarkManager {
 
-
     fun loadFromBookmark(bookmark: Element_Bookmark, assets: AssetManager): Intent {
         val list = bookmark.data
 
@@ -111,6 +110,20 @@ class BookmarkManager {
 
             } else {
                 fab.setImageResource(R.drawable.bookmark_unselect)
+            }
+        }
+    }
+
+    fun bookmarkBtnClick(state: Boolean, tv: TextView, color1: Int, color2: Int) {
+        tv.also {
+            if (state) {
+                it.setBackgroundResource(R.drawable.bookmark_btn_select)
+                it.setTextColor(color2)
+                it.setText(R.string.bookmarked)
+            } else {
+                it.setBackgroundResource(R.drawable.bookmark_btn_unselect)
+                it.setTextColor(color1)
+                it.setText(R.string.click_to_bookmark)
             }
         }
     }

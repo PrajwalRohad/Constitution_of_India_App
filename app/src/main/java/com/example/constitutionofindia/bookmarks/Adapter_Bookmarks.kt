@@ -131,10 +131,6 @@ class Adapter_Bookmarks (
         }
     }
 
-//    fun updateList(newlist : List<Element_Bookmark>) {
-//
-//    }
-
     fun removeAt(index: Int) {
         val item = bookmarkslist.get(index)
         viewModel.deleteBookmark(item.name)

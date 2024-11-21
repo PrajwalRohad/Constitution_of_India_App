@@ -15,15 +15,12 @@ import com.example.constitutionofindia.AdManager
 import com.example.constitutionofindia.CoIApplication
 import com.example.constitutionofindia.ThemePreference
 import com.example.constitutionofindia.articles.Activity_Articleslist
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import com.google.android.play.core.review.ReviewManagerFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
-import org.json.JSONObject
 
 class Activity_Partslist : AppCompatActivity(),
     Adapter_Partslist.PartsListInterface {
@@ -47,7 +44,6 @@ class Activity_Partslist : AppCompatActivity(),
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         setTheme(themeselected)
-//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_partslist)
 
@@ -64,7 +60,6 @@ class Activity_Partslist : AppCompatActivity(),
                 val name = jpartobj.getJSONObject(keysparts[i].toString()).getString("part_name")
                 val range = jpartobj.getJSONObject(keysparts[i].toString()).getString("range")
                 partItemslist.add(Element_Partslist(num, name, "Articles\n" + range))
-//            partItemslist.add(Element_Partslist(partTitlesArray[i], partNamesArray[i], "Articles\n"+partRangesArray[i]))
             }
             withContext(Dispatchers.Main){
                 val partslistAdapter = Adapter_Partslist(partItemslist, this@Activity_Partslist)
@@ -117,8 +112,6 @@ class Activity_Partslist : AppCompatActivity(),
     }
 
     override fun PartOnClick(position: Int) {
-//        Toast.makeText(this, "clicked "+position, Toast.LENGTH_LONG).show()
-
         Intent(this, Activity_Articleslist::class.java).also {
             it.putExtra("partNum", keysparts[position].toString())
             startActivity(it)

@@ -89,7 +89,6 @@ class Activity_Settings : AppCompatActivity(), View.OnClickListener {
                     }
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                     editor.also { ed ->
                         ed.putInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_NO)
                         ed.apply()

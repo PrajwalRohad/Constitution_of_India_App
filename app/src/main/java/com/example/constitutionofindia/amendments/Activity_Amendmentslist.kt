@@ -14,20 +14,15 @@ import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.AdManager
 import com.example.constitutionofindia.CoIApplication
 import com.example.constitutionofindia.ThemePreference
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
-import org.json.JSONObject
 
 class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.AmendmentListInterface {
     lateinit var Activity_Amendmentslist_BannerAd: AdView
 
-//    lateinit var amendmentNameArray : Array<String>
-//    lateinit var amendmentYearArray : Array<String>
     lateinit var keysamendments: JSONArray
 
     val THEME_PREF = "theme_pref"
@@ -46,7 +41,6 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         setTheme(themeselected)
-//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_amendmentslist)
 
@@ -89,12 +83,6 @@ class Activity_Amendmentslist : AppCompatActivity(), Adapter_Amendmentslist.Amen
 
         super.attachBaseContext(ThemePreference().adjustFontScale(newBase, fontsize1))
     }
-
-//    override fun onStart() {
-//
-//
-//        super.onStart()
-//    }
 
     override fun onResume() {
         super.onResume()

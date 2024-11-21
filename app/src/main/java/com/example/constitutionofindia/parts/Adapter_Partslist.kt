@@ -34,7 +34,6 @@ class Adapter_Partslist (
             partNum.setText(Html.fromHtml(num, Html.FROM_HTML_MODE_LEGACY))
             partName.setText(Html.fromHtml(name, Html.FROM_HTML_MODE_LEGACY))
             partRange.setText(range)
-//            partRange.setText(Html.fromHtml(range, Html.FROM_HTML_MODE_LEGACY))
         }
     }
 
@@ -46,11 +45,6 @@ class Adapter_Partslist (
     override fun onBindViewHolder(holder: PartListItemHolder, position: Int) {
         holder.bindPart(partsList[position].PartNum, partsList[position].PartName, partsList[position].PartRange)
     }
-
-//    override fun onViewDetachedFromWindow(holder: PartListItemHolder) {
-//        super.onViewDetachedFromWindow(holder)
-//        holder.itemView.setOnClickListener(null)
-//    }
 
     override fun getItemCount(): Int {
         return partsList.size

@@ -15,7 +15,6 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import com.IndiaCanon.constitutionofindia.R
-import com.example.constitutionofindia.amendments.Activity_Amendment_SOR
 
 class Activity_About : AppCompatActivity() {
 
@@ -39,7 +38,6 @@ class Activity_About : AppCompatActivity() {
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         setTheme(themeselected)
-//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_about)
 
@@ -60,9 +58,6 @@ class Activity_About : AppCompatActivity() {
                 appIconAnimation = it.drawable as AnimatedVectorDrawable
                 appIconAnimation.start()
 
-//                if(appIconAnimation.isRunning){
-//                    it.setImageResource(R.drawable.app_coin_icon_whiteback_figma)
-//                }
             }
         }
 

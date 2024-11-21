@@ -3,7 +3,6 @@ package com.example.constitutionofindia
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.IndiaCanon.constitutionofindia.R
 import com.google.android.material.snackbar.Snackbar
@@ -38,45 +37,6 @@ class AppUpdate(activity: Activity) : InstallStateUpdatedListener {
                     startUpdate(info, currentType)
                 }
 
-//                if (info.updatePriority() == 5) { // Priority: 5 (Immediate update flow)
-//                    if (info.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-//                        startUpdate(info, AppUpdateType.IMMEDIATE)
-//                    }
-//                } else if (info.updatePriority() == 4) { // Priority: 4
-//                    val clientVersionStalenessDays = info.clientVersionStalenessDays()
-//                    if (clientVersionStalenessDays != null && clientVersionStalenessDays >= 5 && info.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-//                        // Trigger IMMEDIATE flow
-//                        startUpdate(info, AppUpdateType.IMMEDIATE)
-//                    } else if (clientVersionStalenessDays != null && clientVersionStalenessDays >= 3 && info.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-//                        // Trigger FLEXIBLE flow
-//                        startUpdate(info, AppUpdateType.FLEXIBLE)
-//                    }
-//                } else if (info.updatePriority() == 3) { // Priority: 3
-//                    val clientVersionStalenessDays = info.clientVersionStalenessDays()
-//                    if (clientVersionStalenessDays != null && clientVersionStalenessDays >= 30 && info.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-//                        // Trigger IMMEDIATE flow
-//                        startUpdate(info, AppUpdateType.IMMEDIATE)
-//                    } else if (clientVersionStalenessDays != null && clientVersionStalenessDays >= 15 && info.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-//                        // Trigger FLEXIBLE flow
-//                        startUpdate(info, AppUpdateType.FLEXIBLE)
-//                    }
-//                } else if (info.updatePriority() == 2) { // Priority: 2
-//                    val clientVersionStalenessDays = info.clientVersionStalenessDays()
-//                    if (clientVersionStalenessDays != null && clientVersionStalenessDays >= 90 && info.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-//                        // Trigger IMMEDIATE flow
-//                        startUpdate(info, AppUpdateType.IMMEDIATE)
-//                    } else if (clientVersionStalenessDays != null && clientVersionStalenessDays >= 30 && info.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-//                        // Trigger FLEXIBLE flow
-//                        startUpdate(info, AppUpdateType.FLEXIBLE)
-//                    }
-//                } else if (info.updatePriority() == 1) { // Priority: 1
-//                    // Trigger FLEXIBLE flow
-//                    startUpdate(info, AppUpdateType.FLEXIBLE)
-//                } else { // Priority: 0
-//                    // Do not show in-app update
-//                }
-//            } else {
-                // UPDATE IS NOT AVAILABLE
             }
         }
 
@@ -96,7 +56,6 @@ class AppUpdate(activity: Activity) : InstallStateUpdatedListener {
             AppUpdateOptions.defaultOptions(currentType),
             MY_REQUEST_CODE
         )
-//        currentType = type
     }
 
     fun onResume() {
@@ -118,7 +77,7 @@ class AppUpdate(activity: Activity) : InstallStateUpdatedListener {
         if (requestCode == MY_REQUEST_CODE) {
             if (resultCode != AppCompatActivity.RESULT_OK) {
                 // If the update is cancelled or fails, you can request to start the update again.
-                Log.e("UPDATE1234", "Update flow failed! Result code: $resultCode")
+//                Log.e("UPDATE1234", "Update flow failed! Result code: $resultCode")
             }
         }
     }

@@ -3,24 +3,15 @@ package com.example.constitutionofindia.bookmarks
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffXfermode
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.TypedValue
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
@@ -46,8 +37,6 @@ import com.google.android.gms.ads.AdView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -75,7 +64,6 @@ class Activity_Bookmarks : AppCompatActivity(), Adapter_Bookmarks.BookmarkInterf
     private lateinit var viewModel: BookmarkViewModel
     private lateinit var factory: BookmarkViewModelFactory
 
-//    lateinit var state: BookmarkState
     lateinit var currentFilterType: BookmarkFilterType
 
     lateinit var rvListAll: List<Element_Bookmark>
@@ -90,7 +78,6 @@ class Activity_Bookmarks : AppCompatActivity(), Adapter_Bookmarks.BookmarkInterf
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
 
         CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
         val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
@@ -116,6 +103,7 @@ class Activity_Bookmarks : AppCompatActivity(), Adapter_Bookmarks.BookmarkInterf
 
         currentFilterType = BookmarkFilterType.TYPE_ALL
 
+        initiateButtons()
         CoroutineScope(Dispatchers.IO).launch {
 
             viewModel.getAllBookmarks().collect{ value ->
@@ -140,7 +128,6 @@ class Activity_Bookmarks : AppCompatActivity(), Adapter_Bookmarks.BookmarkInterf
             }
         }
 
-        initiateButtons()
         assetManager = CoIApplication.assetManager
         bookmarkManager = BookmarkManager()
 
@@ -214,7 +201,6 @@ class Activity_Bookmarks : AppCompatActivity(), Adapter_Bookmarks.BookmarkInterf
     }
 
     override fun BookmarkOnClick(position: Int, bookmark: Element_Bookmark) {
-//        Toast.makeText(this, "${bookmark.type} click", Toast.LENGTH_SHORT).show()
         val intent = bookmarkManager.loadFromBookmark(bookmark, assetManager)
 
         startActivity(intent)
@@ -254,48 +240,52 @@ class Activity_Bookmarks : AppCompatActivity(), Adapter_Bookmarks.BookmarkInterf
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setRVList(filterType: BookmarkFilterType) {
-        var list = emptyList<Element_Bookmark>()
-        CoroutineScope(Dispatchers.IO).launch {
+        try{
+            var list = emptyList<Element_Bookmark>()
+            CoroutineScope(Dispatchers.IO).launch {
 
-            when (filterType) {
-                BookmarkFilterType.TYPE_ALL -> {
-                    viewModel.getAllBookmarks().collect{ value ->
-                        list = value
+                when (filterType) {
+                    BookmarkFilterType.TYPE_ALL -> {
+                        viewModel.getAllBookmarks().collect { value ->
+                            list = value
+                        }
+                    }
+
+                    BookmarkFilterType.TYPE_ARTICLE -> {
+                        viewModel.getArticleBookmarks().collect { value ->
+                            list = value
+                        }
+                    }
+
+                    BookmarkFilterType.TYPE_SCHEDULE -> {
+                        viewModel.getScheduleBookmarks().collect { value ->
+                            list = value
+                        }
+                    }
+
+                    BookmarkFilterType.TYPE_AMENDMENT -> {
+                        viewModel.getAmendmentBookmarks().collect { value ->
+                            list = value
+                        }
                     }
                 }
 
-                BookmarkFilterType.TYPE_ARTICLE -> {
-                    viewModel.getArticleBookmarks().collect{ value ->
-                        list = value
-                    }
-                }
-
-                BookmarkFilterType.TYPE_SCHEDULE -> {
-                    viewModel.getScheduleBookmarks().collect{ value ->
-                        list = value
-                    }
-                }
-
-                BookmarkFilterType.TYPE_AMENDMENT -> {
-                    viewModel.getAmendmentBookmarks().collect{ value ->
-                        list = value
+                withContext(Dispatchers.Main) {
+                    bookmarksListAdapter.also { rvadap ->
+                        rvadap.bookmarkslist = list.toMutableList()
+                        rvadap.notifyDataSetChanged()
                     }
                 }
             }
-
-            withContext(Dispatchers.Main) {
-                bookmarksListAdapter.also { rvadap ->
-                    rvadap.bookmarkslist = list.toMutableList()
-                    rvadap.notifyDataSetChanged()
-                }
-            }
-        }
-
-
+        }catch (_: Exception){}
     }
 
     private fun initiateButtons() {
 
+        rvListAll = emptyList()
+        rvListArticle = emptyList()
+        rvListSchedule = emptyList()
+        rvListAmendment = emptyList()
 
         bgTypedValue = TypedValue()
         theme.resolveAttribute(R.attr.background, bgTypedValue, true)
@@ -316,6 +306,8 @@ class Activity_Bookmarks : AppCompatActivity(), Adapter_Bookmarks.BookmarkInterf
         setAllButtons()
         setButton(filter_all)
 
+        bookmarksListAdapter = Adapter_Bookmarks(rvListAll.toMutableList(), this@Activity_Bookmarks, viewModel)
+        rvBookmarks = findViewById(R.id.activity_bookmarks_rvBookmarkslist)
 
     }
 
@@ -354,11 +346,6 @@ class Activity_Bookmarks : AppCompatActivity(), Adapter_Bookmarks.BookmarkInterf
 
 
     private fun setUpRV() {
-
-        bookmarksListAdapter =
-            Adapter_Bookmarks(rvListAll.toMutableList(), this@Activity_Bookmarks, viewModel)
-
-        rvBookmarks = findViewById(R.id.activity_bookmarks_rvBookmarkslist)
         rvBookmarks.also {
             it.adapter = bookmarksListAdapter
             it.layoutManager = LinearLayoutManager(this@Activity_Bookmarks)

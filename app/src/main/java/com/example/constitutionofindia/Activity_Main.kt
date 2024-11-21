@@ -20,7 +20,6 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
-//import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.IndiaCanon.constitutionofindia.R
@@ -31,17 +30,12 @@ import com.example.constitutionofindia.parts.Activity_Partslist
 import com.example.constitutionofindia.preamble.Activity_Preamble
 import com.example.constitutionofindia.schedules.Activity_Scheduleslist
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.navigation.NavigationView
-import com.google.android.play.core.install.model.AppUpdateType
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-//import java.io.Closeable
 
 class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -58,7 +52,6 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
     private val FONT_SIZE = "font_size"
 
     lateinit var CoI_SharedPref: SharedPreferences
-//    lateinit var CoI_SharedPref: Deferred<SharedPreferences>
     lateinit var Data_SharedPref: SharedPreferences
 
     private val viewModel: SplashViewModel by viewModels()
@@ -71,55 +64,26 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
         Data_SharedPref = getSharedPreferences(DATA_PREF, MODE_PRIVATE)
 
         if(!Data_SharedPref.getBoolean(DATA_DELETED, false)) {
-//            UserLocalData().clearData(this@Activity_Main)
-//            UserLocalData().clearData
-
             CoI_SharedPref.edit().clear().apply()
             Data_SharedPref.edit().putBoolean(DATA_DELETED, true).apply()
             recreate()
         }
-//        UserLocalData().clearData(this@Activity_Main)
 
         val splashscreen = installSplashScreen()
 
-//        lifecycleScope.launch(Dispatchers.IO){
-//            CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
-//            val nightmode =
-//                CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-//            AppCompatDelegate.setDefaultNightMode(nightmode)
-//            val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeDefault)
-//
-//            withContext(Dispatchers.Main){
-//                ThemePreference().changeThemeStyle(this@Activity_Main, themeselected)
-//            }
-//        }
 
         runBlocking{
-//            CoI_SharedPref = async { getSharedPreferences(THEME_PREF, MODE_PRIVATE) }
             launch {
                 val nightmode =
                     CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-//                val nightmode =
-//                    CoI_SharedPref.await().getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                 AppCompatDelegate.setDefaultNightMode(nightmode)
             }
             launch {
                 val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
-//                val themeselected = CoI_SharedPref.await().getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
                 setTheme(themeselected)
-//                ThemePreference().changeThemeStyle(this@Activity_Main, themeselected)
             }
 
-//            CoI_SharedPref.cancel(null)
         }
-
-//        CoI_SharedPref = getSharedPreferences(THEME_PREF, MODE_PRIVATE)
-//        val nightmode =
-//            CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-//        AppCompatDelegate.setDefaultNightMode(nightmode)
-//        val themeselected = CoI_SharedPref.getInt(THEME_SELECTED, R.style.ThemeReplyBlue)
-//        setTheme(themeselected)
-//        ThemePreference().changeThemeStyle(this, themeselected)
 
         splashscreen.apply {
             this.setKeepOnScreenCondition {
@@ -197,10 +161,6 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
     override fun onStart() {
         super.onStart()
 
-
-
-
-
         findViewById<DrawerLayout>(R.id.activity_main_drawer).also { drawer ->
             drawer.closeDrawer(GravityCompat.START)
         }
@@ -250,16 +210,6 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
         }
 
     }
-//
-//
-//    override fun onStop() {
-//        super.onStop()
-//
-////        CoI_SharedPref.cancel(null)
-//
-//
-//
-//    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -351,10 +301,7 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
                 Intent(this, Activity_Settings::class.java).also {
                     startActivity(it)
                 }
-//                onDestroy()
                 finish()
-//                Thread.sleep(1000)
-//                onBackPressedDispatcher.onBackPressed()
             }
 
             R.id.main_menu_FAQs -> {
@@ -370,7 +317,6 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
             }
 
             R.id.main_menu_Share -> {
-//                    Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show()
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.IndiaCanon.constitutionofindia")
@@ -382,7 +328,6 @@ class Activity_Main : AppCompatActivity(), View.OnClickListener, NavigationView.
             }
 
             R.id.main_menu_rate -> {
-//                    Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show()
                 Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse("https://play.google.com/store/apps/details?id=com.IndiaCanon.constitutionofindia")

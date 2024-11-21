@@ -14,14 +14,11 @@ import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.AdManager
 import com.example.constitutionofindia.CoIApplication
 import com.example.constitutionofindia.ThemePreference
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
-import org.json.JSONObject
 
 class Activity_Scheduleslist : AppCompatActivity(), Adapter_Scheduleslist.SchedulesListInterface {
     lateinit var Activity_Scheduleslist_BannerAd: AdView
@@ -44,7 +41,6 @@ class Activity_Scheduleslist : AppCompatActivity(), Adapter_Scheduleslist.Schedu
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         setTheme(themeselected)
-//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_scheduleslist)
 
@@ -55,7 +51,6 @@ class Activity_Scheduleslist : AppCompatActivity(), Adapter_Scheduleslist.Schedu
             val scheduleItemList = mutableListOf<Element_Scheduleslist>()
 
             for (i in 1..keysSchedules.length() - 1) {
-//            scheduleItemList.add(Element_Scheduleslist(scheduleNumArray[i],scheduleNameArray[i]))
                 val num = jsonScheduleobj.getJSONObject(keysSchedules[i].toString()).getString("num")
                 val name = jsonScheduleobj.getJSONObject(keysSchedules[i].toString()).getString("name")
                 scheduleItemList.add(Element_Scheduleslist(num, name))
@@ -104,7 +99,6 @@ class Activity_Scheduleslist : AppCompatActivity(), Adapter_Scheduleslist.Schedu
 
     override fun ScheduleOnClick(position: Int) {
         Intent(this, Activity_Schedule::class.java).also {
-//            it.putExtra("scheduleName", scheduleNumArray[position]+"\n"+scheduleNameArray[position])
             it.putExtra("scheduleName", keysSchedules[position + 1].toString())
 
             startActivity(it)

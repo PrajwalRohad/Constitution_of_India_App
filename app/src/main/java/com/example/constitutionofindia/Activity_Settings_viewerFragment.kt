@@ -1,6 +1,5 @@
 package com.example.constitutionofindia
 
-import android.content.Context
 import android.os.Bundle
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
@@ -67,10 +66,6 @@ class Activity_Settings_viewerFragment : Fragment() {
 
 
     }
-
-//    override fun onAttach(context: Context) {
-//        super.onAttach(ThemePreference().adjustFontScale(context, 2.0f))
-//    }
 
     companion object {
         /**

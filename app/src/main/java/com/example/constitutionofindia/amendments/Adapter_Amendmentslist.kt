@@ -31,8 +31,6 @@ class Adapter_Amendmentslist(
 
         fun bindAmendment(name : String, year : String){
 
-//            this.Name.setText(name)
-//            this.Year.setText(year)
             this.Name.setText(Html.fromHtml(name, Html.FROM_HTML_MODE_LEGACY))
             this.Year.setText(Html.fromHtml(year, Html.FROM_HTML_MODE_LEGACY))
         }
@@ -47,11 +45,6 @@ class Adapter_Amendmentslist(
     override fun onBindViewHolder(holder: AmendmentListItemHolder, position: Int) {
         holder.bindAmendment(amendmentsList[position].AmendmentName, amendmentsList[position].AmendmentYear)
     }
-
-//    override fun onViewDetachedFromWindow(holder: AmendmentListItemHolder) {
-//        super.onViewDetachedFromWindow(holder)
-//        holder.itemView.setOnClickListener(null)
-//    }
 
     override fun getItemCount(): Int {
         return amendmentsList.size

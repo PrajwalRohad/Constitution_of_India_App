@@ -11,9 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.AdManager
 import com.example.constitutionofindia.ThemePreference
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -35,7 +33,6 @@ class Activity_Amendment_SOR : AppCompatActivity() {
         val nightmode = CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         setTheme(themeselected)
-//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_amendment_sor)
 

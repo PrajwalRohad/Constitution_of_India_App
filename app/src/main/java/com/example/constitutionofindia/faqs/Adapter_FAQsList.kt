@@ -16,7 +16,6 @@ data class faqQnA(
 
 class Adapter_FAQsList(
     val listFAQ : List<faqQnA>
-//    val listener : FAQsListInterface
 ) : RecyclerView.Adapter<Adapter_FAQsList.FAQsListItemHolder>() {
 
     inner class FAQsListItemHolder(item : View): RecyclerView.ViewHolder(item), View.OnClickListener{
@@ -30,7 +29,6 @@ class Adapter_FAQsList(
         override fun onClick(view: View?) {
             val position = absoluteAdapterPosition
             if(position != RecyclerView.NO_POSITION){
-//                listener.FAQsOnClick(position)
                 if(Answer.visibility == View.GONE){
                     Answer.visibility = View.VISIBLE
                 }else{
@@ -60,17 +58,8 @@ class Adapter_FAQsList(
         }
     }
 
-//    override fun onViewDetachedFromWindow(holder: FAQsListItemHolder) {
-//        super.onViewDetachedFromWindow(holder)
-//        holder.itemView.setOnClickListener(null)
-//    }
-
     override fun getItemCount(): Int {
         return listFAQ.size
     }
-
-//    interface FAQsListInterface{
-//        fun FAQsOnClick(position: Int)
-//    }
 
 }

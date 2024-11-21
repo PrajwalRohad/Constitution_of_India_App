@@ -7,19 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
-import android.util.DisplayMetrics
-import android.util.Log
-import android.view.DragEvent
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.DragShadowBuilder
-import android.view.ViewGroup
-import android.widget.ScrollView
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.IndiaCanon.constitutionofindia.R
@@ -30,16 +23,12 @@ import com.example.constitutionofindia.ThemePreference
 import com.example.constitutionofindia.bookmarks.bookmarksViewModel.BookmarkViewModel
 import com.example.constitutionofindia.bookmarks.bookmarksViewModel.BookmarkViewModelFactory
 import com.example.constitutionofindia.data.entity.Element_Bookmark
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.inmobi.ads.controllers.d
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.properties.Delegates
 
 class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouchListener {
     private lateinit var Activity_Article_BannerAd: AdView
@@ -74,9 +63,12 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
     private lateinit var tvChapterNum: TextView
     private lateinit var tvChapterName: TextView
     private lateinit var tvSubSection: TextView
+    private lateinit var tvBookmarkBtn: TextView
 
-//    private var layoutParams : ConstraintLayout.LayoutParams? = null
-//    private var coordinates = arrayOf(0,0)
+    private lateinit var ivShowElements : ImageView
+
+    private lateinit var colorOnSurface: Any
+    private lateinit var colorOnTertiary: Any
 
     private lateinit var viewModel: BookmarkViewModel
     private lateinit var factory: BookmarkViewModelFactory
@@ -88,6 +80,8 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
     private lateinit var btnbookmark: FloatingActionButton
     private var bookmarkState: Boolean = false
     private lateinit var bookmarkManager: BookmarkManager
+
+    private var showElementState : Boolean = true
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,8 +127,16 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
         tvChapterNum = findViewById(R.id.activity_article_tvChapterNum)
         tvChapterName = findViewById(R.id.activity_article_tvChapterName)
         tvSubSection = findViewById(R.id.activity_article_tvSubSection)
+        tvBookmarkBtn = findViewById(R.id.activity_article_tvBookmarkBtn)
 
+        ivShowElements = findViewById(R.id.activity_article_ivShowElements)
 
+        val colorTypedValue = TypedValue()
+        theme.resolveAttribute(com.google.android.material.R.attr.colorOnSurface,colorTypedValue,true)
+        colorOnSurface = colorTypedValue.data
+
+        theme.resolveAttribute(com.google.android.material.R.attr.colorOnTertiary,colorTypedValue,true)
+        colorOnTertiary = colorTypedValue.data
 
 
         tvArticle.also {
@@ -197,139 +199,17 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
 
         }
 
+        ivShowElements.setOnClickListener(this)
 
-
-
-        findViewById<ScrollView>(R.id.activity_article_svText).also {
-            it.setOnScrollChangeListener(
-                View.OnScrollChangeListener { view, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
-
-                    if (scrollY >= view.top + 30) {
-//                        Toast.makeText(this@Activity_Article, "Yes, Scrolled", Toast.LENGTH_LONG).show()
-                        tvArticle.also { tv ->
-                            tv.maxLines = 3
-                            tv.ellipsize = TextUtils.TruncateAt.END
-                        }
-                        tvSubSection.also { tv ->
-                            if (!sectionName.equals("null")) {
-                                tv.visibility = View.GONE
-                            }
-                        }
-                        tvChapterNum.also { tv ->
-                            if (!chapterNum.equals("null")) {
-                                tv.visibility = View.GONE
-                            }
-                        }
-                        tvChapterName.also { tv ->
-                            if (!chapterName.equals("null")) {
-                                tv.visibility = View.GONE
-                            }
-                        }
-                        tvPartNum.also { tv ->
-                            if (!partNum.equals("null")) {
-                                tv.visibility = View.GONE
-                            }
-                        }
-                        tvPartName.also { tv ->
-                            if (!partName.equals("null")) {
-                                tv.visibility = View.GONE
-                            }
-                        }
-                    } else {
-                        tvArticle.also { tv ->
-                            tv.maxLines = Int.MAX_VALUE
-                        }
-                        tvSubSection.also { tv ->
-                            if (!sectionName.equals("null")) {
-                                tv.visibility = View.VISIBLE
-                            }
-                        }
-                        tvChapterNum.also { tv ->
-                            if (!chapterNum.equals("null")) {
-                                tv.visibility = View.VISIBLE
-                            }
-                        }
-                        tvChapterName.also { tv ->
-                            if (!chapterName.equals("null")) {
-                                tv.visibility = View.VISIBLE
-                            }
-                        }
-                        tvPartNum.also { tv ->
-                            if (!partNum.equals("null")) {
-                                tv.visibility = View.VISIBLE
-                            }
-                        }
-                        tvPartName.also { tv ->
-                            if (!partName.equals("null")) {
-                                tv.visibility = View.VISIBLE
-                            }
-                        }
-                    }
-
-
-                    return@OnScrollChangeListener
-                }
-            )
-
-//            it.setOnTouchListener(
-//                View.OnTouchListener { view, event ->
-//                    when (event.action) {
-////                        MotionEvent.AXIS_HSCROLL -> {
-////                            findViewById<TextView>(R.id.activity_article_tvSubSection).also {
-////                                if (!sectionName.equals("null")) {
-////                                    it.visibility = View.GONE
-////                                }
-////                            }
-////                        }
-////                        MotionEvent.ACTION_SCROLL -> {
-////                            findViewById<TextView>(R.id.activity_article_tvSubSection).also {
-////                                if (!sectionName.equals("null")) {
-////                                    it.visibility = View.GONE
-////                                }
-////                            }
-////                        }
-////                        MotionEvent.ACTION_UP -> {
-////                            // TODO: Handle ACTION_UP
-////                            findViewById<TextView>(R.id.activity_article_tvSubSection).also {
-////                                if (!sectionName.equals("null")) {
-//////                                    if(it.visibility == View.GONE){
-//////                                        it.visibility = View.VISIBLE
-//////                                    }else{
-//////                                        it.visibility = View.GONE
-//////                                    }
-////                                    it.visibility = View.GONE
-////                                }
-////                            }
-////                        }
-////                        MotionEvent.ACTION_DOWN -> {
-////                            // TODO: Handle ACTION_DOWN
-////                            findViewById<TextView>(R.id.activity_article_tvSubSection).also {
-////                                if (!sectionName.equals("null")) {
-////                                    it.visibility = View.GONE
-////                                }
-////                            }
-////                        }
-//                    }
-//
-//                    // required to by-pass lint warning
-//                    view.performClick()
-//                    return@OnTouchListener true
-//                }
-//            )
-        }
-
-
-        tvArticle.setOnTouchListener(this@Activity_Article)
-
-
+        bookmarkManager = BookmarkManager()
+        btnbookmark = findViewById(R.id.activity_article_fabBookmark)
+        btnbookmark.setOnClickListener(this@Activity_Article)
+        tvBookmarkBtn.setOnClickListener(this)
     }
 
     override fun onStart() {
         super.onStart()
 
-        bookmarkManager = BookmarkManager()
-        btnbookmark = findViewById(R.id.activity_article_fabBookmark)
-        btnbookmark.setOnClickListener(this@Activity_Article)
 
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -352,6 +232,7 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
 
             withContext(Dispatchers.Main) {
                 bookmarkManager.bookmarkBtnClick(bookmarkState, btnbookmark)
+                bookmarkManager.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
             }
 
         }
@@ -400,6 +281,7 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
                 bookmarkState = !bookmarkState
                 bookmarkManager.also {
                     it.bookmarkBtnClick(bookmarkState, btnbookmark)
+                    it.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
                     it.showMessage(bookmarkState, this.findViewById(R.id.activity_article_layout),R.id.activity_article_AdCardView)
                 }
 
@@ -410,155 +292,108 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
                 }
 
             }
+
+            R.id.activity_article_tvBookmarkBtn -> {
+                bookmarkState = !bookmarkState
+                bookmarkManager.also {
+                    it.bookmarkBtnClick(bookmarkState, btnbookmark)
+                    it.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
+                    it.showMessage(bookmarkState, this.findViewById(R.id.activity_article_layout),R.id.activity_article_AdCardView)
+                }
+
+                if(bookmarkState) {
+                    viewModel.insertBookmark(bookmark)
+                } else {
+                    viewModel.deleteBookmark(bookmark.name)
+                }
+            }
+
+            R.id.activity_article_ivShowElements -> {
+                showElementState = !showElementState
+
+                if(showElementState) {
+                    showElements()
+                } else {
+                    hideElements()
+                }
+            }
         }
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
 
-        when (v?.id) {
-            R.id.activity_article_tvHeadline -> {
-
-                tvArticle.maxLines = Int.MAX_VALUE
-
-                tvPartNum.also { tv ->
-                    if (!partNum.equals("null")) {
-                        tv.visibility = View.VISIBLE
-                    }
-                }
-                tvPartName.also { tv ->
-                    if (!partName.equals("null")) {
-                        tv.visibility = View.VISIBLE
-                    }
-                }
-                tvChapterNum.also { tv ->
-                    if (!chapterNum.equals("null")) {
-                        tv.visibility = View.VISIBLE
-                    }
-                }
-                tvChapterName.also { tv ->
-                    if (!chapterName.equals("null")) {
-                        tv.visibility = View.VISIBLE
-                    }
-                }
-                tvSubSection.also { tv ->
-                    if (!sectionName.equals("null")) {
-                        tv.visibility = View.VISIBLE
-                    }
-                }
-            }
-        }
-
         v?.performClick()
         return true
     }
 
-//    override fun onLongClick(v: View?): Boolean {
-//
-//        val shadowbuilder = DragShadowBuilder(v)
-//        v?.startDragAndDrop(null, shadowbuilder, v, 0)
-////        v?.visibility = View.INVISIBLE
-////        Log.d("drag123", "long click")
-//        return true
-//    }
+    private fun hideElements() {
+        ivShowElements.setImageResource(R.drawable.arrow_circle_down)
 
-//    override fun onDrag(v: View?, event: DragEvent?): Boolean {
-////        Log.d("drag123", "dragging")
-//        v?.visibility = View.INVISIBLE
-////        val dragaction = event?.action
-////        val view = event?.localState as View
-////        var oldX = 0
-////        var oldY = 0
-//
-//        when(event?.action) {
-//
-//            DragEvent.ACTION_DRAG_STARTED -> {
-//                Log.d("drag123", "drag started")
-////                layoutParams = view.layoutParams as ConstraintLayout.LayoutParams?
-//                coordinates[0] = v?.right as Int
-//                coordinates[1] = v.bottom
-//                Log.d("drag123", "old X = "+ coordinates[0])
-//                Log.d("drag123", "old Y = "+ coordinates[1])
-//                return true
-//            }
-//
-//            DragEvent.ACTION_DRAG_ENTERED -> {
-////                Log.d("drag123", "drag entered")
-////                v?.invalidate()
-//                return true
-//            }
-//
-//            DragEvent.ACTION_DRAG_EXITED -> {
-////                Log.d("drag123", "drag exited")
-////                v?.invalidate()
-//                return true
-//            }
-//
-//            DragEvent.ACTION_DROP -> {
-//                Log.d("drag123", "drag dropped")
-//
-////                v?.invalidate()
-//
-////                val view = event.localState as View
-////                val parentview = view.parent as ViewGroup
-////                parentview.removeView(view)
-////
-////                val container = v as ConstraintLayout
-////                container.addView(view)
-//
-////                var newLayoutParams = ConstraintLayout.LayoutParams(v?.layoutParams)
-////                newLayoutParams.rightMargin = 145
-////                v?.layoutParams = newLayoutParams
-////                v.visibility = View.VISIBLE
-//
-////                val displaymetrics = DisplayMetrics()
-////                layoutParams?.marginEnd = displaymetrics.widthPixels - event.x.toInt()
-////                layoutParams?.bottomMargin = displaymetrics.heightPixels - event.y.toInt()
-////                view.layoutParams = layoutParams
-////                view.visibility = View.VISIBLE
-////                view.invalidate()
-//
-//                return true
-//            }
-//
-//            DragEvent.ACTION_DRAG_ENDED -> {
-//                Log.d("drag123", "drag ended")
-//                Log.d("drag123", "old X = "+ coordinates[0])
-//                Log.d("drag123", "old Y = "+ coordinates[1])
-//                Log.d("drag123", "event X = "+(event.x.toInt()))
-//                Log.d("drag123", "event Y = "+(event.y.toInt()))
-////                Log.d("drag123", "new X = "+(oldX + event.x.toInt()))
-////                Log.d("drag123", "new Y = "+(oldY + event.y.toInt()))
-////                v?.invalidate()
-//
-//                v?.visibility = View.VISIBLE
-//                val newX = coordinates[0] - event.x.toInt()
-//                val newY = coordinates[1] - event.y.toInt()
-//                Log.d("drag123", "new X = "+ newX)
-//                Log.d("drag123", "new Y = "+ newY)
-//
-////                val newLayoutParams = v?.layoutParams as ConstraintLayout.LayoutParams
-////                newLayoutParams.marginEnd = newX
-////                newLayoutParams.bottomMargin = newY
-//
-////                v?.animate().also { anim ->
-////                    anim?.x(newX.toFloat())
-////                    anim?.y(newY.toFloat())
-////                    anim?.duration = 0
-////                    anim?.start()
-////                }
-////                v.layoutParams = newLayoutParams
-////                v.requestLayout()  //works if constraints set with ConstraintSet
-//                return true
-//            }
-//
-////            else -> return false
-//
-//        }
-//
-//
-//        return true
-//    }
+        tvArticle.also { tv ->
+            tv.maxLines = 3
+            tv.ellipsize = TextUtils.TruncateAt.END
+        }
+        tvSubSection.also { tv ->
+            if (!sectionName.equals("null")) {
+                tv.visibility = View.GONE
+            }
+        }
+        tvChapterNum.also { tv ->
+            if (!chapterNum.equals("null")) {
+                tv.visibility = View.GONE
+            }
+        }
+        tvChapterName.also { tv ->
+            if (!chapterName.equals("null")) {
+                tv.visibility = View.GONE
+            }
+        }
+        tvPartNum.also { tv ->
+            if (!partNum.equals("null")) {
+                tv.visibility = View.GONE
+            }
+        }
+        tvPartName.also { tv ->
+            if (!partName.equals("null")) {
+                tv.visibility = View.GONE
+            }
+        }
+        tvBookmarkBtn.visibility = View.GONE
+    }
 
+    private fun showElements() {
+        ivShowElements.setImageResource(R.drawable.arrow_circle_up)
+
+        tvArticle.also { tv ->
+            tv.maxLines = Int.MAX_VALUE
+        }
+        tvSubSection.also { tv ->
+            if (!sectionName.equals("null")) {
+                tv.visibility = View.VISIBLE
+            }
+        }
+        tvChapterNum.also { tv ->
+            if (!chapterNum.equals("null")) {
+                tv.visibility = View.VISIBLE
+            }
+        }
+        tvChapterName.also { tv ->
+            if (!chapterName.equals("null")) {
+                tv.visibility = View.VISIBLE
+            }
+        }
+        tvPartNum.also { tv ->
+            if (!partNum.equals("null")) {
+                tv.visibility = View.VISIBLE
+            }
+        }
+        tvPartName.also { tv ->
+            if (!partName.equals("null")) {
+                tv.visibility = View.VISIBLE
+            }
+        }
+        tvBookmarkBtn.visibility = View.VISIBLE
+    }
 
 }
 

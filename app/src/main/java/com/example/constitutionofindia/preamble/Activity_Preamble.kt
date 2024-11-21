@@ -12,21 +12,14 @@ import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.ThemePreference
 import com.example.constitutionofindia.AdManager
 import com.example.constitutionofindia.CoIApplication
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.Dispatchers
-//import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
 
 
 class Activity_Preamble : AppCompatActivity() {
     private lateinit var Activity_Preamble_BannerAd: AdView
-//    private var Activity_Preamble_BannerAd: AdView? = null
-//    private var Activity_Preamble_BannerAd: WeakReference<AdView>? = null
-
 
     private val THEME_PREF = "theme_pref"
     private val THEME_SELECTED = "theme_selected"
@@ -45,7 +38,6 @@ class Activity_Preamble : AppCompatActivity() {
             CoI_SharedPref.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(nightmode)
         setTheme(themeselected)
-//        ThemePreference().changeThemeStyle(this, themeselected)
 
         setContentView(R.layout.activity_preamble)
 
@@ -56,9 +48,6 @@ class Activity_Preamble : AppCompatActivity() {
                 AdManager().loadBannerAd(Activity_Preamble_BannerAd)
             }
         }
-
-
-
     }
 
     override fun attachBaseContext(newBase: Context) {
@@ -99,7 +88,6 @@ class Activity_Preamble : AppCompatActivity() {
 
 
     override fun onDestroy() {
-        // Remove AdView from its parent view before destroying
         Activity_Preamble_BannerAd.removeAllViews()
         Activity_Preamble_BannerAd.destroy()
 

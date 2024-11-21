@@ -95,7 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="15dp"
                     android:text="@string/chapter_name"
                     android:textColor="?attr/colorOnSurface"
                     android:textColorHighlight="?attr/colorAccent"
@@ -112,8 +112,19 @@
 
         </androidx.cardview.widget.CardView>
 
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="-15dp"
+        android:src="@drawable/arrow_circle_up"
+        android:translationZ="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_settings_viewerFragment_card" />
 
-        <TextView
+
+    <TextView
             android:id="@+id/activity_settings_viewerFragment_tvtext"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

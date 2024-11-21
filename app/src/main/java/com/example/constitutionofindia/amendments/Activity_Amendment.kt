@@ -8,9 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
-import android.widget.ScrollView
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
@@ -29,7 +30,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
 
 class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnClickListener {
     private lateinit var Activity_Amendment_BannerAd: AdView
@@ -48,6 +48,12 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
 
     private lateinit var tvAmendment: TextView
     private lateinit var tvArticlesNum: TextView
+    private lateinit var tvBookmarkBtn: TextView
+
+    private lateinit var ivShowElements : ImageView
+
+    private lateinit var colorOnSurface: Any
+    private lateinit var colorOnTertiary: Any
 
     private lateinit var viewModel: BookmarkViewModel
     private lateinit var factory: BookmarkViewModelFactory
@@ -59,6 +65,8 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
     private lateinit var btnbookmark : FloatingActionButton
     private var bookmarkState : Boolean = false
     private lateinit var bookmarkManager: BookmarkManager
+
+    private var showElementState : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,11 +106,6 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
     override fun onStart() {
         super.onStart()
 
-//        val jamendmentfile: String =
-//            applicationContext.assets.open("amendments.json").bufferedReader().use {
-//                it.readText()
-//            }
-
         val jamendmentobj = CoIApplication.assetManager.amendmentJSON
         amendmentname = jamendmentobj.getJSONObject(amendmentKey).getString("name")
         amendmentyear = jamendmentobj.getJSONObject(amendmentKey).getString("Year")
@@ -111,11 +114,20 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
         val amendmentSOR = jamendmentobj.getJSONObject(amendmentKey).getString("SOR")
         val amendmentArticleAffected =
             jamendmentobj.getJSONObject(amendmentKey).getString("articlesAffected")
-//        val sortext = jamendmentobj.getJSONObject(name).getString("SOR")
 
 
         tvAmendment = findViewById(R.id.activity_amendment_cvtvHeadline)
         tvArticlesNum = findViewById(R.id.activity_amendment_cvtvArticlesNum)
+        tvBookmarkBtn = findViewById(R.id.activity_amendment_tvBookmarkBtn)
+
+        ivShowElements = findViewById(R.id.activity_amendment_ivShowElements)
+
+        val colorTypedValue = TypedValue()
+        theme.resolveAttribute(com.google.android.material.R.attr.colorOnSurface,colorTypedValue,true)
+        colorOnSurface = colorTypedValue.data
+
+        theme.resolveAttribute(com.google.android.material.R.attr.colorOnTertiary,colorTypedValue,true)
+        colorOnTertiary = colorTypedValue.data
 
 
         tvAmendment.also {
@@ -156,40 +168,13 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
         }
 
 
-        findViewById<ScrollView>(R.id.activity_amendment_svText).also {
-            it.setOnScrollChangeListener(
-                View.OnScrollChangeListener { view, scrollX, scrollY, oldScrollX, oldScrollY ->
-                    if (scrollY >= view.top + 30) {
-//                        Toast.makeText(this@Activity_Article, "Yes, Scrolled", Toast.LENGTH_LONG).show()
-                        tvAmendment.also { tv ->
-                            tv.maxLines = 3
-                            tv.ellipsize = TextUtils.TruncateAt.END
-                        }
-                        tvArticlesNum.also {tv ->
-                            tv.visibility = View.GONE
-                        }
-                    }else{
-                        tvAmendment.also { tv ->
-                            tv.maxLines = Int.MAX_VALUE
-                        }
-                        tvArticlesNum.also {tv ->
-                            tv.visibility = View.VISIBLE
-                        }
-                    }
-
-                    return@OnScrollChangeListener
-                }
-            )
-        }
-
-
-
-        tvAmendment.setOnTouchListener(this@Activity_Amendment)
+        ivShowElements.setOnClickListener(this)
 
         bookmarkManager = BookmarkManager()
         btnbookmark = findViewById(R.id.activity_amendment_fabBookmark)
 
         btnbookmark.setOnClickListener(this@Activity_Amendment)
+        tvBookmarkBtn.setOnClickListener(this)
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -204,6 +189,7 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
 
             withContext(Dispatchers.Main) {
                 bookmarkManager.bookmarkBtnClick(bookmarkState, btnbookmark)
+                bookmarkManager.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
 
             }
 
@@ -215,13 +201,10 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
         super.onResume()
 
         lifecycleScope.launch(Dispatchers.IO) {
-//            MobileAds.initialize(this@Activity_Amendment) {}
-//            val Activity_Amendment_BannerAdRequest = AdRequest.Builder().build()
 
             Activity_Amendment_BannerAd = findViewById(R.id.activity_amendment_adView)
             withContext(Dispatchers.Main) {
                 AdManager().loadBannerAd(Activity_Amendment_BannerAd)
-//                Activity_Amendment_BannerAd.loadAd(Activity_Amendment_BannerAdRequest)
             }
         }
 
@@ -236,26 +219,10 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
             it.setOnClickListener(null)
         }
 
-//        if(bookmarkState && stored_bookmark.size == 0) {
-//            viewModel.insertBookmark(bookmark)
-//        } else if (!bookmarkState && stored_bookmark.size > 0) {
-//            viewModel.deleteBookmark(stored_bookmark[0])
-//        }
-
-
         super.onDestroy()
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        when(v) {
-            tvAmendment -> {
-                tvAmendment.maxLines = Int.MAX_VALUE
-
-                tvArticlesNum.also {tv ->
-                    tv.visibility = View.VISIBLE
-                }
-            }
-        }
         v?.performClick()
         return true
     }
@@ -267,6 +234,7 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
                 bookmarkState = !bookmarkState
                 bookmarkManager.also {
                     it.bookmarkBtnClick(bookmarkState, btnbookmark)
+                    it.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
                     it.showMessage(bookmarkState, this.findViewById(R.id.activity_amendment_layout),R.id.activity_amendment_AdCardView)
                 }
 
@@ -276,7 +244,58 @@ class Activity_Amendment : AppCompatActivity(), View.OnTouchListener, View.OnCli
                     viewModel.deleteBookmark(bookmark.name)
                 }
             }
+
+            R.id.activity_amendment_tvBookmarkBtn -> {
+                bookmarkState = !bookmarkState
+                bookmarkManager.also {
+                    it.bookmarkBtnClick(bookmarkState, btnbookmark)
+                    it.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
+                    it.showMessage(bookmarkState, this.findViewById(R.id.activity_amendment_layout),R.id.activity_amendment_AdCardView)
+                }
+
+                if(bookmarkState) {
+                    viewModel.insertBookmark(bookmark)
+                } else {
+                    viewModel.deleteBookmark(bookmark.name)
+                }
+            }
+
+            R.id.activity_amendment_ivShowElements -> {
+                showElementState = !showElementState
+
+                if(showElementState) {
+                    showElements()
+                } else {
+                    hideElements()
+                }
+            }
         }
+    }
+
+
+    private fun hideElements() {
+        ivShowElements.setImageResource(R.drawable.arrow_circle_down)
+
+        tvAmendment.also { tv ->
+            tv.maxLines = 3
+            tv.ellipsize = TextUtils.TruncateAt.END
+        }
+        tvArticlesNum.also {tv ->
+            tv.visibility = View.GONE
+        }
+        tvBookmarkBtn.visibility = View.GONE
+    }
+
+    private fun showElements() {
+        ivShowElements.setImageResource(R.drawable.arrow_circle_up)
+
+        tvAmendment.also { tv ->
+            tv.maxLines = Int.MAX_VALUE
+        }
+        tvArticlesNum.also {tv ->
+            tv.visibility = View.VISIBLE
+        }
+        tvBookmarkBtn.visibility = View.VISIBLE
     }
 }
 

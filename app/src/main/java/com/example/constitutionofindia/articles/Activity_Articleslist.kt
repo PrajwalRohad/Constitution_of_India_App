@@ -14,14 +14,11 @@ import com.IndiaCanon.constitutionofindia.R
 import com.example.constitutionofindia.AdManager
 import com.example.constitutionofindia.CoIApplication
 import com.example.constitutionofindia.ThemePreference
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
-import org.json.JSONObject
 
 class Activity_Articleslist : AppCompatActivity(), Adapter_Articleslist.ArticlesListInterface {
     private lateinit var Activity_Articleslist_BannerAd: AdView

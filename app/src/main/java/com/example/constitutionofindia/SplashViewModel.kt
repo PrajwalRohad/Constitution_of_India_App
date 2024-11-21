@@ -2,7 +2,6 @@ package com.example.constitutionofindia
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -14,7 +13,6 @@ class SplashViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-//            delay(500L)
             _isReady.value = true
         }
     }

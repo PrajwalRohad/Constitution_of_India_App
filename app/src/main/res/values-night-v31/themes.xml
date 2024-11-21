@@ -46,6 +46,9 @@
         <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
         <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
         <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorTertiary">@color/grey_dark_01</item>
+        <item name="colorOnTertiary">@color/grey_light</item>
         <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
 
         <!--        <item name="colorSecondary">@color/teal_01</item>-->
@@ -87,6 +90,9 @@
         <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
         <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
         <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorTertiary">@color/replyblue</item>
+        <item name="colorOnTertiary">@color/replyblue_light_01</item>
         <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
 
         <!--        <item name="colorSecondary">@color/teal_01</item>-->
@@ -127,6 +133,9 @@
         <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
         <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
         <item name="colorOnPrimary">@color/basilgreen_orange_light</item>
+
+        <item name="colorTertiary">@color/basilgreen</item>
+        <item name="colorOnTertiary">@color/basilgreen_light_01</item>
         <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
 
         <!--        <item name="colorSecondary">@color/teal_01</item>-->
@@ -167,6 +176,9 @@
         <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
         <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
         <item name="colorOnPrimary">@color/yellow_light_01</item>
+
+        <item name="colorTertiary">@color/blue_dark</item>
+        <item name="colorOnTertiary">@color/yellow_light</item>
         <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
 
         <!--        <item name="colorSecondary">@color/teal_01</item>-->
@@ -208,6 +220,9 @@
         <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
         <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
         <item name="colorOnPrimary">@color/black</item>
+
+        <item name="colorTertiary">@color/teal_dark_02</item>
+        <item name="colorOnTertiary">@color/teal_white</item>
         <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
 
         <!--        <item name="colorSecondary">@color/teal_01</item>-->
@@ -248,6 +263,9 @@
         <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
         <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
         <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorTertiary">@color/fornightly_purple</item>
+        <item name="colorOnTertiary">@color/white</item>
         <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
 
         <!--        <item name="colorSecondary">@color/teal_01</item>-->
@@ -290,6 +308,9 @@
         <!--        <item name="colorPrimaryVariant">@color/purple_dark</item>-->
         <!--        <item name="android:colorPrimaryDark">@color/purple_dark</item>-->
         <item name="colorOnPrimary">@color/black</item>
+
+        <item name="colorTertiary">@color/purple_dark_01</item>
+        <item name="colorOnTertiary">@color/purple_dark_02</item>
         <!--        <item name="colorPrimaryContainer">@color/purple_light_01</item>-->
 
         <!--        <item name="colorSecondary">@color/teal_01</item>-->
@@ -360,6 +381,15 @@
     <style name="buttonOffStyle" parent="Theme.AppCompat">
         <item name="backgroundTint">?attr/background</item>
         <item name="android:textColor">?attr/thumbTint</item>
+    </style>
+
+    <style name="bookmarkTv" parent="Theme.AppCompat">
+        <item name="android:background">@drawable/bookmark_btn_unselect</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    <style name="bookmarkedTv" parent="Theme.AppCompat">
+        <item name="android:background">@drawable/bookmark_btn_select</item>
+        <item name="android:textColor">?attr/colorOnTertiary</item>
     </style>
 
 
