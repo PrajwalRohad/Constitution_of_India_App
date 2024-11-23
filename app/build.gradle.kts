@@ -14,8 +14,8 @@ android {
         applicationId = "com.IndiaCanon.constitutionofindia"
         minSdk = 27
         targetSdk = 34
-        versionCode = 10
-        versionName = "1.4.3"
+        versionCode = 11
+        versionName = "1.4.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

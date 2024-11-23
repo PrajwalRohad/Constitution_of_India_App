@@ -13,13 +13,7 @@ class AdManager {
     fun adsInitialize(context : Context) {
         val backgroundScope = CoroutineScope(Dispatchers.IO)
         backgroundScope.launch {
-            MobileAds.initialize(context) { initializationStatus ->
-                val statusMap =
-                    initializationStatus.adapterStatusMap
-                for (adapterClass in statusMap.keys) {
-                    val status = statusMap[adapterClass]
-                }
-            }
+            MobileAds.initialize(context) {}
         }
     }
 
