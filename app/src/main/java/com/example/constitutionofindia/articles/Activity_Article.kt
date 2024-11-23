@@ -24,7 +24,6 @@ import com.example.constitutionofindia.bookmarks.bookmarksViewModel.BookmarkView
 import com.example.constitutionofindia.bookmarks.bookmarksViewModel.BookmarkViewModelFactory
 import com.example.constitutionofindia.data.entity.Element_Bookmark
 import com.google.android.gms.ads.AdView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -77,7 +76,6 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
     private lateinit var stored_bookmark: List<Element_Bookmark>
     private lateinit var dataList: MutableList<String>
 
-    private lateinit var btnbookmark: FloatingActionButton
     private var bookmarkState: Boolean = false
     private lateinit var bookmarkManager: BookmarkManager
 
@@ -202,8 +200,6 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
         ivShowElements.setOnClickListener(this)
 
         bookmarkManager = BookmarkManager()
-        btnbookmark = findViewById(R.id.activity_article_fabBookmark)
-        btnbookmark.setOnClickListener(this@Activity_Article)
         tvBookmarkBtn.setOnClickListener(this)
     }
 
@@ -231,7 +227,6 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
             bookmark = Element_Bookmark(Element_Bookmark.TYPE_ARTICLE,articlesNum.toString(),dataList)
 
             withContext(Dispatchers.Main) {
-                bookmarkManager.bookmarkBtnClick(bookmarkState, btnbookmark)
                 bookmarkManager.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
             }
 
@@ -277,26 +272,9 @@ class Activity_Article : AppCompatActivity(), View.OnClickListener, View.OnTouch
     override fun onClick(v: View?) {
 
         when (v?.id) {
-            R.id.activity_article_fabBookmark -> {
-                bookmarkState = !bookmarkState
-                bookmarkManager.also {
-                    it.bookmarkBtnClick(bookmarkState, btnbookmark)
-                    it.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
-                    it.showMessage(bookmarkState, this.findViewById(R.id.activity_article_layout),R.id.activity_article_AdCardView)
-                }
-
-                if(bookmarkState) {
-                    viewModel.insertBookmark(bookmark)
-                } else {
-                    viewModel.deleteBookmark(bookmark.name)
-                }
-
-            }
-
             R.id.activity_article_tvBookmarkBtn -> {
                 bookmarkState = !bookmarkState
                 bookmarkManager.also {
-                    it.bookmarkBtnClick(bookmarkState, btnbookmark)
                     it.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
                     it.showMessage(bookmarkState, this.findViewById(R.id.activity_article_layout),R.id.activity_article_AdCardView)
                 }

@@ -11,7 +11,6 @@ import com.example.constitutionofindia.amendments.Activity_Amendment
 import com.example.constitutionofindia.articles.Activity_Article
 import com.example.constitutionofindia.data.entity.Element_Bookmark
 import com.example.constitutionofindia.schedules.Activity_Schedule
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
 class BookmarkManager {
@@ -101,18 +100,6 @@ class BookmarkManager {
         return intent
     }
 
-
-    fun bookmarkBtnClick(state: Boolean, btn: FloatingActionButton) {
-        btn.also { fab ->
-
-            if (state) {
-                fab.setImageResource(R.drawable.bookmark_select)
-
-            } else {
-                fab.setImageResource(R.drawable.bookmark_unselect)
-            }
-        }
-    }
 
     fun bookmarkBtnClick(state: Boolean, tv: TextView, color1: Int, color2: Int) {
         tv.also {

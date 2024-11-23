@@ -148,19 +148,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="15dp"
+                    android:focusable="false"
                     android:gravity="center"
                     android:paddingVertical="4dp"
                     android:text="@string/click_to_bookmark"
-                    android:theme="@style/bookmarkTv"
                     android:textColorHighlight="?attr/colorAccent"
                     android:textIsSelectable="true"
                     android:textSize="14sp"
-                    app:layout_goneMarginTop="5dp"
+                    android:theme="@style/bookmarkTv"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/activity_article_tvSubSection" />
+                    app:layout_constraintTop_toBottomOf="@+id/activity_article_tvSubSection"
+                    app:layout_goneMarginTop="5dp" />
 
 <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
@@ -254,26 +255,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/activity_article_fabBookmark"
-            style="@style/bookmarkButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_margin="16dp"
-            android:clickable="true"
-            android:contentDescription="@string/bookmark"
-            app:fabCustomSize="45dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            app:maxImageSize="30dp"
-            app:srcCompat="@drawable/bookmark_unselect"
-            app:tint="?attr/background" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

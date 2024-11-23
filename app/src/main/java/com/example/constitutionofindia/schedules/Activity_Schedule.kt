@@ -23,7 +23,6 @@ import com.example.constitutionofindia.bookmarks.bookmarksViewModel.BookmarkView
 import com.example.constitutionofindia.bookmarks.bookmarksViewModel.BookmarkViewModelFactory
 import com.example.constitutionofindia.data.entity.Element_Bookmark
 import com.google.android.gms.ads.AdView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -60,7 +59,6 @@ class Activity_Schedule : AppCompatActivity(), View.OnClickListener {
     private lateinit var stored_bookmark: List<Element_Bookmark>
     private lateinit var dataList: MutableList<String>
 
-    private lateinit var btnbookmark : FloatingActionButton
     private var bookmarkState : Boolean = false
     private lateinit var bookmarkManager: BookmarkManager
 
@@ -140,8 +138,6 @@ class Activity_Schedule : AppCompatActivity(), View.OnClickListener {
 
 
         bookmarkManager = BookmarkManager()
-        btnbookmark = findViewById(R.id.activity_schedule_fabBookmark)
-        btnbookmark.setOnClickListener(this@Activity_Schedule)
         tvBookmarkBtn.setOnClickListener(this)
 
 
@@ -157,9 +153,7 @@ class Activity_Schedule : AppCompatActivity(), View.OnClickListener {
             bookmark = Element_Bookmark(Element_Bookmark.TYPE_SCHEDULE, schedulenum, dataList)
 
             withContext(Dispatchers.Main) {
-                bookmarkManager.bookmarkBtnClick(bookmarkState, btnbookmark)
                 bookmarkManager.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
-
             }
 
         }
@@ -199,25 +193,9 @@ class Activity_Schedule : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
 
         when(v?.id) {
-            R.id.activity_schedule_fabBookmark -> {
-                bookmarkState = !bookmarkState
-                bookmarkManager.also { it ->
-                    it.bookmarkBtnClick(bookmarkState, btnbookmark)
-                    it.showMessage(bookmarkState, this.findViewById(R.id.activity_schedule_layout),R.id.activity_schedule_AdCardView)
-                }
-
-                if(bookmarkState) {
-                    viewModel.insertBookmark(bookmark)
-                } else {
-                    viewModel.deleteBookmark(bookmark.name)
-                }
-
-            }
-
             R.id.activity_schedule_tvBookmarkBtn -> {
                 bookmarkState = !bookmarkState
                 bookmarkManager.also { it ->
-                    it.bookmarkBtnClick(bookmarkState, btnbookmark)
                     it.bookmarkBtnClick(bookmarkState, tvBookmarkBtn, colorOnSurface as Int, colorOnTertiary as Int)
                     it.showMessage(bookmarkState, this.findViewById(R.id.activity_schedule_layout),R.id.activity_schedule_AdCardView)
                 }

@@ -98,8 +98,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
-                android:gravity="center"
                 android:background="@drawable/bookmark_btn_unselect"
+                android:focusable="false"
+                android:gravity="center"
                 android:paddingVertical="2dp"
                 android:text="@string/bookmark"
                 android:textColor="?attr/colorOnSurface"
@@ -110,7 +111,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_schedule_cvtvArticlesRelated" />
+                app:layout_constraintTop_toBottomOf="@+id/activity_schedule_cvtvArticlesNum" />
 
 
             <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
@@ -204,21 +205,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/activity_schedule_fabBookmark"
-            style="@style/bookmarkButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/bookmark"
-            app:fabCustomSize="45dp"
-            app:layout_constraintBottom_toBottomOf="@+id/activity_schedule_svText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:maxImageSize="30dp"
-            app:srcCompat="@drawable/bookmark_unselect"
-            app:tint="?attr/background" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
